@@ -23,6 +23,10 @@ export default defineConfig({
     ],
     sidebar: [
       {
+        text: 'Documentation',
+        link: '/docs'
+      },
+      {
         text: 'Getting Started',
         items: [
           { text: 'Installation Instructions', link: '/docs/install' },
