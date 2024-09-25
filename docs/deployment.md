@@ -1,6 +1,4 @@
----
-title: Back End Deployment (Website)
----
+# Back End Deployment (Website)
 
 This project was bootstrapped with [Create React Native
 App](https://github.com/react-community/create-react-native-app). This
@@ -10,17 +8,13 @@ information about React Native, the most recent version of this guide is
 available
 [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
-:::: note
-::: title
-Note
-:::
-
+::: info
 A valid SSL certificate for all communications between the front end and
 back end is required. Apps on the Google Play Store and Apple Store will
 no longer work if any URL is not using HTTPS.
-::::
+:::
 
-# Automatic Deployment
+## Automatic Deployment
 
 After setting up and testing your instance of Informfully, you are ready
 to deploy your solution. For your convenience, we have created a script
@@ -76,7 +70,7 @@ software packages:
 -   Phusion Passenger Version: **6.0.12**
 -   MongoDB Version: **4.4.3**
 
-# Manual Deployment
+## Manual Deployment
 
 Please perform the following steps to deploy *an update* of the
 application.
@@ -136,7 +130,7 @@ image. To do that, simply follow the steps in the [Docker
 Setup](https://informfully.readthedocs.io/en/latest/docker.html) for
 loading the image to the server.
 
-# Deploy Apps
+## Deploy Apps
 
 Please see the other instruction page for [App
 Deployment](https://informfully.readthedocs.io/en/latest/native.html) If

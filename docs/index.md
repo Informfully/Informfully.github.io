@@ -21,18 +21,14 @@ project.
 Play](https://play.google.com/store/apps/details?id=ch.uzh.ifi.news) \|
 [App Store](https://apps.apple.com/us/app/informfully/id1460234202)
 
-:::: note
-::: title
-Note
-:::
-
+::: info
 There are two different ways of that you can use Informfully: 1) Use the
 front end and back end deployed by the University of Zurich or 2) Deploy
 the whole application on your own. The upcoming tutorial focuses on the
 self-hosted deployment of Informfully. If you want to use the
 Informfully Platform as a cloud service, hosted at the University of
 Zurich, please reach out to us: <info@informfully.ch>
-::::
+:::
 
 ## Overview
 
@@ -69,26 +65,6 @@ follows:
     a tutorial on how to use React Native and Meteor).
 
 ![Informfully app screenshots](img/informfully_assets/informfully_app_screens.png){width="700px"}
-
-::: {.toctree maxdepth="1" caption="Getting Started"}
-install development deployment native
-:::
-
-::: {.toctree maxdepth="1" caption="Running Experiments"}
-overview experiment users surveys scrapers app
-:::
-
-::: {.toctree maxdepth="1" caption="Custom Recommendations"}
-compass items recommendations explanations
-:::
-
-::: {.toctree maxdepth="1" caption="Technical Documentation"}
-server publications methods database datasets
-:::
-
-::: {.toctree maxdepth="1" caption="User Guides"}
-source docker google apple
-:::
 
 ## Citation
 
@@ -161,4 +137,3 @@ License](https://github.com/Informfully/Documentation/blob/main/LICENSE).
 (Please note that the respective copyright licenses of third-party
 libraries and dependencies apply.)
 
-![Informfully app screenshots](img/app_screens.png){width="700px"}

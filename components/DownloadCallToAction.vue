@@ -1,7 +1,7 @@
 <template>
     <div class="download-call-to-action">
         <div class="text">
-            <h2 id="download">Download Now</h2>
+            <h2 id="download"><i class="ri-download-line"></i> Download Now</h2>
             Informfully is availabe for Android and iOS. The download is free. To get access to the full set of
             features,
             you need to be enrolled in a user study. Send an e-mail to
@@ -23,11 +23,9 @@
 <style scoped lang="scss">
 .download-call-to-action {
     margin-top: 2rem;
-    background: #F7F8FC;
+    background: var(--vp-c-brand-3);
 
-    .dark & {
-        background: #1A202C;
-    }
+    color: #fff;
 
     h2 {
         text-align: center;

@@ -1,6 +1,4 @@
----
-title: Installation Instructions
----
+# Installation Instructions
 
 This project was bootstrapped with [Create React Native
 App](https://github.com/react-community/create-react-native-app). This
@@ -10,7 +8,7 @@ information about React Native, the most recent version of this guide is
 available
 [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
-# Download Codebase {#installation}
+## Download Codebase
 
 Informfully is a React Native app that uses a Meteor server as the back
 end. Download the code and Meteor as follows:
@@ -52,7 +50,7 @@ version this project uses in
 [.meteor/release](https://github.com/Informfully/Platform/blob/main/backend/.meteor/release)
 to find the Meteor version of this project.
 
-# Configuring Packager
+## Configuring Packager
 
 After downloading the code, you need to verify the React Native Packager
 Hostname. We have a brief guide for Mac, Linux, and Windows users. When
@@ -92,7 +90,7 @@ npm start
 The above example would cause the development server to listen on
 `exp://my-custom-ip-address-or-hostname:19000`.
 
-# Next Step: Run the Code
+## Next Step: Run the Code
 
 Please see the next instruction page for [Running the
 Code](https://informfully.readthedocs.io/en/latest/development.html)
