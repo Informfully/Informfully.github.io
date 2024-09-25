@@ -166,3 +166,5 @@ cython_debug/
 *.vsix
 
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
+.vitepress/cache
+node_modules

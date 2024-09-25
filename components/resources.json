@@ -1,0 +1,44 @@
+[
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '24 Resource Paper",
+        "text": "Click here to download our RecSys '24 paper submission on the Informfully platform:",
+        "linkText": "Download RecSys Resource Paper",
+        "link": "https://www.researchgate.net/profile/Lucien-Heitz/publication/383261885_Informfully_-_Research_Platform_for_Reproducible_User_Studies/links/66c4c3a64b25ef677f720f3b/Informfully-Research-Platform-for-Reproducible-User-Studies.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '24 Challenge Paper",
+        "text": "Click here to download our RecSys '24 challenge paper submission on diversity in news recommendations:",
+        "linkText": "Download RecSys Challenge Paper",
+        "link": "https://www.researchgate.net/profile/Lucien-Heitz/publication/383261868_Recommendations_for_the_Recommenders_Reflections_on_Prioritizing_Diversity_in_the_RecSys_Challenge/links/66c4c1fdccd355055fe130cb/Recommendations-for-the-Recommenders-Reflections-on-Prioritizing-Diversity-in-the-RecSys-Challenge.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '24 NORMalize Workshop Paper",
+        "text": "Download the NORMalize paper on stage-based classification of recommender systems:",
+        "linkText": "Download NORMalize Workshop Paper",
+        "link": "https://www.informfully.ch"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "Related Studies",
+        "text": "Read our previous journal article on the impact of diversity-optimized recommenders for participatory diversity:",
+        "linkText": "Download Research Paper",
+        "link": "publications/2022_Benefits_of_Diverse_News_Recommendations_for_Democracy.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "Research Manifesto",
+        "text": "Informfully is part of a research endeavor of investigating the normative aspects of news recommendations. Click here to download our manifesto:",
+        "linkText": "Download Manifesto",
+        "link": "publications/2021_Diversity_in_News_Recommendations.pdf"
+    },
+    {
+        "icon": "ri-book-open-line",
+        "title": "OSCE Policy Manual",
+        "text": "We take part in the discussion of the impact of algorithmic content curation and AI at the OSCE level. Click here to get the most recent policy manual:",
+        "linkText": "OSCE Policy Manual",
+        "link": "https://osce.org/representative-on-freedom-of-media/510332"
+    }
+]
