@@ -5,7 +5,8 @@ hero:
   name: "Informfully"
   tagline: Your All-in-One Solution for User Studies
   image:
-    src: /iphone-app.png
+    light: /iphone-app.png
+    dark: /iphone-app-dark.png
     alt: Informfully Logo
   actions:
     - theme: brand
@@ -135,12 +136,6 @@ Released under the [MIT
 License](https://github.com/Informfully/Documentation/blob/main/LICENSE).
 (Please note that the respective copyright licenses of third-party
 libraries and dependencies apply.)
-
-<!-- TODO move to footer -->
-![Informfully app screenshots](docs/img/app_screens.png)
-
-
-
 
 </div>
 

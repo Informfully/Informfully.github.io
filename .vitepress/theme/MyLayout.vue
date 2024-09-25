@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <template #doc-bottom>
-            <Footer style="border-radius: 12px" />
+            <Footer style="border-radius: 12px" :hasScreenshots="false" />
         </template>
     </Layout>
 </template>

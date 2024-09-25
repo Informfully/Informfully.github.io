@@ -1,5 +1,8 @@
 <template>
     <footer>
+        <div class="app-screens" v-if="props.hasScreenshots">
+            <img src="./app_screens.png" alt="Informfully app screenshots" />
+        </div>
         <div class="footer-main custom-block details" :style="props.style">
             <div class="footer-row">
                 <div class="footer-col">
@@ -59,14 +62,27 @@ const props = defineProps({
     style: {
         type: String,
         default: "border-radius: 0",
-    }
+    },
+    hasScreenshots: {
+        type: Boolean,
+        default: true,
+    },
 });
 </script>
 
 <style scoped lang="scss">
 .footer-main {
     padding: 2rem;
+}
+
+.app-screens {
+    max-width: 600px;
+    margin: 0 auto;
     margin-top: 2rem;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .footer-row {
