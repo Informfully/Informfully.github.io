@@ -1,11 +1,11 @@
 <template>
     <div class="join-community">
         <div class="community-links">
-            <a class="button" href="https://x.com/informfully">
-                <i class="ri-twitter-x-fill"></i> Twitter
-            </a>
             <a class="button" href="https://github.com/Informfully">
                 <i class="ri-github-fill"></i> GitHub
+            </a>
+            <a class="button" href="https://x.com/informfully">
+                <i class="ri-twitter-x-fill"></i> Twitter
             </a>
         </div>
     </div>
@@ -33,12 +33,14 @@
         font-size: 1.2rem;
         text-decoration: none;
 
+        transition: background 0.3s, color 0.3s;
+
         i {
             margin-right: 0.5rem;
         }
 
         &:hover {
-            background: var(--vp-c-brand-1);
+            background: var(--vp-c-brand-3);
             color: white;
         }
     }

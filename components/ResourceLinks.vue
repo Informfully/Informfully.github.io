@@ -30,7 +30,7 @@ import resources from './resources.json'
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 10px;
+    border-radius: 12px;
     color: var(--vp-c-text-1);
 
     p {

@@ -1,7 +1,9 @@
 <template>
     <Layout>
+        <template #doc-bottom>
+            <Footer style="border-radius: 12px" />
+        </template>
     </Layout>
-    <Footer />
 </template>
 
 <script setup>

@@ -14,7 +14,7 @@ hero:
       link: "mailto:info@informfully.ch"
     - theme: alt
       text: Download Informfully
-      link: "#Download"
+      link: "/#download"
 
 features:
   - title: 📊 Real-time monitoring
@@ -52,9 +52,12 @@ Thank you for your visit at RecSys '24! We are looking forward to your feedback 
 
 </div>
 
+<Footer />
+
 <script setup>
 import ResourceLinks from './components/ResourceLinks.vue'
 import Community from './components/Community.vue'
+import Footer from './.vitepress/theme/Footer.vue'
 </script>
 
 

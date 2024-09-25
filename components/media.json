@@ -1,0 +1,16 @@
+[
+    {
+        "icon": "ri-article-line",
+        "title": "Minority Voices in Political News",
+        "text": "User study on the impact of deliberative diversity that over-exposes minority voices in political discussions.",
+        "linkText": "available online",
+        "link": "https://dl.acm.org/doi/abs/10.1145/3604915.3608834"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "Topic Diversity of News",
+        "text": "Field experiment on topic diversity and how it impact user's perception of news and engagement rates.",
+        "linkText": "available online",
+        "link": "https://www.tandfonline.com/doi/full/10.1080/21670811.2021.2021804"
+    }
+]

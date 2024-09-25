@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <div class="footer-main custom-block details">
+        <div class="footer-main custom-block details" :style="props.style">
             <div class="footer-row">
                 <div class="footer-col">
                     <h4>Informfully</h4>
@@ -54,15 +54,19 @@
     </footer>
 </template>
 
-<script>
-export default {
-    name: 'FooterComponent',
-};
+<script setup>
+const props = defineProps({
+    style: {
+        type: String,
+        default: "border-radius: 0",
+    }
+});
 </script>
 
 <style scoped lang="scss">
 .footer-main {
     padding: 2rem;
+    margin-top: 2rem;
 }
 
 .footer-row {
