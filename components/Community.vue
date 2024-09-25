@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="thank-you">
-        <p>From Switzerland with <i class="ri-heart-fill red"></i></p>
+        <p>Made with <i class="ri-heart-fill red"></i> in Switzerland</p>
     </div>
 </template>
 
