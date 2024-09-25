@@ -14,7 +14,12 @@
 </template>
 
 <script setup>
-import resources from './resources.json'
+const props = defineProps({
+    resources: {
+        type: Array,
+        required: true,
+    },
+});
 </script>
 
 <style scoped lang="scss">

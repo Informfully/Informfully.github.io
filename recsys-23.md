@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "Informfully"
-  text: "@ RecSys '24"
+  text: "@ RecSys '23"
   tagline: Your All-in-One Solution for User Studies
   image:
     src: /iphone-app.png
@@ -39,7 +39,7 @@ You can get more information <a target="_blank" href="/">here.</a>
 
 ## Resources
 
-<ResourceLinks :resources="recsys24" />
+<ResourceLinks :resources="recsys23" />
 
 
 
@@ -59,7 +59,8 @@ import ResourceLinks from './components/ResourceLinks.vue'
 import Community from './components/Community.vue'
 import Footer from './.vitepress/theme/Footer.vue'
 
-import recsys24 from './db/recsys24.json'
+// import recsys24 from './db/recsys24.json'
+const recsys23 = [];
 </script>
 
 

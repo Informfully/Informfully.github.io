@@ -12,6 +12,12 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Documentation', link: '/docs' },
+      { text: 'Current Events',
+        items: [
+          { text: 'RecSys 24', link: '/recsys-24' },
+          { text: 'RecSys 23', link: '/recsys-23' }
+        ]
+      },
     ],
     sidebar: [
       {
