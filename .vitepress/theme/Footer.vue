@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer style="margin-top: 20px;">
         <div class="app-screens" v-if="props.hasScreenshots">
             <img src="./app_screens.png" alt="Informfully app screenshots" />
         </div>
