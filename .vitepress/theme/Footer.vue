@@ -50,6 +50,8 @@
                 <div class="footer-col">
                     <div class="copyright">
                         <span>© Copyright Informfully {{ new Date().getFullYear() }}.</span>
+                        <br>
+                        <span class="made-by">Website made with ❤️ by <a href="https://pandermatt.ch" target="_blank">Pascal Andermatt</a></span>
                     </div>
                 </div>
             </div>
@@ -120,5 +122,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.made-by {
+    font-size: 0.8rem;
+    color: var(--vp-c-text-2);
 }
 </style>
