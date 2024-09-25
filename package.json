@@ -9,7 +9,6 @@
     "docs:preview": "vitepress preview ."
   },
   "dependencies": {
-    "remixicon": "^4.3.0",
-    "vuepress-plugin-smooth-scroll": "^0.0.10"
+    "remixicon": "^4.3.0"
   }
 }
