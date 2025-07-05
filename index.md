@@ -30,13 +30,11 @@ markdownStyles: false
 
 <div class="home-content vp-doc">
 
-
 ## What Is Informfully?
 
 Do you want to push news, videos, songs, or pictures to user panels and see how they react? We got you covered! Informfully is an all-in-one content delivery platform that allows you to set up your users studies within minutes. No coding required! Run it on Android, iOS, or in your browser. Give it a try and <a href="#download" class="smoothscroll">download it right now</a>!
 
 Informfully is fully open-source. Become a member today!
-
 
 ## Community
 
@@ -60,7 +58,6 @@ Access the code on GitHub and become part of our community. We’d love to hear 
 As part of Informfully's committment to research, the services are offered for free to research institutions. Take a look at the projects below to see how Informfully was successfuly used in the past to support research.
 
 </div>
-
 
 ## Media
 
@@ -118,17 +115,16 @@ we ask you to cite the following papers:
 }
 ```
 
-## Support
+## Contributing
 
-You are welcome to contribute to the Informfully ecosystem and become a
-part of the community. Feel free to:
+You are welcome to contribute to the Informfully ecosystem and become a part of our community.
+Feel free to:
 
--   fork any of the [Informfully
-    repositories](https://github.com/Informfully/Documentation) and
--   make changes and create pull requests.
+- Fork any of the [Informfully repositories](https://github.com/Informfully/Documentation).
+- Suggest new features in [Future Release](https://github.com/orgs/Informfully/projects/1).
+- Make changes and create pull requests.
 
-Please post your feature requests and bug reports in our [GitHub
-issues](https://github.com/Informfully/Documentation/issues) section.
+Please post your feature requests and bug reports in our [GitHub issues](https://github.com/Informfully/Documentation/issues) section.
 
 ## License
 
