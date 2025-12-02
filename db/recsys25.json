@@ -1,0 +1,100 @@
+[
+    {
+        "icon": "ri-article-line",
+        "title": "Informfully Recommenders",
+        "text": "Informfully Recommenders paper our reproducibility framework:",
+        "linkText": "Download Resource Paper",
+        "link": "https://doi.org/10.1145/3705328.3748148"
+    },
+    {
+        "icon": "ri-github-fill",
+        "title": "Informfully Recommenders Repo",
+        "text": "GitHub Repository for Informfully Recommenders:",
+        "linkText": "GitHub Repository",
+        "link": "https://github.com/Informfully/Recommenders"
+    },
+    {
+        "icon": "ri-book-open-line",
+        "title": "Online Documentation",
+        "text": "Read the online documentation for Informfully Recommenders:",
+        "linkText": "Online Documentation",
+        "link": "https://informfully.readthedocs.io/en/latest/recommenders.html"
+    },
+    {
+        "icon": "ri-slideshow-line",
+        "title": "RecSys '25 Presentation",
+        "text": "Download the presentation slides for the Framework:",
+        "linkText": "Download Presentation",
+        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/RecSys25_Framework.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "D-RDW",
+        "text": "D-RDW paper our diversity-driven news recommendations:",
+        "linkText": "Download Short Paper",
+        "link": "https://doi.org/10.1145/3705328.3748016"
+    },
+    {
+        "icon": "ri-github-fill",
+        "title": "D-RDW Repo",
+        "text": "GitHub Repository for D-RDW experiments:",
+        "linkText": "GitHub Repository",
+        "link": "https://github.com/Informfully/Experiments"
+    },
+    {
+        "icon": "ri-code-s-slash-line",
+        "title": "Tutorial Notebook",
+        "text": "Check out the tutorial notebook for D-RDW:",
+        "linkText": "View Notebook",
+        "link": "https://github.com/Informfully/Experiments/tree/main/experiments/recsys_2025"
+    },
+    {
+        "icon": "ri-slideshow-line",
+        "title": "RecSys '25 Presentation",
+        "text": "Download the presentation slides for the Algorithm:",
+        "linkText": "Download Presentation",
+        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/RecSys25_Algorithm.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "NORMalize Workshop Paper",
+        "text": "NORMalize paper on our news experiments with recommenders:",
+        "linkText": "Download NORMalize Workshop Paper",
+        "link": "https://doi.org/10.1093/joc/jqaf019"
+    },
+    {
+        "icon": "ri-database-2-line",
+        "title": "Open-Source Dataset",
+        "text": "Open-Source Dataset for NORMalize Workshop Paper:",
+        "linkText": "Open-Source Dataset",
+        "link": "https://github.com/Informfully/Datasets"
+    },
+    {
+        "icon": "ri-slideshow-line",
+        "title": "NORMalize '25 Presentation",
+        "text": "Download the presentation slides for NORMalize:",
+        "linkText": "Download Presentation",
+        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/NORMalize25_Nudges.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '24 Resource Paper",
+        "text": "Click here to download our RecSys '24 paper submission on the Informfully platform:",
+        "linkText": "Download RecSys Resource Paper",
+        "link": "https://doi.org/10.1145/3640457.3688066"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '23 Research Paper",
+        "text": "Click here to download our RecSys '23 paper submission on 'Deliberative Diversity for News Recommenders':",
+        "linkText": "Download Research Paper",
+        "link": "https://doi.org/10.1145/3604915.3608834"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "Related Studies",
+        "text": "Read our previous journal article on the impact of diversity-optimized recommenders for participatory diversity:",
+        "linkText": "Download Research Paper",
+        "link": "https://doi.org/10.1080/21670811.2021.2021804"
+    }
+]

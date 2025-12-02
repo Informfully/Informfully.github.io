@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "Informfully"
-  text: "@ RecSys '24"
+  text: "@ RecSys '25"
   tagline: Your All-in-One Solution for User Studies
   image:
     light: /iphone-app.png
@@ -38,18 +38,16 @@ You can get more information <a target="_blank" href="https://github.com/informf
 
 ## Resources
 
-<ResourceLinks :resources="recsys24" />
+<ResourceLinks :resources="recsys25" />
 
 ### We are hiring!
 Are you interested in large-scale recommender systems and saving society? Then apply to our open position:
-- [PhD Position at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
-
-### Join our community
-- [GitHub](https://github.com/Informfully)
+- [PhD Positions at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
+- [Visit our GitHub Repository!](https://github.com/Informfully)
 
 ## Community
 
-Thank you for your visit at RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
+Thank you for your visit at RecSys '25! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
 
@@ -62,7 +60,7 @@ import ResourceLinks from './components/ResourceLinks.vue'
 import Community from './components/Community.vue'
 import Footer from './.vitepress/theme/Footer.vue'
 
-import recsys24 from './db/recsys24.json'
+import recsys25 from './db/recsys25.json'
 </script>
 
 <style scoped>
