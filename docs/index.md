@@ -6,7 +6,7 @@ Welcome to [Informfully](https://informfully.ch/)!
 Informfully is an open-source reproducibility platform for content distribution and conducting user experiments.
 
 This is the combined and official Informfully Documentation for all [code repositories](https://github.com/orgs/Informfully/repositories).
-For a tutorial on how to use Informfully, start with the :doc:`install` section and the :ref:`installation` instructions of the project.
+For a tutorial on how to use Informfully, start with the [install](./install.md) section and the [installation](./install.md) instructions of the project.
 
 **Links and Resources:** [GitHub](https://github.com/orgs/Informfully) | [Website](https://informfully.ch) | [X](https://x.com/informfully) | [DDIS@UZH](https://www.ifi.uzh.ch/en/ddis.html) | [Google Play](https://play.google.com/store/apps/details?id=ch.uzh.ifi.news) | [App Store](https://apps.apple.com/us/app/informfully/id1460234202)
 

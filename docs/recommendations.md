@@ -24,34 +24,15 @@ It allows for specifying the following properties of the recommendation list:
   isPreview (Boolean): The front end can display (or feature) items in a preview mode (with the item text and image across the entire screen. Alternatively, items can be displayed using a downsized image with a square aspect ratio and a title-only option.
   createdAt (Date): Timestamp that records when the item recommendation was created.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - ObjectID
-     - Unique Object ID used for indexing.
-   * - `userID`
-     - String
-     - ID of the user.
-   * - `itemID`
-     - String
-     - ID of the item.
-   * - `prediction`
-     - Double
-     - Prediction score that determines the position of the item within the recommendation list. The higher the score, the further up the item is placed in the news feed. Precision, upper- and lower limits of the score can be customized.
-   * - `recommendationAlgorithm`
-     - String
-     - Algorithm used to calculate the recommendation. Can optionally include an explanation of why this item was recommended.
-   * - `isPreview`
-     - Boolean
-     - If set to TRUE, the front end displays items in a preview mode (with the item text and image across the entire screen). If set to FALSE, items are displayed using a downsized image (with a square aspect ratio and title only).
-   * - `createdAt`
-     - Date
-     - Timestamp that records when the item recommendation was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | ObjectID | Unique Object ID used for indexing. |
+| `userID` | String | ID of the user. |
+| `itemID` | String | ID of the item. |
+| `prediction` | Double | Prediction score that determines the position of the item within the recommendation list. The higher the score, the further up the item is placed in the news feed. Precision, upper- and lower limits of the score can be customized. |
+| `recommendationAlgorithm` | String | Algorithm used to calculate the recommendation. Can optionally include an explanation of why this item was recommended. |
+| `isPreview` | Boolean | If set to TRUE, the front end displays items in a preview mode (with the item text and image across the entire screen). If set to FALSE, items are displayed using a downsized image (with a square aspect ratio and title only). |
+| `createdAt` | Date | Timestamp that records when the item recommendation was created. |
 
 Below, you find a reference implementation of how, starting with item and user pools, such a JREX list of recommendations is created using the function `create_recommendation()`.
 (If you are unfamiliar with MongoDB and how to retrieve user and item IDs, please see the [MongoDB tutorial page](./compass.md) on how to retrieve them.)

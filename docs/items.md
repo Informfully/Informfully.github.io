@@ -6,67 +6,26 @@ This has the advantage of reducing the load on the Informfully server as the med
 The disadvantage is that if the source removes the file in question, then users in Informfully can no longer access the item.
 If the item modality is text, however, the system will create and store a copy after applying data augmentation/pre-processing steps.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of article
-   * - `articleType`
-     - String
-     - Can be one of three: text, video, or podcast. Indicates whether the article contains a video, audio, or only text.
-   * - `title`
-     - String
-     - Title of the article.
-   * - `lead`
-     - String
-     - Lead of the article.
-   * - `body`
-     - Array of Objects
-     - Contains the article text as paragraphs. The paragraphs are objects of the array, and they have two properties: type (String) and text.
-   * - `url`
-     - String
-     - URL through which the article can be accessed.
-   * - `image`
-     - String
-     - Optional field, the URL to the cover image of the article.
-   * - `multimediaURL`
-     - String
-     - Contains a link to a video or audio file. The field should be set to null if empty. Should be consistent with the field `articleType` (meaning that if we have a text articleType, multimediaURL is set to null).
-   * - `multimediaDurationInMillis`
-     - Integer
-     - The length of the multimedia file (video or audio) in ms. Should be set to 1 if `articleType` is text.
-   * - `datePublished`
-     - Date
-     - Time at which the article was published on the news outlet's website.
-   * - `dateScraped`
-     - Date
-     - Time at which the article was scraped.
-   * - `dateUpdated`
-     - Date
-     - Outlets might update the article's contents. Instead of creating a new article, the contents of the previous version are updated.
-   * - `dateDeleted`
-     - Date
-     - Optional field, we are sometimes asked by the outlets to remove articles. Instead of deleting them, we add a dateDeleted entry. Articles with this entry will not be shown.
-   * - `author`
-     - String
-     - Can also be a press agency or sponsored content. In case of multiple authors, separate them with a comma (,) symbol.
-   * - `outlet`
-     - String
-     - Current options include BLICK, NZZ, TAGI, SRF, WOZ, or WW.
-   * - `primaryCategory`
-     - String
-     - The category of an item.
-   * - `subCategories`
-     - Array of Strings
-     - The sub-categories of an article. This information is not always provided.
-   * - `language`
-     - String
-     - Language code of the article (e.g., en-US, de-CH, etc.)
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of article |
+| `articleType` | String | Can be one of three: text, video, or podcast. Indicates whether the article contains a video, audio, or only text. |
+| `title` | String | Title of the article. |
+| `lead` | String | Lead of the article. |
+| `body` | Array of Objects | Contains the article text as paragraphs. The paragraphs are objects of the array, and they have two properties: type (String) and text. |
+| `url` | String | URL through which the article can be accessed. |
+| `image` | String | Optional field, the URL to the cover image of the article. |
+| `multimediaURL` | String | Contains a link to a video or audio file. The field should be set to null if empty. Should be consistent with the field `articleType` (meaning that if we have a text articleType, multimediaURL is set to null). |
+| `multimediaDurationInMillis` | Integer | The length of the multimedia file (video or audio) in ms. Should be set to 1 if `articleType` is text. |
+| `datePublished` | Date | Time at which the article was published on the news outlet's website. |
+| `dateScraped` | Date | Time at which the article was scraped. |
+| `dateUpdated` | Date | Outlets might update the article's contents. Instead of creating a new article, the contents of the previous version are updated. |
+| `dateDeleted` | Date | Optional field, we are sometimes asked by the outlets to remove articles. Instead of deleting them, we add a dateDeleted entry. Articles with this entry will not be shown. |
+| `author` | String | Can also be a press agency or sponsored content. In case of multiple authors, separate them with a comma (,) symbol. |
+| `outlet` | String | Current options include BLICK, NZZ, TAGI, SRF, WOZ, or WW. |
+| `primaryCategory` | String | The category of an item. |
+| `subCategories` | Array of Strings | The sub-categories of an article. This information is not always provided. |
+| `language` | String | Language code of the article (e.g., en-US, de-CH, etc.) |
 
 ::: info
    
@@ -82,8 +41,6 @@ This use of the `$exists` operator, however, cannot utilize any index and result
 Items will be rendered as follows inside the app:
 
 ![img/screenshots_app/app_screenshots_2.png](img/screenshots_app/app_screenshots_2.png)
-   :height: 720
-   :alt: Article view
 
 In the case of a text item, the top part of the interface displays a thumbnail preview specified in the `image` attribute.
 For a multimedia item (podcast or video), a multimedia player will be loaded with the specified image as a thumbnail.

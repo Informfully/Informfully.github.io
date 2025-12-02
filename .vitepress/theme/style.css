@@ -140,3 +140,15 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+/**
+ * Custom Media Styling
+ * Restrict height of images and videos to prevent them from taking up too much space,
+ * especially for portrait mobile screenshots.
+ */
+.vp-doc img, .vp-doc video {
+  max-height: 600px; /* Adjust as needed */
+  width: auto;       /* Maintain aspect ratio */
+  object-fit: contain;
+}
+

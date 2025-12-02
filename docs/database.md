@@ -21,28 +21,13 @@ And read the [MongoDB Compass Tutorial](./compass.md) for instructions on how to
 
 **Description** Collects the survey results of all users.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `surveyId`
-     - String
-     - ID of survey.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `answers`
-     - Array of Objects
-     - Answers of the user to all questions in the survey.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `surveyId` | String | ID of survey. |
+| `userId` | String | ID of user. |
+| `answers` | Array of Objects | Answers of the user to all questions in the survey. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 An example of what the answer field could look like is shown below:
 
@@ -66,92 +51,40 @@ An example of what the answer field could look like is shown below:
 
 **Description** Collects whether an article has been archived and whether it is a part of the user's favourites list.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `articlePublishedDate`
-     - Date
-     - Date the article was published.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
-   * - `removedAt`
-     - Date
-     - Time at which the data record was removed.
-
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `articlePublishedDate` | Date | Date the article was published. |
+| `createdAt` | Date | Time at which the data record was created. |
+| `removedAt` | Date | Time at which the data record was removed. |
 
 ## articleLikes*
 
 **Description** Collects the like/dislike status (current and historical) of the statements after an article.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `articleQuestionId`
-     - String
-     - ID of statement, comes from the objects in the answers array of the `likeSurvey`-field of an experiment's collection data record.
-   * - `articleAnswer`
-     - Integer
-     - Can be either 1 or -1, 1 stands for a Like, and -1 stands for a Dislike.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
-   * - `removedAt`
-     - Date
-     - Time at which the data record was removed.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `articleQuestionId` | String | ID of statement, comes from the objects in the answers array of the `likeSurvey`-field of an experiment's collection data record. |
+| `articleAnswer` | Integer | Can be either 1 or -1, 1 stands for a Like, and -1 stands for a Dislike. |
+| `createdAt` | Date | Time at which the data record was created. |
+| `removedAt` | Date | Time at which the data record was removed. |
 
 ## articleTotalLikes*
 
 **Description** The collection tracks the total likes/dislikes of users in an experiment.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `experimentId`
-     - String
-     - ID of experiment.
-   * - `counts`
-     - String
-     - Contains the total likes/dislikes for each statement. For more information about what the array looks like, see below.
-   * - `questions`
-     - Date
-     - Contains the IDs of statements for which at least one like/dislike has been given.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `experimentId` | String | ID of experiment. |
+| `counts` | String | Contains the total likes/dislikes for each statement. For more information about what the array looks like, see below. |
+| `questions` | Date | Contains the IDs of statements for which at least one like/dislike has been given. |
 
 An example of what the answer field could look like is shown below:
 
@@ -175,101 +108,41 @@ An example of what the answer field could look like is shown below:
 
 **Description** Contains various information about all articles a user has accessed.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `articlePublishedDate`
-     - Date
-     - Date the article was published (referred to as `dateScraped` of the article).
-   * - `duration`
-     - Integer
-     - Duration in ms for which the article was open.
-   * - `maxScrolledContent`
-     - Double
-     - Shows how much the user has seen from the article's content; can be between 0 and 1; a 0 indicates that the user has not scrolled down yet.
-   * - `updatedAt`
-     - Date
-     - Date on which the article was last accessed, in case it has been opened multiple times.
-   * - `views`
-     - Integer
-     - Number of times the article has been viewed by this user.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `articlePublishedDate` | Date | Date the article was published (referred to as `dateScraped` of the article). |
+| `duration` | Integer | Duration in ms for which the article was open. |
+| `maxScrolledContent` | Double | Shows how much the user has seen from the article's content; can be between 0 and 1; a 0 indicates that the user has not scrolled down yet. |
+| `updatedAt` | Date | Date on which the article was last accessed, in case it has been opened multiple times. |
+| `views` | Integer | Number of times the article has been viewed by this user. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## experiments
 
 **Description** The `experiments` collection contains information(`_id`, `name`, etc.) about these experiments and surveys set by the admin.
 The information can be modified on the `Information` page, while `likeSurvey` can be set on the `Feedback` page.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `name`
-     - String
-     - Name of the experiment, which is first set at the creation of the experiment.
-   * - `adminName`
-     - String
-     - Name of the admin of this experiment; by default, it is the string before `@` of the creator's email.
-   * - `contactInfo`
-     - String
-     - Contact information of the admin of this experiment; by default, it is the creator's email.
-   * - `description`
-     - String
-     - Text description of the experiments.
-   * - `urlPP`
-     - String
-     - URL to the Privacy Policy.
-   * - `urlTC`
-     - String
-     - URL to the Terms and Conditions.
-   * - `testingPhase`
-     - Boolean
-     - A flag that indicates whether the experiment has launched or not. A true value means that the experiment has not been launched yet. Once an experiment is launched, it cannot be returned to the design phase; no additional users can be added, survey questions cannot be edited, and statements in the Feedback surveys tab cannot be modified.
-   * - `likeSurvey`
-     - Object
-     - This field contains the statements that are shown after each article, and users can like or dislike them. For more information about the object's appearance, see below.
-   * - `feedbackEmail`
-     - String
-     - E-mail, which is shown in the mobile app, allows users to contact the researchers responsible for conducting the experiment in case of questions.
-   * - `explanationTagsDef`
-     - Object
-     - Contains objects that define the explanation tags used in the experiment. For more information about the object's appearance, see below.
-   * - `maxNrExplanationTags`
-     - Integer
-     - Limits the number of explanation tags that can be shown per article. Set to 0 in case you want to disable the use of explanation tags for the experiment.
-   * - `maxCharacterExplanationTagShort`
-     - Integer
-     - Limits the number of characters that are shown inside the explanation tags of each article preview.
-   * - `maxNrFurtherRecArticles`
-     - Integer
-     - Limits the number of articles that are recommended at the end of the `Article` page/screen. Set to 0 to disable those recommendations.
-   * - `totalLikesDislikesEnabled`
-     - Boolean
-     - Controls whether the total likes/dislikes are shown on the Article page/screen. Set to False to hide the total likes/dislikes.
-   * - `previewTitleLineHeight`
-     - Integer
-     - Controls the number of lines that are used for the title of an article on the small article previews. It can be increased up to 3 in case that `maxNrExplanationTags` is set to 0.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `name` | String | Name of the experiment, which is first set at the creation of the experiment. |
+| `adminName` | String | Name of the admin of this experiment; by default, it is the string before `@` of the creator's email. |
+| `contactInfo` | String | Contact information of the admin of this experiment; by default, it is the creator's email. |
+| `description` | String | Text description of the experiments. |
+| `urlPP` | String | URL to the Privacy Policy. |
+| `urlTC` | String | URL to the Terms and Conditions. |
+| `testingPhase` | Boolean | A flag that indicates whether the experiment has launched or not. A true value means that the experiment has not been launched yet. Once an experiment is launched, it cannot be returned to the design phase; no additional users can be added, survey questions cannot be edited, and statements in the Feedback surveys tab cannot be modified. |
+| `likeSurvey` | Object | This field contains the statements that are shown after each article, and users can like or dislike them. For more information about the object's appearance, see below. |
+| `feedbackEmail` | String | E-mail, which is shown in the mobile app, allows users to contact the researchers responsible for conducting the experiment in case of questions. |
+| `explanationTagsDef` | Object | Contains objects that define the explanation tags used in the experiment. For more information about the object's appearance, see below. |
+| `maxNrExplanationTags` | Integer | Limits the number of explanation tags that can be shown per article. Set to 0 in case you want to disable the use of explanation tags for the experiment. |
+| `maxCharacterExplanationTagShort` | Integer | Limits the number of characters that are shown inside the explanation tags of each article preview. |
+| `maxNrFurtherRecArticles` | Integer | Limits the number of articles that are recommended at the end of the `Article` page/screen. Set to 0 to disable those recommendations. |
+| `totalLikesDislikesEnabled` | Boolean | Controls whether the total likes/dislikes are shown on the Article page/screen. Set to False to hide the total likes/dislikes. |
+| `previewTitleLineHeight` | Integer | Controls the number of lines that are used for the title of an article on the small article previews. It can be increased up to 3 in case that `maxNrExplanationTags` is set to 0. |
 
 An example of what the likeSurvey field could look like is shown below:
 
@@ -315,116 +188,49 @@ An example of what the explanationTagsDef field could look like is shown below:
 
 **Description** Whenever a user views the detailed recommendation explanations for an article, a record is created in the collection.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## explanations
 
 **Description** Contains the recommendation explanation tags for each article and user.
 See [Explainable Recommendations](https://github.com/Informfully/Explanations) for how explanations are shown inside the app.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `explanationTagsId`
-     - Array of Strings
-     - Contains the IDs of the explanation tags, which will be shown for this article and user. The possible explanation tag IDs are defined in the field `explanationTagsDef`. The array can also be empty.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `explanationTagsId` | Array of Strings | Contains the IDs of the explanation tags, which will be shown for this article and user. The possible explanation tag IDs are defined in the field `explanationTagsDef`. The array can also be empty. |
 
 ## newsArticles
 
 **Description** Contains all the news articles that have been scraped and added to the database.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of article
-   * - `articleType`
-     - String
-     - Can be one of three: text, video, or podcast. Indicates whether the article contains a video, audio, or only text.
-   * - `title`
-     - String
-     - Title of the article.
-   * - `lead`
-     - String
-     - Lead of the article.
-   * - `body`
-     - Array of Objects
-     - Contains the article text as paragraphs. The paragraphs are objects of the array, and they have two properties: type (String) and text.
-   * - `url`
-     - String
-     - URL through which the article can be accessed.
-   * - `image`
-     - String
-     - Optional field, the URL to the cover image of the article.
-   * - `multimediaURL`
-     - String
-     - Contains a link to a video or audio file. The field should be set to null if empty. Should be consistent with the field `articleType` (meaning that if we have a text articleType, multimediaURL is set to null).
-   * - `multimediaDurationInMillis`
-     - Integer
-     - The length of the multimedia file (video or audio) in ms. Should be set to 1 if `articleType` is text.
-   * - `datePublished`
-     - Date
-     - Time at which the article was published on the news outlet's website.
-   * - `dateScraped`
-     - Date
-     - Time at which the article was scraped.
-   * - `dateUpdated`
-     - Date
-     - Outlets might update the article contents. Instead of creating a new article, the contents of the previous version are updated.
-   * - `dateDeleted`
-     - Date
-     - Optional field, we are sometimes asked by the outlets to remove articles. Instead of deleting them, we add a dateDeleted entry. Articles with this entry will not be shown.
-   * - `author`
-     - String
-     - Can also be a press agency or sponsored content. In case of multiple authors, separate them with a comma (,) symbol.
-   * - `outlet`
-     - String
-     - Current options include BLICK, NZZ, TAGI, SRF, WOZ, or WW.
-   * - `primaryCategory`
-     - String
-     - The category of an item.
-   * - `subCategories`
-     - Array of Strings
-     - The sub-categories of an article. This information is not always provided.
-   * - `language`
-     - String
-     - Language code of the article (e.g., en-US, de-CH, etc.)
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of article |
+| `articleType` | String | Can be one of three: text, video, or podcast. Indicates whether the article contains a video, audio, or only text. |
+| `title` | String | Title of the article. |
+| `lead` | String | Lead of the article. |
+| `body` | Array of Objects | Contains the article text as paragraphs. The paragraphs are objects of the array, and they have two properties: type (String) and text. |
+| `url` | String | URL through which the article can be accessed. |
+| `image` | String | Optional field, the URL to the cover image of the article. |
+| `multimediaURL` | String | Contains a link to a video or audio file. The field should be set to null if empty. Should be consistent with the field `articleType` (meaning that if we have a text articleType, multimediaURL is set to null). |
+| `multimediaDurationInMillis` | Integer | The length of the multimedia file (video or audio) in ms. Should be set to 1 if `articleType` is text. |
+| `datePublished` | Date | Time at which the article was published on the news outlet's website. |
+| `dateScraped` | Date | Time at which the article was scraped. |
+| `dateUpdated` | Date | Outlets might update the article contents. Instead of creating a new article, the contents of the previous version are updated. |
+| `dateDeleted` | Date | Optional field, we are sometimes asked by the outlets to remove articles. Instead of deleting them, we add a dateDeleted entry. Articles with this entry will not be shown. |
+| `author` | String | Can also be a press agency or sponsored content. In case of multiple authors, separate them with a comma (,) symbol. |
+| `outlet` | String | Current options include BLICK, NZZ, TAGI, SRF, WOZ, or WW. |
+| `primaryCategory` | String | The category of an item. |
+| `subCategories` | Array of Strings | The sub-categories of an article. This information is not always provided. |
+| `language` | String | Language code of the article (e.g., en-US, de-CH, etc.) |
 
 ::: info
 
@@ -437,124 +243,54 @@ Therefore, data fields like URL or multimediaURL should only contain HTTPS websi
 
 **Description** Collects all the pages/menus a user has accessed.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `page`
-     - String
-     - Unique ID of each page/menu, e.g., `Home` for the home screen.
-   * - `previousPage`
-     - String
-     - Same as `page`, simply for the previous one (allows tracking how the user has navigated through the menus).
-   * - `parameters`
-     - Object
-     - Contains navigation parameters of the previous page (and sometimes of the current one), e.g., `articleId`. It is empty if there are no parameters to pass (for example, from `Home` to `Settings`).
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userId` | String | ID of user. |
+| `page` | String | Unique ID of each page/menu, e.g., `Home` for the home screen. |
+| `previousPage` | String | Same as `page`, simply for the previous one (allows tracking how the user has navigated through the menus). |
+| `parameters` | Object | Contains navigation parameters of the previous page (and sometimes of the current one), e.g., `articleId`. It is empty if there are no parameters to pass (for example, from `Home` to `Settings`). |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## podcastAnalytics*
 
 **Description** Collects all actions performed with an audio (including MiniPlayer).
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `action`
-     - String
-     - The action performed at this step. Currently available: play/stop, backwards, fastforward, sliderSearchComplete, single-/doubleTapLeft, single-/doubleTapRight, heartbeat every 10 seconds, fullscreenExit/-activate.
-   * - `podcastTimestamp`
-     - Integer
-     - Position in ms in the podcast at which this action was performed.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `action` | String | The action performed at this step. Currently available: play/stop, backwards, fastforward, sliderSearchComplete, single-/doubleTapLeft, single-/doubleTapRight, heartbeat every 10 seconds, fullscreenExit/-activate. |
+| `podcastTimestamp` | Integer | Position in ms in the podcast at which this action was performed. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## readingList*
 
 **Description** Collects whether an article has been read and whether it is a part of the user's bookmark list.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `articlePublishedDate`
-     - Date
-     - Date the article was published.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
-   * - `removedAt`
-     - Date
-     - Time at which the data record was removed.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `articlePublishedDate` | Date | Date the article was published. |
+| `createdAt` | Date | Time at which the data record was created. |
+| `removedAt` | Date | Time at which the data record was removed. |
 
 ## recommendationLists
 
 **Description** Collections that are shown on the home screen of a user in the exact ordering determined by the recommender system.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `prediction`
-     - Double
-     - Value that indicates the position of the item in the list (the higher the value, the further up in the list; no pre-defined range exists, it is up to the recommender system).
-   * - `recommendationAlgorithm`
-     - String
-     - Name of the algorithm used to create the recommendation (optional).
-   * - `isPreview`
-     - Boolean
-     - A flag which indicates whether the article should appear big on the screen with the title, lead, and image (if `FALSE`, the feed will only show a thumbnail image and the title).
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `prediction` | Double | Value that indicates the position of the item in the list (the higher the value, the further up in the list; no pre-defined range exists, it is up to the recommender system). |
+| `recommendationAlgorithm` | String | Name of the algorithm used to create the recommendation (optional). |
+| `isPreview` | Boolean | A flag which indicates whether the article should appear big on the screen with the title, lead, and image (if `FALSE`, the feed will only show a thumbnail image and the title). |
+| `createdAt` | Date | Time at which the data record was created. |
 
 An example of what the recommendations need to be formatted is shown below:
 
@@ -596,22 +332,11 @@ A new record is added each time the user refreshes the browser tab.
 Hence, a record may not accurately reflect the actual timestamp at which a given user signed in (i.e., the initial sign-in action).
 In return, for users who hardly ever sign out and hence hardly ever sign in, it (more) correctly reflects the last time the user has used the application.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userId` | String | ID of user. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 An example of what the questions field could look like is shown below:
 
@@ -655,82 +380,34 @@ An example of what the questions field could look like is shown below:
 
 **Description** Contains all surveys that admin users have defined (and not deleted).
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `experiment`
-     - String
-     - ID of experiment
-   * - `isActive`
-     - Boolean
-     - A flag that indicates whether the survey will be shown in the mobile app to participants in the experiment. A True means that the survey will be shown.
-   * - `questions`
-     - Array of Objects
-     - Contains all the questions in the survey. For more information about what the array looks like, see below.
-   * - `createdBy`
-     - String
-     - ID of user.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userId` | String | ID of user. |
+| `experiment` | String | ID of experiment |
+| `isActive` | Boolean | A flag that indicates whether the survey will be shown in the mobile app to participants in the experiment. A True means that the survey will be shown. |
+| `questions` | Array of Objects | Contains all the questions in the survey. For more information about what the array looks like, see below. |
+| `createdBy` | String | ID of user. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## users*
 
 **Description** Stores information of Maintainers, Admins, and Users.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `username```
-     - String
-     - Username required for user to log in; username field can still be manually added, simply for display purposes in the app.
-   * - `emails`
-     - Arra of Strings
-     - Only for maintainers.
-   * - `roles`
-     - Array of Strings
-     - An Array consists of all the access rights of this account. This Array can be one of the following three: `{0:"user"}`, `{0:"user",1:"admin"}`, or `{0:"user",1:"admin",2:"maintainer"}`.
-   * - `profile`
-     - Object
-     - For Maintainers: `{createdAccount:Integer,lastLogin:Time}`; for Admins: `{maxUserAccount:Integer,createdAccount:Integer,plainTextInitialPassword:String,lastLogin:Time}`; for Users: `Null`.
-   * - `participatesIn`
-     - String
-     - For `Users`: the experiment `_id` that the user is in; for `Maintainers` and `Admins`: `default-experiment`.
-   * - `userGroup`
-     - String
-     - For `Users`: the user group name that the user is in (only one group at each point in time); for `Maintainers` and `Admins`: `baseline`.
-   * - `experiments`
-     - Array
-     - For `Maintainers` and `Admins`: the experiment `_id` that they own;fFor Users: `Null`.
-   * - `createdBy`
-     - String
-     - ID of user.
-   * - `services`
-     - Object
-     - Meteor default field for login, contains the password hash (bcrypt) and the loginTokens. They are used for authentication purposes.
-   * - `services.password`
-     - Object
-     - Encrypted password.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `username``` | String | Username required for user to log in; username field can still be manually added, simply for display purposes in the app. |
+| `emails` | Arra of Strings | Only for maintainers. |
+| `roles` | Array of Strings | An Array consists of all the access rights of this account. This Array can be one of the following three: `{0:"user"}`, `{0:"user",1:"admin"}`, or `{0:"user",1:"admin",2:"maintainer"}`. |
+| `profile` | Object | For Maintainers: `{createdAccount:Integer,lastLogin:Time}`; for Admins: `{maxUserAccount:Integer,createdAccount:Integer,plainTextInitialPassword:String,lastLogin:Time}`; for Users: `Null`. |
+| `participatesIn` | String | For `Users`: the experiment `_id` that the user is in; for `Maintainers` and `Admins`: `default-experiment`. |
+| `userGroup` | String | For `Users`: the user group name that the user is in (only one group at each point in time); for `Maintainers` and `Admins`: `baseline`. |
+| `experiments` | Array | For `Maintainers` and `Admins`: the experiment `_id` that they own;fFor Users: `Null`. |
+| `createdBy` | String | ID of user. |
+| `services` | Object | Meteor default field for login, contains the password hash (bcrypt) and the loginTokens. They are used for authentication purposes. |
+| `services.password` | Object | Encrypted password. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ::: info
 
@@ -743,49 +420,21 @@ This password is then sent to the administrators, who are strongly advised to ch
 
 **Description** This collection maps the _id, name, of a user group to an algorithm.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `experimentId`
-     - String
-     - Experiment `_id` that this user group belongs to.
-   * - `name`
-     - String
-     - Name of this user group.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `experimentId` | String | Experiment `_id` that this user group belongs to. |
+| `name` | String | Name of this user group. |
 
 ## videoAnalytics*
 
 **Description** Collects all actions performed with a video.
 
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Attributes
-     - Type
-     - Description
-   * - `_id`
-     - String
-     - ID of data record.
-   * - `articleId`
-     - String
-     - ID of article.
-   * - `userId`
-     - String
-     - ID of user.
-   * - `action`
-     - String
-     - The action performed at this step. Currently available: play/stop, backwards, fastforward, sliderSearchComplete, single-/doubleTapLeft, single-/doubleTapRight, heartbeat every 10 seconds, fullscreenExit/-activate.
-   * - `videoTimestamp`
-     - Integer
-     - Position in ms in the video at which this action was performed.
-   * - `createdAt`
-     - Date
-     - Time at which the data record was created.
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `articleId` | String | ID of article. |
+| `userId` | String | ID of user. |
+| `action` | String | The action performed at this step. Currently available: play/stop, backwards, fastforward, sliderSearchComplete, single-/doubleTapLeft, single-/doubleTapRight, heartbeat every 10 seconds, fullscreenExit/-activate. |
+| `videoTimestamp` | Integer | Position in ms in the video at which this action was performed. |
+| `createdAt` | Date | Time at which the data record was created. |

@@ -4,8 +4,6 @@ The screenshots below show how the app presents itself to the users and how the 
 The UI features additional light/dark mode options, can scale content, and supports swipe commands (all screenshots were taken from an Android device with dark mode enabled).
 
 ![gif/animation.gif](gif/animation.gif)
-   :height: 720
-   :alt: App animation
 
 ::: info
 
@@ -24,8 +22,6 @@ Furthermore, the home screen allows users to bookmark and access items later on.
 Selecting any item will then direct the user to the next screen, the detail view (in this case, the article view).
 
 ![img/screenshots_app/app_screenshots_1.png](img/screenshots_app/app_screenshots_1.png)
-   :height: 720
-   :alt: Home screen
 
 ## Article View
 
@@ -34,8 +30,6 @@ Here, they can view the full content of the item and leave a rating.
 They are also able to add items to their favorite list and/or bookmark them to consume later.
 
 ![img/screenshots_app/app_screenshots_2.png](img/screenshots_app/app_screenshots_2.png)
-   :height: 720
-   :alt: Article view
 
 ## Article Rating
 
@@ -45,8 +39,6 @@ In addition to expressing their like or dislike of a certain item, experimenters
 This survey enables users to provide more detailed reasons for their liking or disliking of a specific item recommendation.
 
 ![img/screenshots_app/app_screenshots_3.png](img/screenshots_app/app_screenshots_3.png)
-   :height: 720
-   :alt: Article rating
 
 ## Favorite/Bookmark List
 
@@ -55,8 +47,6 @@ Both lists look identical.
 They can be accessed via the main menu (blue button in the bottom right-hand corner).
 
 ![img/screenshots_app/app_screenshots_4.png](img/screenshots_app/app_screenshots_4.png)
-   :height: 720
-   :alt: Favorite and bookmark list
 
 ## Settings Menu
 
@@ -68,8 +58,6 @@ By default, users are forwarded to a separate URL where they can enter their use
 This is then sent to the e-mail address of the responsible researcher.
 
 ![img/screenshots_app/app_screenshots_5.png](img/screenshots_app/app_screenshots_5.png)
-   :height: 720
-   :alt: Settings menu
 
 ## In-app Survey
 
@@ -77,5 +65,3 @@ The app allows experimenters to display surveys at any point in time. A wide ran
 Below is an overview of how the questions are presented to participants and the available options.
 
 ![img/screenshots_app/app_screenshots_6.png](img/screenshots_app/app_screenshots_6.png)
-   :height: 720
-   :alt: In-app survey
