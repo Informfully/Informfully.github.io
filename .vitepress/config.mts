@@ -22,10 +22,8 @@ export default defineConfig({
         text: 'Current Events',
         items: [
           { text: 'RecSys 25', link: '/recsys-25' },
-          // { text: 'RecSys 24', link: '/recsys-24' },
-          // { text: 'RecSys 23', link: '/recsys-23' },
-          // { text: 'UK 23', link: '/uk-23' },
-          // { text: 'BDWRS 23', link: '/bdwrs-23' }
+          { text: 'RecSys 24', link: '/recsys-24' },
+          { text: 'RecSys 23', link: '/recsys-23' }
         ]
       },
     ],
