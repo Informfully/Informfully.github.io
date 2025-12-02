@@ -13,38 +13,43 @@
 </template>
 
 <script setup>
-const steps = [
-    {
-        title: "Open an Informfully account",
-        description:
-            'Reach out to use via <a href="mailto:info@informfully.ch?subject=Study Participation">info@informfully.ch</a> to get access to the app\'s website for setting up your own user study. It is completely free!',
+const props = defineProps({
+    steps: {
+        type: Array,
+        default: () => [
+            {
+                title: "Open an Informfully account",
+                description:
+                    'Reach out to use via <a href="mailto:info@informfully.ch?subject=Study Participation">info@informfully.ch</a> to get access to the app\'s website for setting up your own user study. It is completely free!',
+            },
+            {
+                title: "Create experiments and enlist users",
+                description:
+                    "We provide you a web interface to configure your user study and to open accounts for your users. They can be exported and redistributed outside of our platform.",
+            },
+            {
+                title: "Get your content ready",
+                description:
+                    "Send us your multimedia items that you want to push to the users. Are you not allowed to share the content? You can also just give us a pointer to the online resource via an API. We take care of the rest.",
+            },
+            {
+                title: "Recommend it your way",
+                description:
+                    "Specify for each user what, how, and when they should see a specific piece of content. Select from among the built-in solutions or run your own model and forward us the results.",
+            },
+            {
+                title: "Complementary user surveys",
+                description:
+                    "Create complementary questionnaires to gather feedback. You can attach specific feedback questions or rating options for each recommendation.",
+            },
+            {
+                title: "Ready? Go!",
+                description:
+                    "You can launch betas to test everything. Once you are ready, launch the experiment. All interactions are stored and you can download the data at any point.",
+            },
+        ],
     },
-    {
-        title: "Create experiments and enlist users",
-        description:
-            "We provide you a web interface to configure your user study and to open accounts for your users. They can be exported and redistributed outside of our platform.",
-    },
-    {
-        title: "Get your content ready",
-        description:
-            "Send us your multimedia items that you want to push to the users. Are you not allowed to share the content? You can also just give us a pointer to the online resource via an API. We take care of the rest.",
-    },
-    {
-        title: "Recommend it your way",
-        description:
-            "Specify for each user what, how, and when they should see a specific piece of content. Select from among the built-in solutions or run your own model and forward us the results.",
-    },
-    {
-        title: "Complementary user surveys",
-        description:
-            "Create complementary questionnaires to gather feedback. You can attach specific feedback questions or rating options for each recommendation.",
-    },
-    {
-        title: "Ready? Go!",
-        description:
-            "You can launch betas to test everything. Once you are ready, launch the experiment. All interactions are stored and you can download the data at any point.",
-    },
-];
+});
 </script>
 
 <style scoped lang="scss">

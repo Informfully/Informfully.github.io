@@ -45,6 +45,14 @@ Are you interested in large-scale recommender systems and saving society? Then a
 - [PhD Positions at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
 - [Visit our GitHub Repository!](https://github.com/Informfully)
 
+</div>
+
+<DownloadCallToAction />
+
+<div class="home-content vp-doc">
+
+<div class="no-border-top">
+
 ## Community
 
 Thank you for your visit at RecSys '25! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
@@ -53,11 +61,14 @@ Thank you for your visit at RecSys '25! We are looking forward to your feedback 
 
 </div>
 
+</div>
+
 <Footer />
 
 <script setup>
 import ResourceLinks from './components/ResourceLinks.vue'
 import Community from './components/Community.vue'
+import DownloadCallToAction from './components/DownloadCallToAction.vue'
 import Footer from './.vitepress/theme/Footer.vue'
 
 import recsys25 from './db/recsys25.json'
@@ -90,5 +101,12 @@ import recsys25 from './db/recsys25.json'
 .home-content img {
   margin: 20px auto;
   border-radius: 10px;
+}
+
+.no-border-top {
+  h2 {
+    border-top: none !important;
+    margin-top: 15px;
+  }
 }
 </style>

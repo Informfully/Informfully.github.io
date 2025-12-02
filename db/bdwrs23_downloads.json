@@ -1,0 +1,16 @@
+[
+    {
+        "icon": "ri-apple-fill",
+        "title": "App Store",
+        "text": "Download Informfully from the Apple App Store:",
+        "linkText": "App Store",
+        "link": "https://apps.apple.com/de/app/ddis-news/id1460234202"
+    },
+    {
+        "icon": "ri-google-play-fill",
+        "title": "Play Store",
+        "text": "Download Informfully from the Google Play Store:",
+        "linkText": "Play Store",
+        "link": "https://play.google.com/store/apps/details?id=ch.uzh.ifi.news"
+    }
+]

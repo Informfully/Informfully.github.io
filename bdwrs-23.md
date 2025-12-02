@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Informfully"
-  text: "@ RecSys '24"
-  tagline: Your All-in-One Solution for User Studies
+  text: "@ BDWRS '23"
+  tagline: Nudged to Learn
   image:
     light: /iphone-app.png
     dark: /iphone-app-dark.png
@@ -31,21 +31,13 @@ markdownStyles: false
 
 <div class="home-content vp-doc">
 
-## Research Platform for Reproducible User Studies
+## Exploring longitudinal nudging effects in a news aggregator
 
-Informfully is a research platform for content distribution and user studies. The platform allows to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history. It is an open-source platform for conducting user experiments to investigate the impact of item recommendations on users’ consumption behavior.
-You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
+Thank you very much for visiting our poster at DBWRS 23. On this site, you find all information and documents related to a pre-registered two-week field experiment on the effects of deliberate choice architecture design on engagement with and learning from particular news. In this experiment, we leveraged the Informfully news app to create a news aggregator with daily scraped UK news articles. Within the app, we implemented what we call a position and a complexity nudge and tested their effects on the selection of, engagement with, and learning from environmental news. The position nudge aims to facilitate this through prominent article ranking, while the complexity nudge leverages ChatGPT to produce new versions of the original article that are easier to understand. Furthermore, we introduced news personalization based on explicit and implicit user feedback during the second week of the experiment. More information on the experimental setup can be found in our pre-registrations. The analysis of the experimental results is still ongoing. You can also take a look at our Informfully news app itself. The app is part of ongoing research in the domain of media consumption and AI. You can get more information <a target="_blank" href="https://www.informfully.ch">here.</a>
 
 ## Resources
 
-<ResourceLinks :resources="recsys24" />
-
-### We are hiring!
-Are you interested in large-scale recommender systems and saving society? Then apply to our open position:
-- [PhD Position at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
-
-### Join our community
-- [GitHub](https://github.com/Informfully)
+<ResourceLinks :resources="bdwrs23" />
 
 </div>
 
@@ -57,7 +49,7 @@ Are you interested in large-scale recommender systems and saving society? Then a
 
 ## Community
 
-Thank you for your visit at RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
+Thank you for your visit! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
 
@@ -73,7 +65,7 @@ import Community from './components/Community.vue'
 import DownloadCallToAction from './components/DownloadCallToAction.vue'
 import Footer from './.vitepress/theme/Footer.vue'
 
-import recsys24 from './db/recsys24.json'
+import bdwrs23 from './db/bdwrs23.json'
 </script>
 
 <style scoped>
