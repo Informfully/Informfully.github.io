@@ -1,0 +1,44 @@
+[
+    {
+        "icon": "ri-file-text-line",
+        "title": "RecSys '23 Flyer",
+        "text": "We prepared a small flyer to complement our poster. Download it here to get a more detailed look at our user study:",
+        "linkText": "Download Flyer",
+        "link": "https://informfully.ch/publications/2023_RecSys_Flyer.pdf"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '23 Paper",
+        "text": "Click here to download our RecSys '23 paper submission on 'Deliberative Diversity for News Recommenders':",
+        "linkText": "Download RecSys Paper",
+        "link": "https://dl.acm.org/doi/abs/10.1145/3604915.3608834"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "Related Studies",
+        "text": "Read our previous journal article on the impact of diversity-optimized recommenders for participatory diversity:",
+        "linkText": "Download Research Paper",
+        "link": "https://doi.org/10.1080/21670811.2021.2021804"
+    },
+    {
+        "icon": "ri-file-list-line",
+        "title": "Research Manifesto",
+        "text": "Informfully is part of a research endeavor of investigating the normative aspects of news recommendations. Click here to download our manifesto:",
+        "linkText": "Download Manifesto",
+        "link": "https://drops.dagstuhl.de/storage/03dagstuhl-manifestos/volume009/issue01/DagMan.9.1.43/DagMan.9.1.43.pdf"
+    },
+    {
+        "icon": "ri-book-open-line",
+        "title": "OSCE Policy Manual",
+        "text": "We take part in the discussion of the impact of algorithmic content curation and AI at the OSCE level. Click here to get the most recent policy manual:",
+        "linkText": "OSCE Policy Manual",
+        "link": "https://osce.org/representative-on-freedom-of-media/510332"
+    },
+    {
+        "icon": "ri-article-line",
+        "title": "RecSys '23 NORMalize Workshop Paper",
+        "text": "Download the NORMalize paper on stage-based classification of recommender systems:",
+        "linkText": "Download NORMalize Workshop Paper",
+        "link": "https://informfully.ch/publications/2023_Classification_of_Normative_Recommender_Systems.pdf"
+    }
+]

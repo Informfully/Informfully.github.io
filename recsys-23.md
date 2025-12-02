@@ -6,7 +6,8 @@ hero:
   text: "@ RecSys '23"
   tagline: Your All-in-One Solution for User Studies
   image:
-    src: /iphone-app.png
+    light: /iphone-app.png
+    dark: /iphone-app-dark.png
     alt: Informfully Logo
   actions:
     - theme: brand
@@ -30,25 +31,19 @@ markdownStyles: false
 
 <div class="home-content vp-doc">
 
-## Research Platform for Reproducible User Studies
+## Diversity for News Recommenders
 
-Informfully is a research platform for content distribution and user studies. The platform allows to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history. It is an open-source platform for conducting user experiments to investigate the impact of item recommendations on users’ consumption behavior.
-You can get more information <a target="_blank" href="/">here.</a>
-
-
+Thank you very much for visiting our poster at RecSys '23. On this site, you find all information and documents related to our RecSys submission. You can also take a look at our Informfully news app. The app is part of ongoing research in the domain of media consumption and AI. You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
 
 ## Resources
 
 <ResourceLinks :resources="recsys23" />
 
-
-
 ## Community
 
-Thank you for your visit at RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
+Thank you for your visit at RecSys '23! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
-
 
 </div>
 
@@ -59,11 +54,8 @@ import ResourceLinks from './components/ResourceLinks.vue'
 import Community from './components/Community.vue'
 import Footer from './.vitepress/theme/Footer.vue'
 
-// import recsys24 from './db/recsys24.json'
-const recsys23 = [];
+import recsys23 from './db/recsys23.json'
 </script>
-
-
 
 <style scoped>
 .home-content {

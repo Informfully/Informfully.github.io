@@ -1,0 +1,37 @@
+[
+    {
+        "icon": "ri-download-cloud-line",
+        "title": "Download App",
+        "text": "Informfully is availabe for Android and iOS. The download is free.",
+        "linkText": "Download",
+        "link": "#download"
+    },
+    {
+        "icon": "ri-apple-fill",
+        "title": "App Store",
+        "text": "Download Informfully from the Apple App Store:",
+        "linkText": "App Store",
+        "link": "https://apps.apple.com/de/app/ddis-news/id1460234202"
+    },
+    {
+        "icon": "ri-google-play-fill",
+        "title": "Play Store",
+        "text": "Download Informfully from the Google Play Store:",
+        "linkText": "Play Store",
+        "link": "https://play.google.com/store/apps/details?id=ch.uzh.ifi.news"
+    },
+    {
+        "icon": "ri-file-list-3-line",
+        "title": "Privacy Policy",
+        "text": "Read our Privacy Policy (CH/DE):",
+        "linkText": "Privacy Policy",
+        "link": "https://ddis-news.ifi.uzh.ch/privacy-policy"
+    },
+    {
+        "icon": "ri-file-text-line",
+        "title": "Terms and Conditions",
+        "text": "Read our Terms and Conditions (CH/DE):",
+        "linkText": "Terms and Conditions",
+        "link": "https://ddis-news.ifi.uzh.ch/terms-and-conditions"
+    }
+]

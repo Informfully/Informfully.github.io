@@ -6,7 +6,8 @@ hero:
   text: "@ RecSys '24"
   tagline: Your All-in-One Solution for User Studies
   image:
-    src: /iphone-app.png
+    light: /iphone-app.png
+    dark: /iphone-app-dark.png
     alt: Informfully Logo
   actions:
     - theme: brand
@@ -33,22 +34,24 @@ markdownStyles: false
 ## Research Platform for Reproducible User Studies
 
 Informfully is a research platform for content distribution and user studies. The platform allows to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history. It is an open-source platform for conducting user experiments to investigate the impact of item recommendations on users’ consumption behavior.
-You can get more information <a target="_blank" href="/">here.</a>
-
-
+You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
 
 ## Resources
 
 <ResourceLinks :resources="recsys24" />
 
+### We are hiring!
+Are you interested in large-scale recommender systems and saving society? Then apply to our open position:
+- [PhD Position at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
 
+### Join our community
+- [GitHub](https://github.com/Informfully)
 
 ## Community
 
 Thank you for your visit at RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
-
 
 </div>
 
@@ -61,8 +64,6 @@ import Footer from './.vitepress/theme/Footer.vue'
 
 import recsys24 from './db/recsys24.json'
 </script>
-
-
 
 <style scoped>
 .home-content {
