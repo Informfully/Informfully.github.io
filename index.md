@@ -32,7 +32,7 @@ markdownStyles: false
 
 ## What Is Informfully?
 
-Do you want to push news, videos, songs, or pictures to user panels and see how they react? We got you covered! Informfully is an all-in-one content delivery platform that allows you to set up your users studies within minutes. No coding required! Run it on Android, iOS, or in your browser. Give it a try and <a href="#download" class="smoothscroll">download it right now</a>!
+Do you want to push news, videos, songs, or pictures to user panels and see how they react? We got you covered! Informfully is an all-in-one content delivery platform that allows you to set up your user studies within minutes. No coding required! Run it on Android, iOS, or in your browser. Give it a try and <a href="#download" class="smoothscroll">download it right now</a>!
 
 Informfully is fully open-source. Become a member today!
 
@@ -55,7 +55,7 @@ Access the code on GitHub and become part of our community. We’d love to hear 
 
 ## Free for Academia
 
-As part of Informfully's committment to research, the services are offered for free to research institutions. Take a look at the projects below to see how Informfully was successfuly used in the past to support research.
+As part of Informfully's commitment to research, the services are offered free of charge to research institutions. Take a look at the projects below to see how Informfully was successfully used in the past to support research.
 
 </div>
 
@@ -65,8 +65,7 @@ As part of Informfully's committment to research, the services are offered for f
 
 ## Citation
 
-If you use any Informfully code/repository in a scientific publication,
-we ask you to cite the following papers:
+If you use any Informfully code/repository in a scientific publication, we ask you to cite the following papers:
 
 - [Informfully - Research Platform for Reproducible User
     Studies](https://www.researchgate.net/publication/383261885_Informfully_-_Research_Platform_for_Reproducible_User_Studies),
