@@ -33,7 +33,7 @@ markdownStyles: false
 
 ## Diversity for News Recommenders
 
-Thank you very much for visiting our poster at RecSys '23. On this site, you find all information and documents related to our RecSys submission. You can also take a look at our Informfully news app. The app is part of ongoing research in the domain of media consumption and AI. You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
+Thank you very much for visiting our poster at RecSys '23. On this site, you will find all the information and documents related to our RecSys submission. You can also take a look at our Informfully news app. The app is part of ongoing research in the domain of media consumption and AI. You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
 
 ## Resources
 
@@ -49,7 +49,7 @@ Thank you very much for visiting our poster at RecSys '23. On this site, you fin
 
 ## Community
 
-Thank you for your visit at RecSys '23! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
+Thank you for your visit to RecSys '23! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
 
