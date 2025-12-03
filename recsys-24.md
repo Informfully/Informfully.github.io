@@ -33,7 +33,7 @@ markdownStyles: false
 
 ## Research Platform for Reproducible User Studies
 
-Informfully is a research platform for content distribution and user studies. The platform allows to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history. It is an open-source platform for conducting user experiments to investigate the impact of item recommendations on users’ consumption behavior.
+Informfully is a research platform for content distribution and user studies. The platform enables the delivery of algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history. It is an open-source platform for conducting user experiments to investigate the impact of item recommendations on users’ consumption behavior.
 You can get more information <a target="_blank" href="https://github.com/informfully">here.</a>
 
 ## Resources
@@ -41,7 +41,7 @@ You can get more information <a target="_blank" href="https://github.com/informf
 <ResourceLinks :resources="recsys24" />
 
 ### We are hiring!
-Are you interested in large-scale recommender systems and saving society? Then apply to our open position:
+Are you interested in large-scale recommender systems and their potential to benefit society? Then apply to our open position:
 - [PhD Position at the DDIS@UZH](https://www.ifi.uzh.ch/en/ddis/jobs.html)
 
 ### Join our community
@@ -57,7 +57,7 @@ Are you interested in large-scale recommender systems and saving society? Then a
 
 ## Community
 
-Thank you for your visit at RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
+Thank you for your visit to RecSys '24! We are looking forward to your feedback and contributions. Feel free to contact us and join our community.
 
 <Community />
 
