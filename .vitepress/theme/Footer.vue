@@ -51,7 +51,7 @@
                     <div class="copyright">
                         <span>© Copyright Informfully {{ new Date().getFullYear() }}.</span>
                         <br>
-                        <span class="made-by">Informfully made with ❤️ by Lucien Heitz, <a href="https://pandermatt.ch" target="_blank">Pascal Andermatt</a>, and <a href="https://nmamie.github.io" target="_blank">Noah Mamié</a></span>
+                        <span class="made-by">Informfully made with ❤️ by <a href="https://github.com/lucienheitz" target="_blank">Lucien Heitz</a>, <a href="https://pandermatt.ch" target="_blank">Pascal Andermatt</a>, and <a href="https://nmamie.github.io" target="_blank">Noah Mamié</a>.</span>
                     </div>
                 </div>
             </div>
