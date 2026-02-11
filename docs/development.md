@@ -1,13 +1,13 @@
 # Local Development
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-This tutorial assumes basic knowledge of the React Native workflow for building apps.
+This tutorial assumes basic knowledge of the React Native app development workflow.
 It is not intended as a tutorial.
-In case you need more information about React Native, the most recent version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+If you need more information about React Native, the latest version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ## Run a Local Server
 
-After setting up and testing your instance of Informfully, you are ready to deploy your solution.
+After setting up and testing your Informfully instance, you are ready to deploy your solution.
 For your convenience, we have created a script that automatically deploys the back end to any local or cloud server.
 Navigate to the main directory of your codebase and execute the following script:
 
@@ -26,13 +26,13 @@ Navigate to the main directory of your codebase and execute the following script
 ```
 Make sure that you are specifying the same port that you are using in the [React Native App](https://github.com/Informfully/Platform/blob/main/frontend/App.js).
 If you want to access the server from within your network, replace `--port 3008` with `--port <YOUR_LOCAL_IP_ADDRESS>:3008`.
-The back end is now running and the administration website is accessible via `localhost:3008`.
+The back end is now running, and the administration website is accessible via `localhost:3008`.
 
 ::: info
 
 In terms of database setup, you can connect to the database through `mongodb://localhost:3009/` if your Meteor server is running on port 3008.
 If the user collection in the database is empty when starting up, a new user with Maintainer role is automatically created by the [genesis.js` script `Genesis script located here](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js).
-In this documentation, we adhere to the naming convention used by MongoDB. Tables are referred to as collections, and tuples are referred to as documents.
+In this documentation, we adhere to MongoDB's naming convention. Tables are collections, and tuples are documents.
 There is no need for you to create a document collection, as MongoDB will automatically create one when you insert the first document into a collection that does not yet exist.
 
 :::
@@ -105,11 +105,11 @@ The app will run in the [Expo Go App](https://expo.dev/client) and any changes t
 
 ## Helper Scripts for Maintainers
 
-Meteor encrypts all passwords of any users created using the [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm, which ensures that all passwords are encrypted a second time with an unknown "salt" value.
-This protects against embarrassing password leaks in the event that the server's database is compromised.
+Meteor encrypts all passwords for users created using the [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm, which ensures that each password is encrypted a second time with an unknown "salt" value.
+This protects against embarrassing password leaks if the server's database is compromised.
 
 When a user logs in, the Meteor Account System checks the encrypted password generated with its "salt".
-Trying to decrypt the salt is just as difficult as decrypting the password because of the nature of the bcrypt algorithm.
+Trying to decrypt the salt is just as difficult as decrypting the password, given the nature of the bcrypt algorithm.
 This special [encryption mechanism](https://docs.meteor.com/api/passwords) employed by Meteor makes it impossible to insert a new user into the database without using Meteor.
 
 Therefore, to create the very first `Maintainer`, we provide the `main.js` and `genesis.js` scripts that were run when the server was initialized.
@@ -165,7 +165,7 @@ If so, we insert a new user with the information below (see again `genesis.ja`).
 ::: info
 
 It is recommended to delete this user after another `Maintainer` has been created to ensure the system's security.
-This applies to both the local and online deployment of the back end.
+This applies to both local and online back end deployments.
 
 :::
 
