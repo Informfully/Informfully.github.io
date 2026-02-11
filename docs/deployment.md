@@ -1,9 +1,9 @@
 # Back End Deployment (Website)
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-This tutorial assumes basic knowledge of the React Native workflow for building apps.
+This tutorial assumes basic knowledge of the React Native app development workflow.
 It is not intended as a tutorial.
-In case you need more information about React Native, the most recent version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+If you need more information about React Native, the latest version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ::: info
 
@@ -14,7 +14,7 @@ Apps on the Google Play Store and Apple Store will no longer work if any URL is 
 
 ## Automatic Deployment
 
-After setting up and testing your instance of Informfully, you are ready to deploy your solution.
+After setting up and testing your Informfully instance, you are ready to deploy your solution.
 For your convenience, we have created a script that automatically deploys the back end to any local or cloud server.
 Navigate to the main directory of your codebase and execute the following script:
 
@@ -47,8 +47,8 @@ In short, the script will automate the following steps:
 #.  Restart the Phusion Passenger process to serve the Node app.
 
 Following these steps will deploy the new Administration Website.
-Please make sure to follow the instructions of the [Genesis Script](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js) to initialize the first users.
-You can then proceed to log in and access the website with the credentials stored in the script.
+Please follow the instructions in the [Genesis Script](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js) to initialize the first users.
+You can then log in and access the website using the credentials stored in the script.
 
 This setup was successfully tested on a server with the following software packages:
 
@@ -116,7 +116,7 @@ Update the bundle and restart the app:
 
 ```
 The Administration Website can also be deployed using a generated Docker image.
-To do that, simply follow the steps in the [Docker Setup](./docker.md) for loading the image to the server.
+To do that, simply follow the steps in the [Docker Setup](./docker.md) to load the image onto the server.
 
 ## Deploy Apps
 
