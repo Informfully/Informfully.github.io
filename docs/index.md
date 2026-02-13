@@ -25,7 +25,7 @@ If you want to use the Informfully Platform as a cloud service, hosted at the Un
 ![img/informfully_assets/informfully_app_screens.png](img/informfully_assets/informfully_app_screens.png)
 
 The Informfully platform allows you to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history.
-It is a domain-agnostic and platform-independent solution to fit your specific needs.
+It is a domain-agnostic, platform-independent solution that fits your specific needs.
 The platform was designed to accommodate different experiment types through versatility, ease of use, and scalability.
 It features three core components: 
 
@@ -38,9 +38,9 @@ It features three core components:
 ![uml/application_architecture_v4.2.png](uml/application_architecture_v4.2.png)
 
 Informfully features a fully modular design.
-The app/web interfaces, content scrapers, recommender system, and any other components listed in this documentation can be used together or in a standalone fashion.
+The app/web interfaces, content scrapers, recommender systems, and any other components listed in this documentation can be used together or in a standalone fashion.
 There is no dependency across these components, as they communicate exclusively via shared document collections.
-This documentation provides you with all the information you need to successfully configure Informfully as a whole or individually.
+This documentation provides all the information you need to successfully configure Informfully, either as a whole or individually.
 It is structured as follows:
 
 * **Getting Started** serves as an overall introduction for installing the codebase, creating a development environment, and notes on the platform deployment.
