@@ -12,7 +12,7 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 :::
 
 Informfully uses a JSON Recommendation Exchange Format (JREX) to visualize item recommendations.
-JREX allows you to add recommendations for any user who contains any item in your document collection.
+JREX lets you add recommendations for any user and any item in your document collection.
 It allows for specifying the following properties of the recommendation list:
 
 ..
@@ -21,7 +21,7 @@ It allows for specifying the following properties of the recommendation list:
   itemID (String): ID of the item.
   prediction (Double): Prediction score that determines the position of the item within the recommendation list. The higher the score, the further up the item is placed in the news feed. Precision, upper, and lower limits of the score can be customized.
   recommendationAlgorithm (String): Algorithm used to calculate the recommendation. Can optionally include an explanation of why this item was recommended.
-  isPreview (Boolean): The front end can display (or feature) items in a preview mode (with the item text and image across the entire screen. Alternatively, items can be displayed using a downsized image with a square aspect ratio and a title-only option.
+  isPreview (Boolean): The front end can display (or feature) items in a preview mode (with the item text and image across the entire screen. Alternatively, items can be displayed with a downsized image and a square aspect ratio, or with a title-only option.
   createdAt (Date): Timestamp that records when the item recommendation was created.
 
 | Attributes | Type | Description |
@@ -29,9 +29,9 @@ It allows for specifying the following properties of the recommendation list:
 | `_id` | ObjectID | Unique Object ID used for indexing. |
 | `userID` | String | ID of the user. |
 | `itemID` | String | ID of the item. |
-| `prediction` | Double | Prediction score that determines the position of the item within the recommendation list. The higher the score, the further up the item is placed in the news feed. Precision, upper- and lower limits of the score can be customized. |
+| `prediction` | Double | Prediction score that determines the position of the item within the recommendation list. The higher the score, the further up the item is placed in the news feed. Precision and the upper- and lower limits of the score can be customized. |
 | `recommendationAlgorithm` | String | Algorithm used to calculate the recommendation. Can optionally include an explanation of why this item was recommended. |
-| `isPreview` | Boolean | If set to TRUE, the front end displays items in a preview mode (with the item text and image across the entire screen). If set to FALSE, items are displayed using a downsized image (with a square aspect ratio and title only). |
+| `isPreview` | Boolean | If set to TRUE, the front end displays items in a preview mode (with the item text and image across the entire screen). If set to FALSE, items are displayed with a downsized image (square aspect ratio, title only). |
 | `createdAt` | Date | Timestamp that records when the item recommendation was created. |
 
 Below, you find a reference implementation of how, starting with item and user pools, such a JREX list of recommendations is created using the function `create_recommendation()`.
@@ -42,7 +42,7 @@ Again, you can use the [reference implementation](https://github.com/Informfully
 
 The app will automatically download all images associated with articles displayed in the news feed.
 We, therefore, recommend including URLs to downsized images.
-This enables faster loading of items and prevents potential server bottlenecks.  
+This enables faster item loading and prevents potential server bottlenecks.  
 
 :::
 
@@ -134,11 +134,11 @@ This enables faster loading of items and prevents potential server bottlenecks.
     main()
 
 ```
-By default, the front end requires the output of this function to be stored in a document collection with the name `recommendationLists`.
+By default, the front end requires the output of this function to be stored in the `recommendationLists` document collection.
 The name of the collection can be changed ([see codebase](https://github.com/Informfully/Platform/blob/main/backend/imports/api/recommendations.js)).
 
 The workflow for managing the recommendation list is left open.
 For example, updating recommendations for a given user can be done by simply inserting new recommendations with a higher prediction score.
 This will preserve existing/old entries and move them to the bottom of the recommendation list.
-Alternatively, all existing items for a given user can be removed before updating the list to ensure that only new items are displayed.
+Alternatively, all existing items for a given user can be removed before updating the list, ensuring only new items are displayed.
 To preserve the recommendation history, this second approach would require moving old recommendations to a separate collection before each update.
