@@ -1,6 +1,6 @@
 # Participatory Diversity
 
-The participatory `Political Diversity` (PLD) is an algorithm that creates a recommendation list by using political user scores and political article scores.
+The participatory `Political Diversity` (PLD) algorithm creates a recommendation list using political user scores and political article scores.
 PLD leverages user and article scores derived from interaction data to curate news feeds that reflect a broad spectrum of political views, thus supporting a healthier democratic environment.
 
 For the code, please see the [PLD implementation](https://github.com/Informfully/Recommenders/tree/main/cornac/models/pld) in the repository.
@@ -25,34 +25,34 @@ The Figure below shows how PLD combined normative target distributions across tw
 
 ![img/algorithm_assets/pld.jpg](img/algorithm_assets/pld.jpg)
 
-Articles are classified based on the frequency of mentions of political parties, categorized into one party according to predefined settings.
-The model can calculate recommendations on a group level, reducing the overall runtime as it generates candidate lists.
+Articles are classified by the frequency of political party mentions, with each article assigned to a single party according to predefined settings.
+The model can calculate recommendations at the group level, reducing overall runtime as it generates candidate lists.
 This is possible because the political user score is the only attribute that is considered.
-This attribute can be defined in a way that users are assigned to pre-defined bins.
+This attribute can be defined so that users are assigned to predefined bins.
 Hence, users in the same bin share the same score and should therefore receive the same recommendations.
-It is up to researchers to define the distribution (e.g., users can only receive items from nearby bins in close proximity or on the opposite side of the spectrum).
+It is up to researchers to define the distribution (e.g., users can only receive items from nearby bins or from bins on the opposite side of the spectrum).
 
 ## Open Parameters
 
 Details can be found in the [Configuration File](https://github.com/Informfully/Recommenders/blob/main/tests/configs/model_configs/parameters.ini).
 
 * name: string, default: 'PLD'. The name of the recommender model.
-* trainable: boolean, optional, default: True. When False, the model is not trained, and Cornac assumes that the model is already pre-trained. (U and V are not 'None').
+* trainable: boolean, optional, default: True. When False, the model is not trained, and Cornac assumes it is already pre-trained. (U and V are not 'None').
 * verbose: boolean, optional, default: False.  When True, running logs are displayed.
 * num_users: int, default: 0. The number of users in the dataset.
 * num_items: int, default: 0. The number of items in the dataset.
-* party_dict: dict. A dictionary whose keys are article IDs and values are references to these articles.
+* party_dict: dict. A dictionary whose keys are article IDs and whose values are references to these articles.
 * distribution: Nested Lists. Every element in the outer layer is a list that includes the user group type and a list of articles distributed to this user type. An example is the {project_path}/examples/pld_mind.py.
 * update_score: boolean, default: True. When 'False', use the existing score files located in the folder './cornac/models/pld'.
 * configure_path: str, default: './parameters.ini'. Configure a file that includes parties to be calculated.
 
 ## Article Classification
 
-PLD is supposed to be primarily used in an online setting.
+PLD is intended primarily for use in an online setting.
 In a first step, (baseline) users take a survey and are assigned a political score, and read an article.
 In a second step, each article gets assigned the average political score of its readership.
 (Both user scores and article scores are mapped into the same political space.)
-Finally, users in the experimental group get recommended items based on user-item distance.
+Finally, users in the experimental group receive recommendations based on user-item distance.
 
 When reusing PLD for offline testing requires addressing one critical issue:
 There are no users available to take the survey.
