@@ -1,7 +1,7 @@
 # Deliberative Diversity
 
-The deliberative `Exposure Diversity` (EPD) is an algorithm that implements a deliberative diversity model by providing news articles from a wide range of topics and viewpoints.
-EPD emphasizes party visibility, particularly of minority parties, to enhance public awareness and to foster a more inclusive understanding of political discourse.
+The deliberative `Exposure Diversity` (EPD) algorithm implements a deliberative diversity model by providing news articles from a wide range of topics and viewpoints.
+EPD emphasizes party visibility, particularly minority parties', to enhance public awareness and foster a more inclusive understanding of political discourse.
 
 For the code, please see the [EPD implementation](https://github.com/Informfully/Recommenders/tree/main/cornac/models/epd) in the repository.
 
@@ -15,7 +15,7 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 
 ## Algorithm Overview
 
-EPD is based on the articles of the majority party and the minority party, as well as the user's attributes.
+EPD is based on the articles of the majority and minority parties, as well as the user's attributes.
 It requires researchers to pre-configure the party attributes and the user's political type.
 To that end, EPD assigns users to one of three conditions at the beginning of an experiment:
 1. exposed to news on the majority parties, 
@@ -25,8 +25,8 @@ The Figure below shows an overview of how EPD builds the recommendation list one
 
 ![img/algorithm_assets/epd.jpg](img/algorithm_assets/epd.jpg)
 
-The continuous exposure length of majority party articles and minority party articles, political articles, and non-political articles is controlled by parameters to increase the diversity of recommendation results.
-In each news recommendation list, articles with both majority and minority views are displayed in the order set by the user.
+The continuous exposure lengths of majority party articles, minority party articles, political articles, and non-political articles are controlled by parameters to increase the diversity of recommendation results.
+In each news recommendation list, articles with both majority and minority views are displayed in the order the user sets.
 For example, with a list size of 20 and a slice value of 2, users in the minority party condition receive two articles from the minority party, followed by two non-political articles.
 This process is repeated until 20 articles have been added to the feed.
 The news supply to EPD assumes items are from the most recent day.
@@ -41,9 +41,9 @@ Details can be found in the [Configuration File](https://github.com/Informfully/
 * articles_collection: list. The list of entire articles, including the article's political references.
 * political_type_dict: dict. The dictionary of political classes, keys are indices, values are political types of articles.
 * num_items: int. The number of items(here are articles) in one experiment.
-* k: int, optional, default: 3. The number of political and non-political articles each time added into recommendation collection.
+* k: int, optional, default: 3. The number of political and non-political articles added to the recommendation collection each time.
 * pageWidth: int, optional, default: 24. The maximum number of articles added for each user group.
-* trainable: boolean, optional, default: True. When False, the model is not trained, and Cornac assumes that the model is already pre-trained. (U and V are not 'None'.)
+* trainable: boolean, optional, default: True. When False, the model is not trained, and Cornac assumes it is already pre-trained. (U and V are not 'None'.)
 * verbose: boolean, optional, default: False.When 'True', running logs are displayed.
 
 ## Article Classification
@@ -51,7 +51,7 @@ Details can be found in the [Configuration File](https://github.com/Informfully/
 Articles in the majority party's news must mention at least one member of the majority/governing party, and they must not mention any minority or opposition party.
 Minority party news features at least one minority/opposition party.
 Other political news consists of articles on various political topics, without mentioning any specific majority or minority parties or foreign political parties.
-The list size of EPD determined the number of recommended articles, with a slice value used for grouping and interleaving non-political articles.
+The list size of EPD determined the number of recommended articles, with a slice value used to group and interleave non-political articles.
 
 ## Source
 
