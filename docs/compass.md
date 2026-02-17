@@ -1,6 +1,6 @@
 # Database Tutorial
 
-This page provides an introduction to retrieving user and item IDs from the MongoDB back end of Informfully for creating recommendation lists.
+This page provides an introduction to retrieving user and item IDs from the Informfully MongoDB back end for creating recommendation lists.
 In the example shown on this page, we use [MongoDB Compass](https://www.mongodb.com/products/tools/compass) to explore the database and its collections.
 (In the context of MongoDB a "table" in the database is referred to as "collection" and "entry/tupel" as "document" instead.)
 
@@ -26,7 +26,7 @@ We recommend you either create a custom mapping between the back end IDs and you
 ![img/database_screenshots/collection_items.png](img/database_screenshots/collection_items.png)
 
 `items` collection:
-Retrieving item IDs is identical to user IDs.
+Retrieving item IDs is identical to retrieving user IDs.
 Simply export the IDs you need from this collection.
 Ensure that both the back end and your recommender framework use the same IDs when generating user-specific recommendation lists.
 
@@ -48,6 +48,6 @@ You can add entries 1) manually via MongoDB Compass, 2) import them via the inte
 
 ::: info
 
-Please visit the [Item Visualization](./recommendations.md) page to see how you can create custom entries and forward recommendations from your external system.
+Please visit the [Item Visualization](./recommendations.md) page to learn how to create custom entries and forward recommendations from your external system.
 
 :::
