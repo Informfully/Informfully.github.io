@@ -1,9 +1,9 @@
 # Item Entries
 
 All content scraped from an external resource is categorized as either text or multimedia (images, audio, and video).
-It is important to note that due to copyright restrictions, it was decided not to store multimedia files in the Informfully database (the system only saves the URL to the media object in question).
+It is important to note that, due to copyright restrictions, it was decided not to store multimedia files in the Informfully database (the system only stores the URL to the media object).
 This has the advantage of reducing the load on the Informfully server as the media item is streamed from the original host.
-The disadvantage is that if the source removes the file in question, then users in Informfully can no longer access the item.
+The disadvantage is that if the source removes the file, users in Informfully can no longer access it.
 If the item modality is text, however, the system will create and store a copy after applying data augmentation/pre-processing steps.
 
 | Attributes | Type | Description |
@@ -37,13 +37,13 @@ Please visit the [Scraper Documentation](./scrapers.md) page to get access to sa
 
 When creating item entries, we recommend setting default values for each field.
 If we used non-existing fields to signify the absence of an attribute, we would have to use the `$exists` keyword to distinguish between articles that do and do not feature certain attributes.
-This use of the `$exists` operator, however, cannot utilize any index and results in a decrease in overall performance.
+This use of the `$exists` operator, however, cannot use any index and results in lower overall performance.
 Items will be rendered as follows inside the app:
 
 ![img/screenshots_app/app_screenshots_2.png](img/screenshots_app/app_screenshots_2.png)
 
-In the case of a text item, the top part of the interface displays a thumbnail preview specified in the `image` attribute.
-For a multimedia item (podcast or video), a multimedia player will be loaded with the specified image as a thumbnail.
+For a text item, the top of the interface displays a thumbnail preview specified in the `image` attribute.
+For a multimedia item (podcast or video), a multimedia player will load the specified image as a thumbnail.
 
 The `body` consists of a list of elements.
 There are currently three types of elements that are supported:
