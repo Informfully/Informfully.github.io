@@ -28,7 +28,7 @@ If the item modality is text, however, the system will create and store a copy a
 | `language` | String | Language code of the article (e.g., en-US, de-CH, etc.) |
 
 ::: info
-   
+
 Be aware that Android devices can only handle websites secured by an SSL certificate (i.e., only HTTPS websites, not HTTP websites).
 Therefore, data fields such as `url` or `multimediaURL` should only contain URLs for HTTPS websites.
 Please visit the [Scraper Documentation](./scrapers.md) page to get access to sample code that scrapes and adds item entries to the back end.
@@ -40,7 +40,7 @@ If we used non-existing fields to signify the absence of an attribute, we would 
 This use of the `$exists` operator, however, cannot use any index and results in lower overall performance.
 Items will be rendered as follows inside the app:
 
-![img/screenshots_app/app_screenshots_2.png](img/screenshots_app/app_screenshots_2.png)
+![img/app_screenshots/app_2.png](img/app_screenshots/app_2.png)
 
 For a text item, the top of the interface displays a thumbnail preview specified in the `image` attribute.
 For a multimedia item (podcast or video), a multimedia player will load the specified image as a thumbnail.
@@ -48,8 +48,8 @@ For a multimedia item (podcast or video), a multimedia player will load the spec
 The `body` consists of a list of elements.
 There are currently three types of elements that are supported:
 
-* `text` for unformatted text, 
-* `subtitle` for adding a new paragraph and subtitle to the text, and 
+* `text` for unformatted text,
+* `subtitle` for adding a new paragraph and subtitle to the text, and
 * `quote` for a cursive, indented quote block.
 
 A sample `body`` element of an item looks like this:
