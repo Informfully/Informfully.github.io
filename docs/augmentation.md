@@ -12,7 +12,7 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 
 ## Sentiment Analysis
 
-The sentiment feature assesses the emotional tone or polarity expressed in a text. 
+The sentiment feature assesses the emotional tone or polarity expressed in a text.
 It generates a compound score that integrates individual scores for positivity, negativity, and neutrality, offering a comprehensive evaluation of the sentiment.
 This compound score ranges from -1 (extremely negative) to 1 (extremely positive), reflecting the intensity of the sentiment expressed in the text.
 In Informfully, the sentiment analysis is performed using a multilingual sentiment analysis model, namely [cardiffnlp/twitter-xlm-roberta-base-sentiment](https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment), based on [XLM-RoBERTa](https://huggingface.co/docs/transformers/en/model_doc/xlm-roberta) and pre-trained on eight languages (i.e., English, French, German, Arabic, Hindi, Italian, Portuguese, and Spanish).
@@ -46,7 +46,7 @@ Once entities are extracted, the function clusters similarly named entities usin
 [Implementation available online.](https://github.com/Informfully/Recommenders/tree/main/cornac/augmentation/ner.py)
 
 Once named entities are identified, they can be further enriched by querying [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) for additional information.
-This additional pipeline can extend person entities with their given name, family name, occupation, political party affiliation, gender, citizenship, ethnicity, and place of birth, as well as political parties with their respective ideologies. 
+This additional pipeline can extend person entities with their given name, family name, occupation, political party affiliation, gender, citizenship, ethnicity, and place of birth, as well as political parties with their respective ideologies.
 These enriched named entities can serve as a valuable resource for calculating various features, such as political viewpoints based on a person's party if they are a politician.
 
 * Input: A list of dictionaries, each representing a named entity and its attributes.
@@ -58,19 +58,19 @@ These enriched named entities can serve as a valuable resource for calculating v
 
 The political actors feature identifies and quantifies the political affiliations and ideologies expressed in the text, whether through individuals or organizations.
 More precisely, it detects political parties and candidates mentioned in the text and calculates their frequency.
-This feature utilizes the named entity recognition feature and queries Wikidata to consolidate party aliases and abbreviations, thereby minimizing redundancy. 
+This feature utilizes the named entity recognition feature and queries Wikidata to consolidate party aliases and abbreviations, thereby minimizing redundancy.
 These enhancements yield a more precise and concise output, providing a clearer representation of the frequencies of political parties within the text.
 The political actors/parties feature is used to calculate the representation metrics.
 
-* Input: A list of dictionaries with named entities, the language of the text, and a dictionary with possible translations of parties. 
+* Input: A list of dictionaries with named entities, the language of the text, and a dictionary with possible translations of parties.
 * Output: A dictionary with the party names as keys and their corresponding frequencies as values, such as {'Democratic Party': 5, 'Republican Party': 3}.
 
 [Implementation available online.](https://github.com/Informfully/Recommenders/tree/main/cornac/augmentation/party.py)
 
 ## Text Complexity or Readability
 
-The readability feature assesses the complexity of a text. 
-The complexity score is computed using the Python library [textstat](https://pypi.org/project/textstat/) which implements the Flesch-Kincaid score. 
+The readability feature assesses the complexity of a text.
+The complexity score is computed using the Python library [textstat](https://pypi.org/project/textstat/) which implements the Flesch-Kincaid score.
 The library supports multiple languages including English (US and UK), Afrikaans, Bulgarian, Catalan, Croatian, Czech, Danish, Dutch, Estonian, French, Galician, German (Germany, Swiss, Austrian), Greek, Hungarian, Italian, Latvian, Lithuanian, Norwegian Bokmål, Norwegian Nynorsk, Polish, Portuguese (Portugal, Brazil), Romanian, Russian, Serbian (official, Latin), Slovak, Slovenian, Spanish, Swedish, Telugu, Ukrainian, and Zulu.
 The parameters of the Flesch-Kincaid formula differ across languages and are adjusted based on linguistic research.
 A lower score indicates a more complex text, while a higher score suggests greater readability.
@@ -86,9 +86,9 @@ The text complexity or readability feature is used to calculate the calibration 
 The event cluster feature groups news articles reporting on the same news event into clusters, rather than broadly categorizing them by topic, which is a typical limitation of conventional clustering approaches.
 The method first transforms each article's text into a TF-IDF vector, capturing the unique relevance of words within the article.
 Next, it calculates the cosine similarity between articles within a 3-day time window, where articles with similar content are more likely to be related to the same news event.
-These pairwise similarities are represented as a graph, where each article is a node, and edges between nodes indicate textual similarity. 
-The [Louvain heuristic algorithm](https://python-louvain.readthedocs.io/en/latest/) is then applied to partition the graph into clusters. 
-Each cluster represents a "story chain", grouping articles that report on the same event over time. 
+These pairwise similarities are represented as a graph, where each article is a node, and edges between nodes indicate textual similarity.
+The [Louvain heuristic algorithm](https://python-louvain.readthedocs.io/en/latest/) is then applied to partition the graph into clusters.
+Each cluster represents a "story chain", grouping articles that report on the same event over time.
 Event or story clusters are used to assess fragmentation.
 
 * Input: A list of news articles, each represented as a string of text. Each article should have a timestamp indicating when it was published and a category.

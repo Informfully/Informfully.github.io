@@ -12,11 +12,12 @@ For a tutorial on how to use Informfully, start with the [install](./install.md)
 
 ::: info
 
-There are two different ways that you can use Informfully: 
-1) Use the front end and back end deployed by the University of Zurich or 
+There are two different ways that you can use Informfully:
+
+1) Use the front end and back end deployed by the University of Zurich or
 2) Deploy the whole application on your own.
 The upcoming tutorial focuses on the self-hosted deployment of Informfully.
-If you want to use the Informfully Platform as a cloud service, hosted at the University of Zurich, please reach out to us: info@informfully.ch
+If you want to use the Informfully Platform as a cloud service, hosted at the University of Zurich, please reach out to us: <info@informfully.ch>
 
 :::
 
@@ -27,10 +28,10 @@ If you want to use the Informfully Platform as a cloud service, hosted at the Un
 The Informfully platform allows you to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history.
 It is a domain-agnostic, platform-independent solution that fits your specific needs.
 The platform was designed to accommodate different experiment types through versatility, ease of use, and scalability.
-It features three core components: 
+It features three core components:
 
-* a front end for displaying and interacting with recommended items, 
-* a back end for researchers to create and maintain user experiments, and 
+* a front end for displaying and interacting with recommended items,
+* a back end for researchers to create and maintain user experiments, and
 * a simple JSON-based exchange format (JREX) for ranked item recommendations to interface with third-party services.
 
 ## Architecture
@@ -47,7 +48,6 @@ It is structured as follows:
 * **Managing Experiments** provides an in-depth overview of how to use the Informfully platform to conduct user studies.
 * **Recommender System** provides a tutorial on how to use the built-in Informfully recommender framework.
 * **Technical Documentation** provides insights for various technical aspects in order to customize and extend the platform.
-
 
 ## Citation
 
@@ -68,6 +68,7 @@ If you use any Informfully code/repository in a scientific publication, we ask y
    }
 
 ```
+
 * [Informfully - Research Platform for Reproducible User Studies](https://dl.acm.org/doi/10.1145/3640457.3688066), Heitz *et al.*, Proceedings of the 18th ACM Conference on Recommender Systems, 2024.
 
 ```console
@@ -83,6 +84,7 @@ If you use any Informfully code/repository in a scientific publication, we ask y
   }
 
 ```
+
 ## Support
 
 You are welcome to contribute to the Informfully ecosystem and become a part of the community. Feel free to:

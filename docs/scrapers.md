@@ -14,8 +14,6 @@ There is no dedicated deployment step involved.
 Instead, the scrapers need to be part of a `cron job` running on the server.
 Communication with the other components of the back end is limited to writing items to the pre-defined document collection.
 
-
-
 :::
 
 ## Architecture Overview
@@ -37,8 +35,6 @@ Hence, the decision was made to have split scrapers, where one part consists of 
 Specifically, the scrapers for each outlet consist of two parts.
 First, they obtain a list of the most recent articles, which includes either URLs or an identifier for the API.
 Second, they iterate through the list and obtain the necessary information by scraping the HTML page or, if possible, directly accessing the API.
-
-
 
 ## File Structure
 
@@ -63,7 +59,6 @@ If it is configured without SSH, the manager will simply create a `MongoClient` 
 
 ```
 
-
 ## Scraping Pipeline
 
 The system's scraper tool performs the following augmentation steps.
@@ -82,8 +77,8 @@ When scraping, the system ensures that all the necessary fields are initialized 
 
 **RSS Scraper** Within the small selection of scrapers, a few do not precisely follow the pattern of RSS feeds.
 We provided a sample implementation for cases where the page's actual content is not directly included in the initial HTML data, i.e., whenever the content is dynamically loaded later on using JavaScript.
-To automate this process, [Selenium](https:// www.selenium.dev) along with [Geckodriver](https:// github.com/mozilla/geckodriver) is used to open a browser, navigate to the URL, and execute the JavaScript to get a finalized page, from which the article list can be extracted using Beautiful Soup.
-The scraping of individual articles follows the same procedure as other HTML-based scrapers. 
+To automate this process, [Selenium](https://www.selenium.dev) along with [Geckodriver](https://github.com/mozilla/geckodriver) is used to open a browser, navigate to the URL, and execute the JavaScript to get a finalized page, from which the article list can be extracted using Beautiful Soup.
+The scraping of individual articles follows the same procedure as other HTML-based scrapers.
 Naturally, scraping feeds takes more time than RSS feeds, as more processing is required to render a dynamic website.
 After all articles have been scraped and are in a single list, the scraper will apply content preprocessing steps before writing them to the database.
 The preprocessing steps are necessary to ensure that the articles are prepared in a state optimized for Informfully.
@@ -113,8 +108,6 @@ The first element in the tuple is a regular expression to detect the abnormaliti
 Please visit the [Item Entry](./items.md) page to see how an item is represented in the database.
 We provide sample scrapers to help you create item entries that can be adapted for your specific use case.
 One example is the  [BBC Scraper](https://github.com/Informfully/Scrapers/blob/main/scraperpackage/scrapers/bbcscraper.py) (see line 130).
-
-
 
 :::
 

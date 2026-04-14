@@ -3,7 +3,7 @@
 This is the installation guide for Informfully, which utilizes Docker containers for both the front-end and back-end.
 The following instructions outline the process of setting up Docker containers for Informfully on Windows 10 Home.
 A prerequisite for Windows 10 Home users is to enable the WSL 2.0 feature.
-WSL is the Windows Subsystem for Linux, and the instructions for enabling it can be found [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+WSL is the Windows Subsystem for Linux, and the instructions for enabling it can be found [in the online documentation](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 These instructions should also work for Linux and macOS.
 
 To start from scratch, please download and install [Docker](https://www.docker.com/products/docker-desktop).
@@ -40,9 +40,10 @@ To create a Dockerfile, open a text editor, such as Notepad on Windows, and type
     CMD ["expo", "start"]
 
 ```
-Explanation of the code:
 
-* [FROM node:16.13.0-alpine` imports a light-weight Linux distribution called Alpine with the Node.js v16.13.0 environment. This sets a base OS for the image on which the following processes and commands will operate on. We chose Node.js v16.13.0 as this was the local version of Node.js that we used to develop (`see here](./development.md)).
+### Code Explanation
+
+* `FROM node:16.13.0-alpine` imports a light-weight Linux distribution called Alpine with the Node.js v16.13.0 environment. This sets a base OS for the image on which the following processes and commands will operate on. We chose Node.js v16.13.0 as this was the local version of Node.js that we used to develop [located here](./development.md).
 * `REACT_NATIVE_PACKAGER_HOSTNAME` needs to be set equal to the IP address of the host machine, to which the iOS or Android phone will connect
 * `EXPO_DEVTOOLS_LISTEN_ADDRESS` should be left as it is; it is an environment variable required for running the Expo server on the Docker container and connecting to it over the host machine
 * `EXPOSE 19000 19001 19002` are the ports used by Expo, which we have to expose to access the Docker container from the host machine
@@ -68,24 +69,24 @@ Please note that loading the file may take a few minutes, and no progress bar wi
 
 ::: info
 
-**Troubleshooting** 
+### Front End Troubleshooting
 
 `Access is denied' error while building Docker image`: This might be caused either by a missing permission or by the project path being too long.
 To resolve this issue, temporarily move your entire frontend folder directly under the `C:\` directory. This solution has been effective in resolving the issue and successfully generating the backend Docker image.
 
 `Cannot successfully connect phone to Expo service`: If a QR code has been generated but you are facing problems connecting to the running Meteor service on the container, make sure that:
-    
-#.  all antivirus programs on the host machine have been disabled,
-#.  the firewall on the host machine has been disabled,
-#.  the phone and the host machine share the same wireless network, and
-#.  the wireless network is public.
+
+1. all antivirus programs on the host machine have been disabled,
+2. the firewall on the host machine has been disabled,
+3. the phone and the host machine share the same wireless network, and
+4. the wireless network is public.
 
 :::
 
 ## Setting Up the Back End
 
-Please note that before building the Docker image, the [bundle folder` (`bundle located here](https://github.com/Informfully/Platform/tree/main/backend/bundle)) has to be generated and unpacked at the root of the backend directory.
-This can be done by following the first part of [meteor build` instructions for the back end (`meteor located here](./install.md)) and unpacking the generated tar file in the root of the backend folder.
+Please note that before building the Docker image, the [bundle folder located here](https://github.com/Informfully/Platform/tree/main/backend/bundle)) has to be generated and unpacked at the root of the backend directory.
+This can be done by following the first part of [meteor build instructions for the back end located here](./install.md)) and unpacking the generated tar file in the root of the backend folder.
 To create the Dockerfile, open a text editor such as Notepad on Windows, and type in the following contents:
 
 ```python
@@ -130,6 +131,7 @@ To create the Dockerfile, open a text editor such as Notepad on Windows, and typ
     CMD ["mongod"]
 
 ```
+
 * The first set of instructions takes the base image of Phusion Passenger from the Docker repository. This image is configured with Node.js ([more information here](https://github.com/phusion/passenger-docker)).
 * The next set of instructions is required to install the basic commands in order to download and configure the rest of the required software. Afterwards, MongoDB is installed.
 * The next set of instructions creates a folder called app, and it copies the backend folder contents onto the image.
@@ -137,21 +139,25 @@ To create the Dockerfile, open a text editor such as Notepad on Windows, and typ
 * A directory is created called `/data/db` from which MongoDB retrieves its database. The ownership permissions of the directory are set so MongoDB can access it.
 * Finally, the command `mongod` starts the MongoDB service.
 
-**Build Docker Image** To run the following commands, open Docker Desktop to start the Docker service (or use systemctl, etc. for Linux).
+### Build Docker Image
+
+To run the following commands, open Docker Desktop to start the Docker service (or use systemctl, etc. for Linux).
 Navigate to the back end folder on the command line and type the command docker `build . -t` informfullybackend which will locate the Dockerfile in the current directory and execute all commands defined in that file.
 
-**Run Docker Container** Once the Docker image is built, a Docker container of it can be run by typing the command `docker run -p 8020:8080 informfullybackend`.
+### Run Docker Container
+
+Once the Docker image is built, a Docker container of it can be run by typing the command `docker run -p 8020:8080 informfullybackend`.
 This will start a Docker container (and the MongoDB service will get started on it).
 The `-p 8020:8080` is used to open port 8080 from the container to be accessible on the host computer at `localhost:8020`.
 Follow the next steps to get the Backend running:
 
-#.  Type `docker ps` to see which containers are running.
-#.  Copy the container ID of the container that is running the back end.
-#.  Type `docker exec -it [containerID] sh`, this will open the container and you will be able to execute commands on it.
-#.  Run the command `passenger start` inside the opened Docker container. This will start the Phusion Passenger service; the back end will now be running.
+1. Type `docker ps` to see which containers are running.
+2. Copy the container ID of the container that is running the back end.
+3. Type `docker exec -it [containerID] sh`, this will open the container and you will be able to execute commands on it.
+4. Run the command `passenger start` inside the opened Docker container. This will start the Phusion Passenger service; the back end will now be running.
 
 In order to open the back end server, running on the container, from the host computer, open an internet browser and type `localhost:8020` (which is the host port that was defined above).
-The passenger's port 8080 of the container can be changed by editing the [Passengerfile.json` (`file located here](https://github.com/Informfully/Platform/blob/main/backend/Passengerfile.json)) in the backend directory.
+The passenger's port 8080 of the container can be changed by editing the [Passengerfile.json file located here](https://github.com/Informfully/Platform/blob/main/backend/Passengerfile.json)) in the backend directory.
 Additionally, any other unused port can be used for the localhost (the left-hand side of `-p 8020:8080`), instead of 8020.
 
 **Save Docker Image** To save the created Docker image, type in the command prompt `docker save -o informfullybackend.tar informfullybackend`.
@@ -162,7 +168,7 @@ Please note that loading the file may take a few minutes, and no progress bar wi
 
 ::: info
 
-**Troubleshooting** 
+### Back End Troubleshooting
 
 `Access is denied' error while building Docker image` See entry above in the front end section.
 

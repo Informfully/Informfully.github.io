@@ -11,7 +11,7 @@ If Informfully is used in another capacity, all records labelled `articleId` can
 
 ::: info
 
-Please visit the [Informfully Datasets Repository](https://github.com/Informfully/Datasets). 
+Please visit the [Informfully Datasets Repository](https://github.com/Informfully/Datasets).
 For an example of the quality of the data once it is exported and the corresponding [Dataset Documentation](./datasets.md).
 And read the [MongoDB Compass Tutorial](./compass.md) for instructions on how to interface/connect with the database in the back end.
 
@@ -47,6 +47,7 @@ An example of what the answer field could look like is shown below:
     ]
 
 ```
+
 ## archive*
 
 **Description** Collects whether an article has been archived and whether it is a part of the user's favourites list.
@@ -104,6 +105,7 @@ An example of what the answer field could look like is shown below:
     ]
 
 ```
+
 ## articleViews*
 
 **Description** Contains various information about all articles a user has accessed.
@@ -165,6 +167,7 @@ An example of what the likeSurvey field could look like is shown below:
     }
 
 ```
+
 An example of what the explanationTagsDef field could look like is shown below:
 
 ```json
@@ -184,6 +187,7 @@ An example of what the explanationTagsDef field could look like is shown below:
     }
 
 ```
+
 ## explanationViews*
 
 **Description** Whenever a user views the detailed recommendation explanations for an article, a record is created in the collection.
@@ -234,7 +238,7 @@ See [Explainable Recommendations](https://github.com/Informfully/Explanations) f
 
 ::: info
 
-Be aware that Android devices can only handle websites secured by an SSL certificate (i.e., only HTTPS websites and no HTTP websites). 
+Be aware that Android devices can only handle websites secured by an SSL certificate (i.e., only HTTPS websites and no HTTP websites).
 Therefore, data fields like URL or multimediaURL should only contain HTTPS websites.
 
 :::
@@ -319,6 +323,7 @@ An example of what the recommendations need to be formatted is shown below:
     ]
 
 ```
+
 ::: info
 
 We provide an in-depth [recommendation list tutorial](./recommendations.md) on how to connect your recommender framework and the Informfully back end with the [relevant code](https://github.com/Informfully/Documentation/tree/main/sample).
@@ -376,6 +381,7 @@ An example of what the questions field could look like is shown below:
     ]
 
 ```
+
 ## surveys
 
 **Description** Contains all surveys that admin users have defined (and not deleted).

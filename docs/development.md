@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 This tutorial assumes basic knowledge of the React Native app development workflow.
 It is not intended as a tutorial.
-If you need more information about React Native, the latest version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+If you need more information about React Native, the latest version of this guide is available [in the online tutorial](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ## Run a Local Server
 
@@ -24,6 +24,7 @@ Navigate to the main directory of your codebase and execute the following script
     meteor --port 3008 --settings settings-dev.json
 
 ```
+
 Make sure that you are specifying the same port that you are using in the [React Native App](https://github.com/Informfully/Platform/blob/main/frontend/App.js).
 If you want to access the server from within your network, replace `--port 3008` with `--port <YOUR_LOCAL_IP_ADDRESS>:3008`.
 The back end is now running, and the administration website is accessible via `localhost:3008`.
@@ -62,6 +63,7 @@ To check whether you already have them installed, simply check the version in a 
     yarn --version
 
 ```
+
 Also, do not forget that it is best if your development and production environments have the same package versions (meaning that the libraries on the deployment server for the [website and back end](./deployment.md) and [Docker container setup](./docker.md) should also be updated).
 
 ## Connecting to Local Server
@@ -74,6 +76,7 @@ E.g., if the client runs on the same computer:
     const SERVER = 'localhost'
 
 ```
+
 If you want to use your client on a different computer in the same network, replace `localhost:3008` with `<YOUR_LOCAL_IP_ADDRESS>:3008`.
 
 After you have set the `SERVER` constant, you can do the following to start the client:
@@ -90,6 +93,7 @@ After you have set the `SERVER` constant, you can do the following to start the 
     npx expo start
 
 ```
+
 ::: info
 
 **Important** `npx` comes with `npm` and hence with `Node.js`. `npm` will automatically fetch `Expo`. If prompted, install `npx` and/or `expo` as required.
@@ -99,7 +103,7 @@ After you have set the `SERVER` constant, you can do the following to start the 
 Afterwards, you can scan the QR code that appears, if you want to test the app on a physical device (recommended).
 Or you can connect to a device emulator (e.g., Android Studio or Xcode).
 
-![img/meteor_bundle.png](img/meteor_bundle.png)
+![img/meteor_assets/meteor_bundle.png](img/meteor_assets/meteor_bundle.png)
 
 The app will run in the [Expo Go App](https://expo.dev/client) and any changes to the source code will be automatically reflected in Expo Go.
 
@@ -116,7 +120,7 @@ Therefore, to create the very first `Maintainer`, we provide the `main.js` and `
 We connect (with `main.js`) and check (with `genesis.js`) if the database is empty.
 If so, we insert a new user with the information below (see again `genesis.ja`).
 
-**main.js**
+### main.js
 
 ```javascript
 
@@ -135,7 +139,8 @@ If so, we insert a new user with the information below (see again `genesis.ja`).
     });
 
 ```
-**genesis.js**
+
+### genesis.js
 
 ```javascript
 
@@ -162,6 +167,7 @@ If so, we insert a new user with the information below (see again `genesis.ja`).
     }
 
 ```
+
 ::: info
 
 It is recommended to delete this user after another `Maintainer` has been created to ensure the system's security.

@@ -10,8 +10,6 @@ A sample experiment launching Informfully as a news recommendation platform will
 
 Please see the [Experiment Overview](./overview.md) to get a high-level overview of how the components outlined below interact during a user experiment.
 
-
-
 :::
 
 ## Create Experiment
@@ -34,14 +32,12 @@ The tabs in the top menu bar are described in the subsections below.
 
 ![img/tutorial_screenshots/tutorial_1.jpg](img/tutorial_screenshots/tutorial_1.jpg)
 
-
-
 ## Create Users
 
 Once an experiment is selected in the `Experiments` screen, the participants of that experiment will be listed on the `Users` screen.
 Find out more about [User Creation](./users.md).
 
-If the experiment is new, new users can be added by pressing `ADD USERS`. 
+If the experiment is new, new users can be added by pressing `ADD USERS`.
 Another module will appear with a form that allows the user amount and user group to be specified.
 The user group can be any text to group participants (e.g., `baseline` and `experimental`).
 After submitting, users should appear in the list immediately.
@@ -51,12 +47,9 @@ A download prompt will pop up.
 
 ![img/tutorial_screenshots/tutorial_2.jpg](img/tutorial_screenshots/tutorial_2.jpg)
 
-
 Each individual user can be deleted by clicking the trash can on the right of the row.
 We recommend exporting the user accounts as a CSV file and creating a backup copy.
 (E.g., for support purposes, in case users forget their password.)
-
-
 
 ## Create Surveys
 
@@ -79,8 +72,6 @@ Additionally, rating surveys/feedback can be defined as well (displayed above).
 Participants can agree with (like) or disagree with (dislike) a statement.
 The statements are the same for all the participants in an experiment.
 
-
-
 ## Scraper Pipeline
 
 To create recommendations for users, you first need to have items to recommend.
@@ -95,8 +86,6 @@ The source code is available for download in the [Scrapers Repository](https://g
 We recommend running the scrapers on the same server as the other parts of the back end.
 There is no communication happening between the scraping modules and any other component of Informfully.
 You can set the scraper up so that it writes directly to MongoDB's document collection, `newsArticles`/`itemCollection`.
-
-
 
 ## Recommender System
 
@@ -127,6 +116,7 @@ Below this paragraph is a reference implementation for creating recommendations 
         return recommendation
 
 ```
+
 ::: info
 
 We provide an in-depth [recommendation list tutorial](./recommendations.md) on how to connect your recommender framework to the Informfully back end, along with the [relevant code](https://github.com/Informfully/Documentation/tree/main/sample).
@@ -142,8 +132,6 @@ Once you have completed this, the Informfully instance is ready to host and laun
 
 Once you have completed this setup, your Informfully instance is ready to host and launch user experiments.
 Please refer to the [Experiment Overview](./overview.md) to see how these components interact with each other across the different experimental phases.
-
-
 
 ## Dataset Example
 

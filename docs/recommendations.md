@@ -134,6 +134,7 @@ This enables faster item loading and prevents potential server bottlenecks.
     main()
 
 ```
+
 By default, the front end requires the output of this function to be stored in the `recommendationLists` document collection.
 The name of the collection can be changed ([see codebase](https://github.com/Informfully/Platform/blob/main/backend/imports/api/recommendations.js)).
 

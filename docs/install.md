@@ -3,9 +3,7 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 This tutorial assumes basic knowledge of the React Native app development workflow.
 It is not intended as a tutorial.
-In case you need more information about React Native, the most recent version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
-
-
+In case you need more information about React Native, the most recent version of this guide is available [in the online documentation](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ## Download Codebase
 
@@ -21,14 +19,15 @@ Informfully is a React Native app that uses a Meteor server as the back end. Dow
     meteor npm install
 
 ```
+
 Here is an overview of the dependencies you need to install:
 
 **Meteor** You do not have to install a specific version of Meteor.
 When you run the application, Meteor will compare the version of the application with the version(s) you have installed locally.
 If you are missing the application version, Meteor will automatically download and install the correct version.
-Meteor and its command-line tools are available [here](https://www.meteor.com/install).
+Meteor and its command-line tools are available [in the online documentation](https://www.meteor.com/install).
 
-**Node** Meteor ships with Node. 
+**Node** Meteor ships with Node.
 You do not have to install it yourself.
 If you want to deploy this application to production, however, a separate Node installation will be required on the deployment server.
 
@@ -52,6 +51,7 @@ When starting your project, you will see something similar to the following for 
     exp://192.168.0.2:19000
 
 ```
+
 The `manifest` at that URL tells the Expo app how to retrieve and load your app's JavaScript bundle, so even if you load it in the app via a URL like `exp://localhost:19000`, the Expo client app will still try to retrieve your app at the IP address that the start script provides.
 In some cases, this is less than ideal.
 
@@ -65,6 +65,7 @@ Mac and Linux:
     REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname' npm start
 
 ```
+
 Windows:
 
 ```console
@@ -73,12 +74,12 @@ Windows:
     npm start
 
 ```
+
 The above example would cause the development server to listen on `exp://my-custom-ip-address-or-hostname:19000`.
 
-Informfully currently provides native Android and iOS apps. 
+Informfully currently provides native Android and iOS apps.
 The Android APK can also be distributed outside Google Play.
 It can be installed on Windows 11 and macOS (e.g., with third-party software like [BlueStacks](https://www.bluestacks.com/)).
-
 
 ## Next Step: Run the Code
 

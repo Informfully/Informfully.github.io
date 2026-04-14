@@ -1,7 +1,7 @@
 # Data Loading
 
 This page provides an example for loading the MIND news dataset into the Cornac framework.
-Users can similarly load their own datasets and create other loading functions. 
+Users can similarly load their own datasets and create other loading functions.
 The functions detailed in the subsequent sections are available within the **`cornac/datasets/mind.py`** module.
 The aim is to transform externally enhanced data into the required format for the diversity framework.
 Before using functions, it is strongly recommended to review the structure and content of the provided data file.
@@ -30,6 +30,7 @@ For example:
 }
 
 ```
+
 In this structure, the keys represent the raw IDs of the items, while the corresponding values denote the sentiment values attributed to the articles.
 Alternatively, if opting for a CSV file, the first column should contain the item IDs, and the second column should contain the corresponding sentiment values.
 The output of this function is a dictionary containing items and their sentiment.
@@ -52,6 +53,7 @@ For example:
 }
 
 ```
+
 Alternatively, if opting for a CSV file as input, the first column should contain the item's raw IDs, and the second column should contain the corresponding category.
 The output of this function is a dictionary containing item and item category information.
 
@@ -74,6 +76,7 @@ For example:
 }
 
 ```
+
 For single-category items: `{"N2073": "sports"}`  
 For multi-category items: `{"N55528": ["lifestyle", "health"]}`
 For CSV input, the first column should list the item's raw IDs, and the second column should contain a single category or a comma-separated list of categories.
@@ -93,6 +96,7 @@ JSON expected format:
 }
 
 ```
+
 The function will exclude items with NaN complexity values.
 CSV: First column = item ID, second column = complexity (ensure valid numerical values).
 
@@ -111,6 +115,7 @@ JSON expected format:
 }
 
 ```
+
 CSV: First column = item ID, second column = story value (convertible to int).
 
 ## load_entities
@@ -132,6 +137,7 @@ JSON expected format:
 }
 
 ```
+
 CSV: First column = item ID, second column = comma-separated party names. Example:
 
 | Item | Entities |
@@ -148,6 +154,7 @@ JSON input will filter out items with empty data. Output is a dictionary with li
 }
 
 ```
+
 ## load_min_maj
 
 This function manages minority/majority scores based on a protected attribute, such as gender, ethnicity, or mainstream status.
@@ -169,7 +176,9 @@ Expected JSON format:
 }
 
 ```
-CSV format:  
+
+CSV format:
+
 - Column 1 = item ID  
 - Column 2 = minority score  
 - Column 3 = majority score  
@@ -189,12 +198,14 @@ JSON expected format:
 }
 
 ```
+
 CSV: First column = item ID, second column = text.  
 Returns: dictionary mapping IDs to text strings.
 
 ## build
 
 This function transforms external item IDs into Cornac internal IDs. It requires:
+
 - The data dictionary from loading functions, and
 - `id_map` obtained after feeding user-item-rating data into Cornac.
 

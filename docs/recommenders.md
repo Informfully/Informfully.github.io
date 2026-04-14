@@ -1,6 +1,6 @@
 # Recommender System
 
-This overview outlines the [Informfully Recommenders](https://github.com/Informfully/Recommenders) repository. 
+This overview outlines the [Informfully Recommenders](https://github.com/Informfully/Recommenders) repository.
 It can be used in combination with the Informfully Research Platform or in a stand-alone fashion.
 Informfully Recommenders is an extension of [Cornac](https://github.com/PreferredAI/cornac).
 And you can look at the [Tutorial Notebook](https://github.com/Informfully/Experiments/tree/main/experiments/recsys_2025) for hands-on examples of everything outlined here.
@@ -20,7 +20,7 @@ Please find below an outline of the individual components, along with a link to 
 
 ## In-processing Stage
 
-* [Data Splitting](./splitting.md) 
+* [Data Splitting](./splitting.md)
 * [Participatory Diversity](./participatory.md)
 * [Deliberative Diversity](./deliberative.md)
 * [Random Walks](./randomwalks.md)

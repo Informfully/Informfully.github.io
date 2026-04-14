@@ -18,11 +18,9 @@ User Simulator
 Dynamic re-ranking requires an underlying user model that specifies how the item feed is being browsed.
 We provide a sample template that can be customized and extended.
 In the context of NRSs, the two default behaviors included in the framework are:
+
 1) Users are more likely to click on articles from a category that they have previously read, and
 2) Items higher up in the recommendation list are more likely to be clicked.
-
-Implementation (TBD)
-
 
 Dynamic Attribute Penalization (DAP)
 

@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 This tutorial assumes basic knowledge of the React Native app development workflow.
 It is not intended as a tutorial.
-If you need more information about React Native, the latest version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+If you need more information about React Native, the latest version of this guide is available [in the online tutorial](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ::: info
 
@@ -24,9 +24,10 @@ Navigate to the main directory of your codebase and execute the following script
     bash build.sh
 
 ```
+
 There are two scripts in the project's root directory: `.snippets.sh` and `build.sh`.
-You find the shell script [build.sh` in the back end folder (`shell script located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh)).
-Before the script can be used, the variables in the file [.snippets.sh` have to be set (`configuration file located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh)).
+You find the shell script [build.sh in the back end folder located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh).
+Before the script can be used, the variables in the file [.snippets.sh have to be set in the configuration file located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh).
 
 **.snippets.sh** This is the configuration file.
 In this file, we store all variables used for deployment, such as the app user,
@@ -38,13 +39,13 @@ The script will also install npm dependencies and restart the app.
 
 In short, the script will automate the following steps:
 
-#.  Use the command `meteor build` to create the Node app bundle.
-#.  Upload the bundle to the server using `scp` (the password of the back end server will be required).
-#.  SSH to the remote machine (a password is required again).
-#.  Unpack the tar.gz bundle created by using the `build.sh` script.
-#.  Run `npm install` inside `bundle/programs/server` to install dependencies.
-#.  Move the bundle folder to the `/var/newsapp/` location.
-#.  Restart the Phusion Passenger process to serve the Node app.
+1. Use the command `meteor build` to create the Node app bundle.
+2. Upload the bundle to the server using `scp` (the password of the back end server will be required).
+3. SSH to the remote machine (a password is required again).
+4. Unpack the tar.gz bundle created by using the `build.sh` script.
+5. Run `npm install` inside `bundle/programs/server` to install dependencies.
+6. Move the bundle folder to the `/var/newsapp/` location.
+7. Restart the Phusion Passenger process to serve the Node app.
 
 Following these steps will deploy the new Administration Website.
 Please follow the instructions in the [Genesis Script](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js) to initialize the first users.
@@ -62,7 +63,7 @@ This setup was successfully tested on a server with the following software packa
 
 Please perform the following steps to deploy *an update* of the application.
 
-**1. Build & Upload**
+### 1. Build & Upload
 
 The following command will create a file called `backend.tar.gz` in the `.build` directory in the root of the project.
 
@@ -71,6 +72,7 @@ The following command will create a file called `backend.tar.gz` in the `.build`
     meteor build --server-only --architecture os.linux.x86_64 ./.build/
 
 ```
+
 Next, you upload the `backend.tar.gz` file to the server:
 
 ```console
@@ -79,7 +81,8 @@ Next, you upload the `backend.tar.gz` file to the server:
     scp ./.build/backend.tar.gz [USERNA]@[SERVER]:/home/[USER]/uploads/
 
 ```
-**2. Move & Unpack**
+
+### 2. Move & Unpack
 
 Connect to the server via SSH and move the newly copied `backend.tar.gz` file to a temporary directory and extract its contents:
 
@@ -91,7 +94,8 @@ Connect to the server via SSH and move the newly copied `backend.tar.gz` file to
     tar xzf backend.tar.gz
 
 ```
-**3. Update & Restart**
+
+### 3. Update & Restart
 
 Install all dependencies:
 
@@ -102,6 +106,7 @@ Install all dependencies:
     npm install --only=prod
 
 ```
+
 Update the bundle and restart the app:
 
 ```console
@@ -115,10 +120,11 @@ Update the bundle and restart the app:
     passenger-config restart-app /var/www/[PROJECTNAME]/
 
 ```
+
 The Administration Website can also be deployed using a generated Docker image.
 To do that, simply follow the steps in the [Docker Setup](./docker.md) to load the image onto the server.
 
-## Deploy Apps
+## Deploy App
 
 Please see the other instruction page for [App Deployment](./native.md)
 If you already have the apps up and running, go ahead and start your first [Use Experiment](./experiment.md).

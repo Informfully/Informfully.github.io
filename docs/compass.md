@@ -6,6 +6,7 @@ In the example shown on this page, we use [MongoDB Compass](https://www.mongodb.
 
 To customize the recommendations displayed to users, you must edit the following collections: `users`, `items`, and `recommendations`, outlined below.
 Customization of recommendation list entries is done using three steps:
+
 * Create user accounts and retrieve their IDs
 * Scrape/upload items to recommend and retrieve their IDs
 * Create item recommendation lists for users

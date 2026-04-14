@@ -3,12 +3,12 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 This tutorial assumes basic knowledge of the React Native workflow for building apps.
 It is not intended as a tutorial.
-In case you need more information about React Native, the most recent version of this guide is available [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+In case you need more information about React Native, the most recent version of this guide is available [in the online documentation](https://github.com/expo/create-react-native-app/blob/master/README.md).
 
 ## App Preview
 
-Test versions are available for free download if you only want to preview the app. 
-Reach out to us to get a demo account: info@informfully.ch
+Test versions are available for free download if you only want to preview the app.
+Reach out to us to get a demo account: <info@informfully.ch>
 
 * [Google Play Store (for Android devices, version 5.1 and newer)](https://play.google.com/store/apps/details?id=ch.uzh.ifi.news)
 
@@ -31,11 +31,11 @@ You should only need to update the global installation of `create-react-native-a
 Upgrading to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions.
 Ensure that the upgraded package versions are compatible with each other.
 
-As explained in [Local Development](./development.md), make sure to properly configure [App.js` in the `frontend` folder (`file here](https://github.com/Informfully/Platform/blob/main/frontend/App.js)).
+As explained in [Local Development](./development.md), make sure to properly configure [App.js in the frontend folder located here](https://github.com/Informfully/Platform/blob/main/frontend/App.js)).
 Change the' SERVER' constant so that it connects to your local server.
 If you do not apply these changes, then the app front end will not know what server to connect to.
 
-You can edit [app.json` to include `configuration keys](https://docs.expo.io/versions/latest/guides/configuration.html) under the `expo` key.
+You can edit [app.json to include in the configuration keys](https://docs.expo.io/versions/latest/guides/configuration.html) under the `expo` key.
 To change your app's display name, set the `expo.name` key in `app.json` to an appropriate string.
 To set an app icon, set the `expo.icon` key in `app.json` to be either a local path or a URL.
 It's recommended that you use a 512x512 PNG file with transparency.
@@ -54,6 +54,7 @@ Install the `exp` command-line tool and run the publish command:
     $ exp publish
 
 ```
+
 When it comes to building an Expo stand-alone app, you can also use a service like [Expo's standalone builds](https://docs.expo.io/versions/latest/guides/building-standalone-apps.html) if you want to get an IPA/APK for distribution without having to build the native code yourself.
 
 And if you want to build and deploy your app yourself, you will need to eject from CRNA and use Xcode and Android Studio.
@@ -77,6 +78,7 @@ Unlike dependency installation, the command syntax for running commands is ident
     npm start
 
 ```
+
 Runs your app in development mode.
 Open it in the [Expo app](https://expo.io) on your phone to view it.
 It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
@@ -86,6 +88,7 @@ It will reload if you save edits to your files, and you will see build errors an
     npm test
 
 ```
+
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
 
 ```console
@@ -93,6 +96,7 @@ Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
     npm run ios
 
 ```
+
 Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
 
 ```console
@@ -100,6 +104,7 @@ Like `npm start`, but also attempts to open your app in the iOS Simulator if you
     npm run android
 
 ```
+
 Like `npm start`, but also attempts to open your app on a connected Android device or emulator.
 Requires an installation of Android build tools (see [React Native Documentation](https://reactnative.dev/docs/environment-setup) for detailed setup).
 
@@ -108,6 +113,7 @@ Requires an installation of Android build tools (see [React Native Documentation
     npm run eject
 
 ```
+
 This will start the process of "ejecting" from Create React Native App's build scripts.
 You will be asked a couple of questions about how you'd like to build your project.
 

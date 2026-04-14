@@ -14,7 +14,7 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 ## Attribute-based Sorting
 
 This method can be used to see if having more complex articles or articles with higher sentiment scores in the training set would lead the algorithm to recommend more complex or emotionally charged articles to users who prefer simpler content (thereby increasing the diversity of news that these users engage with).
-For complexity and sentiment score, this method splits the dataset and only selects high-scoring items for the training set. 
+For complexity and sentiment score, this method splits the dataset and only selects high-scoring items for the training set.
 (This option matches news IDs from user interactions with their corresponding sentiment scores, sorts these scores from highest to lowest, and then allocates a certain percentage of the articles with the highest sentiment scores to the test set; the remaining articles with higher scores are used for the training set.)
 
 ## Diversity-based Subset Construction

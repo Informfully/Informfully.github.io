@@ -24,6 +24,7 @@ We will discard all changes after uploading the iOS app and testing it.
     expo eject
 
 ```
+
 We used the following to successfully deploy to the App Store. In case you have errors, try using the same versions:
 
 * Operating System: **macOS Big Sur Version 11.6**

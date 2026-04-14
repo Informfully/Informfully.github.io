@@ -18,8 +18,9 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 EPD is based on the articles of the majority and minority parties, as well as the user's attributes.
 It requires researchers to pre-configure the party attributes and the user's political type.
 To that end, EPD assigns users to one of three conditions at the beginning of an experiment:
-1. exposed to news on the majority parties, 
-2. exposed to minority party news, or 
+
+1. exposed to news on the majority parties,
+2. exposed to minority party news, or
 3. exposed to other political news.
 The Figure below shows an overview of how EPD builds the recommendation list one slide at a time.
 

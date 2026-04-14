@@ -40,6 +40,7 @@ Here is a summary of the frontend repo folder structure:
     ...
 
 ```
+
 The `assets` folder contains all static assets required by the application, including fonts, icons, and images.
 
 The `components` folder contains all custom-built UI components.
@@ -52,7 +53,7 @@ The `config` folder contains a configuration file, `index.js`, which stores the 
 This file can be used to define additional configuration options in the future.
 
 The `lib` folder houses code for the internationalization (`i18n/`) and offline functionality (`meteorOffline/`) of the app, as well as some utility functions (`utils/`) and additional parameters (`parameters/`).
-The internationalization is implemented using the third-party library [react-native-i18n` (`see here for more information](https://www.npmjs.com/package/react-native-i18n)).
+The internationalization is implemented using the third-party library [react-native-i18n](https://www.npmjs.com/package/react-native-i18n)).
 It can be configured in the `i18n.js` file, and additional languages can be added in the `locales` subfolder.
 The app is currently fully translated into English, German, and French.
 
@@ -63,7 +64,7 @@ The `styles` folder is where all the colors and fonts for the application are de
 Storing all styles in a single location ensures style consistency across the app (e.g., all screens using the same font family) and allows for easy customization.
 For example, the colours used in the app can simply be changed in the `styles/variables/colors.js` file.
 
-The [.eslintrc.json` file manages the `ESLint](https://eslint.org/) configuration.
+The [.eslintrc.json file manages the ESLint](https://eslint.org/) configuration.
 ESLint is a linting utility that ensures consistent code style and better code quality.
 
 The `index.js` denotes the entry point to the application; it is the file that is run when the application is launched.
@@ -78,7 +79,7 @@ A full list of all available properties can be found in the [Expo documentation]
 The back end repository is based on [Meteor](https://www.meteor.com/) with [React](https://reactjs.org/).
 It is highly encouraged to complete the following [Tutorial](https://react-tutorial.meteor.com/), to get a better understanding of Meteor and how it can be used together with React (which is the framework used for the development of the admin website user interface) or React Native (which is the framework used for the development of the mobile app user interface).
 The back end repository contains both the Meteor backend (`server`) and the React-based admin website (`client`).
-Complete the aforementioned tutorial to gain a better understanding of why the backend repository is structured as it is. 
+Complete the aforementioned tutorial to gain a better understanding of why the backend repository is structured as it is.
 Below is a short overview of the structure.
 
 The Meteor framework is a JavaScript NodeJS backend solution which integrates well with React and React Native and ships with [MongoDB](https://www.mongodb.com/).
@@ -90,7 +91,7 @@ Similarly, files that are inside a directory called `startup` are loaded during 
 In the [Meteor documentation](https://guide.meteor.com/structure.html), Meteor explains and suggests a very clean project structure that considers their special file load behaviour.
 In the back end repository, we use the application structure as suggested by the Meteor documentation and have further separated the code semantically for different groups and types of components.
 Furthermore, we very clearly distinguish between different layers and concepts inside the application.
-Here is a summary of the backend repository structure: 
+Here is a summary of the backend repository structure:
 
 ```console
 
@@ -136,6 +137,7 @@ Here is a summary of the backend repository structure:
     ...
 
 ```
+
 The [.build/` directory is generated when running the `build.sh` script for the deployment of the `Administration Website](./deployment.md).
 It contains the [tarball` (more information `here](https://docs.meteor.com/commandline.html#meteorbuild)), after having run the `meteor build` command in the terminal.
 The unpacked tarball is actually the [bundle/` folder, which is needed for building the backend repository `Docker Image](./docker.md).

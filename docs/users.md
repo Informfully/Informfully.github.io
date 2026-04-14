@@ -1,7 +1,7 @@
 # User Creation
 
 User accounts for both the Mobile App and Administration Website are handled using Meteor's [Accounts system](https://docs.meteor.com/api/accounts.html) and [password-based authentication](https://docs.meteor.com/api/passwords.html).
-All existing users are collected in the [users collection](./database.md). 
+All existing users are collected in the [users collection](./database.md).
 There are two types of users: regular users (data field `roles` of collection `users` has a value `user`) and admin users (data field `roles` of collection `users` has a value `['user', 'admin']`).
 Regular users can only access the Mobile App, whereas administrator users can access both the Mobile App and the Administration Website.
 
@@ -22,7 +22,7 @@ This then allows for access control over the app.
 
 ## Creation of Administrator Users
 
-Admin users are created manually by developers with access to the MongoDB. For this, a user account must be created through the Mobile App, and consequently, its data fields in the user collection must be manually updated. 
+Admin users are created manually by developers with access to the MongoDB. For this, a user account must be created through the Mobile App, and consequently, its data fields in the user collection must be manually updated.
 Specifically, the following fields have to be overwritten:
 
 - `roles`: needs to be changed from `['user']` to `['user', 'admin']`

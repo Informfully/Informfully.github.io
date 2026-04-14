@@ -16,8 +16,8 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 
 The Greedy-KL method re-ranks recommendations to closely match a user-defined target distribution, which can cover several dimensions.
 More precisely, the G-KL re-ranker enhances the diversity of recommendation lists by minimizing the Kullback-Leibler (KL) divergence between the actual distribution of recommended items and a user-defined target distribution.
-The Greedy-KL method enables end-users to define a custom target distribution and specify the diversity dimensions they are interested in (e.g., sentiment, category, political mentions). 
-Users can also assign weights to these dimensions, prioritizing certain dimensions of diversity over others. 
+The Greedy-KL method enables end-users to define a custom target distribution and specify the diversity dimensions they are interested in (e.g., sentiment, category, political mentions).
+Users can also assign weights to these dimensions, prioritizing certain dimensions of diversity over others.
 This method incrementally builds a ranked list of recommendations by iteratively selecting items that best achieve the target distribution.
 
 * [Implementation](https://github.com/Informfully/Recommenders/tree/main/cornac/rerankers/greedy_kl)
@@ -26,7 +26,7 @@ This method incrementally builds a ranked list of recommendations by iteratively
 ## Diversity by Proportionality (PM-2)
 
 The PM-2 re-ranker promotes diversity in recommendation lists by ensuring that the selected items reflect a proportional representation of various aspects (e.g., diversity, relevance, etc.).  
-The goal of the re-ranker is to generate an optimally ranked list such that the number of relevant items for each aspect is proportional to the overall popularity of that particular aspect. 
+The goal of the re-ranker is to generate an optimally ranked list such that the number of relevant items for each aspect is proportional to the overall popularity of that particular aspect.
 The items are selected iteratively, such that at each rank, the algorithm selects the item that maximizes the proportionality score, or the item that represents aspects that have been covered less at previous ranks.
 This process continues until the desired length of the recommendation list is achieved.
 
@@ -36,8 +36,8 @@ This process continues until the desired length of the recommendation list is ac
 ## Maximal Marginal Relevance (MMR)
 
 The Maximal Marginal Relevance (MMR) re-ranker balances relevance and diversity in recommendation lists by selecting items that are both relevant to the user and diverse from each other.
-This is achieved through a tunable parameter λ, which linearly combines these two aspects into a single score, called marginal relevance. 
-A document is considered to have high marginal relevance if it is relevant to the query and has minimal similarity to previously chosen documents. 
+This is achieved through a tunable parameter λ, which linearly combines these two aspects into a single score, called marginal relevance.
+A document is considered to have high marginal relevance if it is relevant to the query and has minimal similarity to previously chosen documents.
 The MMR algorithm greedily selects the document with the highest marginal relevance score until it fulfills the desired length of the recommendation list.
 
 * [Implementation](https://github.com/Informfully/Recommenders/tree/main/cornac/rerankers/mmr)
@@ -46,4 +46,4 @@ The MMR algorithm greedily selects the document with the highest marginal releva
 ## Dynamic Attribute Penalization (DAP)
 
 * [Implementation](https://github.com/Informfully/Recommenders/tree/main/cornac/rerankers/dynamic_attribute_penalization)
-*  Please see the [User Simulator](./simulator.md) for the details on the dynamic re-ranking approach using DAP.
+* Please see the [User Simulator](./simulator.md) for the details on the dynamic re-ranking approach using DAP.

@@ -18,9 +18,11 @@ And you can look at the [Tutorial Notebook](https://github.com/Informfully/Exper
 PLD is an algorithm that generates a recommendation list by combining political user scores and article scores.
 The user score can be calculated from a questionnaire survey or based on the user's historical browsing data, as adopted in this project. The article score, on the other hand, is calculated from the user scores of all its readers.
 In order to assess these scores and apply PLD, the following three questions must be answered:
+
 1. How to measure the political scores of users?
 2. How to assign a political label to a news item?
 3. How many articles on what political positions should users receive? (I..e, quantify and discretize a normative target distribution across a 1D list or 2D grid.)
+
 The Figure below shows how PLD combined normative target distributions across two 1D lists into a 2D grid for recommendations.
 
 ![img/algorithm_assets/pld.jpg](img/algorithm_assets/pld.jpg)
@@ -60,6 +62,7 @@ When starting the offline evaluation, users are assigned political scores based 
 To that end, we introduce an offline-only step for annotating political actors/parties in news articles.
 They are automatically counted across all reading histories.
 The subsequent logic of PLD remains the same:
+
 1. Baseline users read articles.
 2. New articles get assigned a score on the basis of the average political score of their readership.
 3. Users in the experimental group receive article recommendations based on the distance between their own political score and the score of the article.
