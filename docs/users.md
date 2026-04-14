@@ -7,8 +7,9 @@ Regular users can only access the Mobile App, whereas administrator users can ac
 
 As we are using Meteor's default account and authentication system, there are currently two ways to create a new user.
 You can complete this task either through the Administration Website or the Mobile App.
-Regular users can be created through both the Administration Website and the Mobile App, whereas admin users can currently only be created through the Mobile App.
-The creation of user accounts through the Mobile App, however, is currently disabled (commented out in the source code).
+Regular users can be created through both the Administration Website and the Mobile App.
+The creation of user accounts through the Mobile App is currently disabled (commented out in the source code).
+This is to make sure that no third-parties external to experiments can get access to the app.
 
 ## Creation of Regular Users
 
