@@ -97,5 +97,3 @@ Please post your feature requests and bug reports in our [GitHub issues](https:/
 ## License
 
 Released under the [MIT License](https://github.com/Informfully/Documentation/blob/main/LICENSE). (Please note that the respective copyright licenses of third-party libraries and dependencies apply.)
-
-![img/app_screens.png](img/app_screens.png)
