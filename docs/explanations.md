@@ -2,7 +2,7 @@
 
 Explanations within Informfully are available as tags below item recommendations.
 
-![img/explanation_assets/explanation_screen.png](img/explanation_assets/explanation_screen.png)
+![img/explanation_assets/explanation_screen.png](img/explanation_assets/explanation_tags.png)
 
 1. Tags for highlighted items.
 2. Tags for regular items.
