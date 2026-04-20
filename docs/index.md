@@ -23,7 +23,7 @@ If you want to use the Informfully Platform as a cloud service, hosted at the Un
 
 ## Overview
 
-![img/informfully_assets/informfully_app_screens.png](img/informfully_assets/informfully_app_screens.png)
+![img/informfully_assets/informfully_app_screens.png](img/app_screens.png)
 
 The Informfully platform allows you to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history.
 It is a domain-agnostic, platform-independent solution that fits your specific needs.
