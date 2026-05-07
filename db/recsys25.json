@@ -23,9 +23,9 @@
     {
         "icon": "ri-slideshow-line",
         "title": "RecSys '25 Presentation",
-        "text": "Download the presentation slides for the Framework:",
+        "text": "Download the presentation slides for the framework paper:",
         "linkText": "Download Presentation",
-        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/RecSys25_Framework.pdf"
+        "link": "https://github.com/lucienheitz/lucienheitz/blob/main/presentations/2025_RecSys_InformfullyRecommenders.pdf"
     },
     {
         "icon": "ri-article-line",
@@ -51,9 +51,9 @@
     {
         "icon": "ri-slideshow-line",
         "title": "RecSys '25 Presentation",
-        "text": "Download the presentation slides for the Algorithm:",
+        "text": "Download the presentation slides for the algorithm paper:",
         "linkText": "Download Presentation",
-        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/RecSys25_Algorithm.pdf"
+        "link": "https://github.com/lucienheitz/lucienheitz/blob/main/presentations/2025_RecSys_DRDW.pdf"
     },
     {
         "icon": "ri-article-line",
@@ -66,7 +66,7 @@
         "icon": "ri-database-2-line",
         "title": "Open-Source Dataset",
         "text": "Open-Source Dataset for NORMalize Workshop Paper:",
-        "linkText": "Open-Source Dataset",
+        "linkText": "Open Source Dataset",
         "link": "https://github.com/Informfully/Datasets"
     },
     {
@@ -74,7 +74,7 @@
         "title": "NORMalize '25 Presentation",
         "text": "Download the presentation slides for NORMalize:",
         "linkText": "Download Presentation",
-        "link": "https://github.com/Informfully/Documentation/blob/main/docs/source/presentations/NORMalize25_Nudges.pdf"
+        "link": "https://github.com/lucienheitz/lucienheitz/blob/main/presentations/2025_NORMalize_NewsNudges.pdf"
     },
     {
         "icon": "ri-article-line",
