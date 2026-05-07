@@ -1,10 +1,10 @@
 [
     {
         "icon": "ri-file-text-line",
-        "title": "RecSys '23 Flyer",
-        "text": "We prepared a small flyer to complement our poster. Download it here to get a more detailed look at our user study:",
+        "title": "RecSys '23 Poster",
+        "text": "Download our poster to get a more detailed look at our user study:",
         "linkText": "Download Flyer",
-        "link": "https://informfully.ch/publications/2023_RecSys_Flyer.pdf"
+        "link": "https://github.com/lucienheitz/lucienheitz/blob/main/presentations/2023_RecSys_ExposureDiversity.pdf"
     },
     {
         "icon": "ri-article-line",
@@ -39,6 +39,6 @@
         "title": "RecSys '23 NORMalize Workshop Paper",
         "text": "Download the NORMalize paper on stage-based classification of recommender systems:",
         "linkText": "Download NORMalize Workshop Paper",
-        "link": "https://informfully.ch/publications/2023_Classification_of_Normative_Recommender_Systems.pdf"
+        "link": "https://ceur-ws.org/Vol-3639/short3.pdf"
     }
 ]
