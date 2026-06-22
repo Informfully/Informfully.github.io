@@ -4,7 +4,6 @@
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
-
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 
@@ -168,3 +167,6 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
 .vitepress/cache
 node_modules
+
+# Miscellaneous
+.DS_Store
