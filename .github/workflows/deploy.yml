@@ -1,4 +1,14 @@
-# Sample workflow for building and deploying a VitePress site to GitHub Pages
+deploy:
+ 57     environment:
+ 58       name: github-pages
+ 59       url: ${{ steps.deployment.outputs.page_url }}
+ 60     needs: build
+ 61     runs-on: ubuntu-latest
+ 62     name: Deploy
+ 63     steps:
+ 64       - name: Deploy to GitHub Pages
+ 65         id: deployment
+ 66         uses: actions/deploy-pages@v4# Sample workflow for building and deploying a VitePress site to GitHub Pages
 #
 name: Deploy VitePress site to Pages
 
