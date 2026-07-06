@@ -26,22 +26,26 @@ At **Informfully**, we respect your right to control your personal data. You can
     <p class="description">To finalize the deletion request, please enter your credentials to verify ownership.</p>
     <form id="delete-form" onsubmit="return false;">
       <div class="form-group">
-        <label for="email">Username or Email</label>
-        <input type="text" id="email" placeholder="Enter your email or username" required />
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email address" required />
+        <div id="email-error" class="input-error-msg">Please enter a valid email address.</div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Enter your password" required />
+        <div id="password-error" class="input-error-msg">Password is required.</div>
       </div>
       <div class="btn-group">
         <button type="button" id="btn-cancel" class="btn btn-secondary">Cancel</button>
-        <button type="submit" id="btn-confirm" class="btn btn-danger">Permanently Delete</button>
+        <button type="submit" id="btn-confirm" class="btn btn-danger" disabled>Permanently Delete</button>
       </div>
     </form>
   </div>
   <!-- Step 3: Success Screen (Hidden initially) -->
   <div id="step-3" class="step-panel">
-    <div class="success-icon">✓</div>
+    <div class="success-badge">
+      <span class="success-checkmark">✓</span>
+    </div>
     <h3>Account Deleted</h3>
     <p class="description" style="text-align: center;">
       Your account and all associated data have been successfully deleted from our records.
@@ -62,6 +66,60 @@ if (typeof window !== 'undefined') {
     const btnConfirm = document.getElementById('btn-confirm');
     const deleteForm = document.getElementById('delete-form');
     const statusMsg = document.getElementById('status-message');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const validateInputs = () => {
+      if (!emailInput || !passwordInput || !btnConfirm) return;
+      const emailVal = emailInput.value.trim();
+      const passwordVal = passwordInput.value;
+      
+      if (emailRegex.test(emailVal) && passwordVal.length > 0) {
+        btnConfirm.disabled = false;
+      } else {
+        btnConfirm.disabled = true;
+      }
+    };
+
+    if (emailInput && emailError) {
+      emailInput.addEventListener('blur', () => {
+        const val = emailInput.value.trim();
+        if (val.length > 0 && !emailRegex.test(val)) {
+          emailError.style.display = 'block';
+        } else {
+          emailError.style.display = 'none';
+        }
+      });
+      emailInput.addEventListener('input', () => {
+        const val = emailInput.value.trim();
+        if (emailRegex.test(val) || val.length === 0) {
+          emailError.style.display = 'none';
+        }
+        validateInputs();
+      });
+    }
+
+    if (passwordInput && passwordError) {
+      passwordInput.addEventListener('blur', () => {
+        const val = passwordInput.value;
+        if (val.length === 0) {
+          passwordError.style.display = 'block';
+        } else {
+          passwordError.style.display = 'none';
+        }
+      });
+      passwordInput.addEventListener('input', () => {
+        const val = passwordInput.value;
+        if (val.length > 0) {
+          passwordError.style.display = 'none';
+        }
+        validateInputs();
+      });
+    }
 
     if (btnInitiate) {
       btnInitiate.addEventListener('click', () => {
@@ -77,6 +135,11 @@ if (typeof window !== 'undefined') {
         if (step2 && step1) {
           step2.classList.remove('active');
           step1.classList.add('active');
+          if (emailInput) emailInput.value = '';
+          if (passwordInput) passwordInput.value = '';
+          if (emailError) emailError.style.display = 'none';
+          if (passwordError) passwordError.style.display = 'none';
+          validateInputs();
           if (statusMsg) statusMsg.style.display = 'none';
         }
       });
@@ -91,7 +154,7 @@ if (typeof window !== 'undefined') {
 
         if (!statusMsg || !btnConfirm) return;
 
-        statusMsg.innerText = 'Processing deletion...';
+        statusMsg.innerText = 'Deleting your account...';
         statusMsg.className = 'status-message info';
         statusMsg.style.display = 'block';
         btnConfirm.disabled = true;
@@ -112,13 +175,15 @@ if (typeof window !== 'undefined') {
             step3.classList.add('active');
             statusMsg.style.display = 'none';
           } else {
-            statusMsg.innerText = data.error || 'Invalid credentials or failed to delete account.';
+            statusMsg.innerText = data.error || 'Incorrect email or password. Please try again.';
             statusMsg.className = 'status-message error';
+            statusMsg.style.display = 'block';
             btnConfirm.disabled = false;
           }
         } catch (err) {
-          statusMsg.innerText = 'An error occurred. Please try again later.';
+          statusMsg.innerText = 'Unable to connect to the server. Please check your internet connection or try again later.';
           statusMsg.className = 'status-message error';
+          statusMsg.style.display = 'block';
           btnConfirm.disabled = false;
         }
       });
@@ -253,11 +318,22 @@ if (typeof window !== 'undefined') {
   background-color: var(--vp-c-bg-mute, #f1f1f2) !important;
 }
 
-.success-icon {
-  font-size: 44px !important;
+.success-badge {
+  width: 64px !important;
+  height: 64px !important;
+  background-color: rgba(46, 125, 50, 0.1) !important;
+  border: 2px solid #2e7d32 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 20px auto !important;
+}
+.success-checkmark {
+  font-size: 32px !important;
   color: #2e7d32 !important;
-  margin-bottom: 12px !important;
-  text-align: center !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
 }
 .step-panel h3 {
   margin-top: 0 !important;
@@ -269,7 +345,7 @@ if (typeof window !== 'undefined') {
 }
 
 .status-message {
-  display: none !important;
+  display: none;
   margin-top: 15px !important;
   padding: 10px 14px !important;
   border-radius: 6px !important;
@@ -285,5 +361,13 @@ if (typeof window !== 'undefined') {
   background-color: rgba(62, 175, 124, 0.08) !important;
   color: var(--vp-c-brand-1, #3eaf7c) !important;
   border: 1px solid rgba(62, 175, 124, 0.15) !important;
+}
+
+.input-error-msg {
+  display: none;
+  font-size: 12px !important;
+  color: var(--vp-c-danger-1, #ea4335) !important;
+  margin-top: 6px !important;
+  font-weight: 500 !important;
 }
 </style>
