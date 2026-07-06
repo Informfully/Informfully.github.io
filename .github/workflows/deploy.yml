@@ -1,14 +1,4 @@
-deploy:
- 57     environment:
- 58       name: github-pages
- 59       url: ${{ steps.deployment.outputs.page_url }}
- 60     needs: build
- 61     runs-on: ubuntu-latest
- 62     name: Deploy
- 63     steps:
- 64       - name: Deploy to GitHub Pages
- 65         id: deployment
- 66         uses: actions/deploy-pages@v4# Sample workflow for building and deploying a VitePress site to GitHub Pages
+# Sample workflow for building and deploying a VitePress site to GitHub Pages
 #
 name: Deploy VitePress site to Pages
 
@@ -66,11 +56,15 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ fromJSON(steps.deployment.outputs.outputs).page_url }}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: Wandalen/wretry.action@v3.5.0
+        with:
+          action: actions/deploy-pages@v4
+          attempt_limit: 3
+          attempt_delay: 5000
