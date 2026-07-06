@@ -20,15 +20,16 @@ At **Informfully**, we respect your right to control your personal data. You can
     </p>
     <button id="btn-initiate" class="btn btn-danger">Delete My Account</button>
   </div>
+
   <!-- Step 2: Credentials Form (Hidden initially) -->
   <div id="step-2" class="step-panel">
     <h3>Confirm Identity</h3>
     <p class="description">To finalize the deletion request, please enter your credentials to verify ownership.</p>
     <form id="delete-form" onsubmit="return false;">
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email address" required />
-        <div id="email-error" class="input-error-msg">Please enter a valid email address.</div>
+        <label for="email">Username or Email</label>
+        <input type="text" id="email" placeholder="Enter your email or username" required />
+        <div id="email-error" class="input-error-msg">Username or email is required.</div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -37,10 +38,11 @@ At **Informfully**, we respect your right to control your personal data. You can
       </div>
       <div class="btn-group">
         <button type="button" id="btn-cancel" class="btn btn-secondary">Cancel</button>
-        <button type="submit" id="btn-confirm" class="btn btn-danger" disabled>Permanently Delete</button>
+        <button type="submit" id="btn-confirm" class="btn btn-danger">Permanently Delete</button>
       </div>
     </form>
   </div>
+
   <!-- Step 3: Success Screen (Hidden initially) -->
   <div id="step-3" class="step-panel">
     <div class="success-badge">
@@ -51,6 +53,7 @@ At **Informfully**, we respect your right to control your personal data. You can
       Your account and all associated data have been successfully deleted from our records.
     </p>
   </div>
+
   <!-- Alert Messages -->
   <div id="status-message" class="status-message"></div>
 </div>
@@ -68,56 +71,22 @@ if (typeof window !== 'undefined') {
     const statusMsg = document.getElementById('status-message');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-
     const emailError = document.getElementById('email-error');
     const passwordError = document.getElementById('password-error');
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    const validateInputs = () => {
-      if (!emailInput || !passwordInput || !btnConfirm) return;
-      const emailVal = emailInput.value.trim();
-      const passwordVal = passwordInput.value;
-      
-      if (emailRegex.test(emailVal) && passwordVal.length > 0) {
-        btnConfirm.disabled = false;
-      } else {
-        btnConfirm.disabled = true;
-      }
-    };
 
     if (emailInput && emailError) {
-      emailInput.addEventListener('blur', () => {
-        const val = emailInput.value.trim();
-        if (val.length > 0 && !emailRegex.test(val)) {
-          emailError.style.display = 'block';
-        } else {
-          emailError.style.display = 'none';
-        }
-      });
       emailInput.addEventListener('input', () => {
-        const val = emailInput.value.trim();
-        if (emailRegex.test(val) || val.length === 0) {
+        if (emailInput.value.trim().length > 0) {
           emailError.style.display = 'none';
         }
-        validateInputs();
       });
     }
 
     if (passwordInput && passwordError) {
-      passwordInput.addEventListener('blur', () => {
-        const val = passwordInput.value;
-        if (val.length === 0) {
-          passwordError.style.display = 'block';
-        } else {
-          passwordError.style.display = 'none';
-        }
-      });
       passwordInput.addEventListener('input', () => {
-        const val = passwordInput.value;
-        if (val.length > 0) {
+        if (passwordInput.value.length > 0) {
           passwordError.style.display = 'none';
         }
-        validateInputs();
       });
     }
 
@@ -139,7 +108,7 @@ if (typeof window !== 'undefined') {
           if (passwordInput) passwordInput.value = '';
           if (emailError) emailError.style.display = 'none';
           if (passwordError) passwordError.style.display = 'none';
-          validateInputs();
+          if (btnConfirm) btnConfirm.disabled = false;
           if (statusMsg) statusMsg.style.display = 'none';
         }
       });
@@ -149,10 +118,23 @@ if (typeof window !== 'undefined') {
       deleteForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const emailVal = document.getElementById('email').value;
-        const passwordVal = document.getElementById('password').value;
+        if (!emailInput || !passwordInput || !statusMsg || !btnConfirm) return;
 
-        if (!statusMsg || !btnConfirm) return;
+        const emailVal = emailInput.value.trim();
+        const passwordVal = passwordInput.value;
+
+        // Elegant validation check
+        if (emailVal.length === 0) {
+          if (emailError) emailError.style.display = 'block';
+          emailInput.focus();
+          return;
+        }
+
+        if (passwordVal.length === 0) {
+          if (passwordError) passwordError.style.display = 'block';
+          passwordInput.focus();
+          return;
+        }
 
         statusMsg.innerText = 'Deleting your account...';
         statusMsg.className = 'status-message info';
