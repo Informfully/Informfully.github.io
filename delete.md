@@ -8,303 +8,282 @@ lastUpdated: false
 
 At **Informfully**, we respect your right to control your personal data. You can permanently delete your account and request full erasure of all associated data at any time.
 
-<div class="delete-container">
-  
-  <!-- Step 1: Informational & Initial Trigger -->
-  <div v-if="!showForm && !formSubmitted" class="initial-view">
-    <div class="warning-header">
-      <div class="warning-icon">⚠️</div>
-      <h3>This action is permanent and cannot be undone</h3>
+<div id="delete-card" class="delete-card">
+  <!-- Step 1: Warning & Delete Trigger -->
+  <div id="step-1" class="step-panel active">
+    <div class="warning-banner">
+      <span class="warning-icon">⚠️</span>
+      <span class="warning-text">This action is permanent and cannot be undone</span>
     </div>
-    
-    <p class="warning-details">
-      Deleting your account will immediately revoke your access to the Informfully app. The following data will be permanently erased or irreversibly anonymized in compliance with GDPR guidelines:
+    <p class="description">
+      Deleting your account will immediately revoke your access to the Informfully app. Your profile, username, email, reading lists, preferences, and tracking logs will be permanently erased or irreversibly anonymized in compliance with GDPR guidelines.
     </p>
-    
-    <ul class="data-list">
-      <li>Your user profile, username, email, and authentication credentials.</li>
-      <li>All app preferences, layout settings, and experiment history.</li>
-      <li>Your reading list, bookmark history, and favorites archives.</li>
-      <li>All usage analytics, article interaction logs, and tracking metrics.</li>
-    </ul>
-
-    <button @click="showForm = true" class="action-btn initiate-btn">
-      Delete My Account...
-    </button>
+    <button id="btn-initiate" class="btn btn-danger">Delete My Account</button>
   </div>
-
-  <!-- Step 2: Verification Form -->
-  <div v-if="showForm && !formSubmitted" class="form-view">
-    <div class="form-header">
-      <h3>Identity Verification</h3>
-      <p>To prevent unauthorized deletions, please confirm your credentials to finalize the process.</p>
-    </div>
-
-    <form @submit.prevent="handleDelete">
+  <!-- Step 2: Credentials Form (Hidden initially) -->
+  <div id="step-2" class="step-panel">
+    <h3>Confirm Identity</h3>
+    <p class="description">To finalize the deletion request, please enter your credentials to verify ownership.</p>
+    <form id="delete-form" onsubmit="return false;">
       <div class="form-group">
         <label for="email">Username or Email</label>
-        <input 
-          type="text" 
-          id="email" 
-          v-model="email" 
-          placeholder="Enter your email or username" 
-          required 
-        />
+        <input type="text" id="email" placeholder="Enter your email or username" required />
       </div>
-      
       <div class="form-group">
         <label for="password">Password</label>
-        <input 
-          type="password" 
-          id="password" 
-          v-model="password" 
-          placeholder="Enter your password" 
-          required 
-        />
+        <input type="password" id="password" placeholder="Enter your password" required />
       </div>
-
       <div class="btn-group">
-        <button type="button" @click="showForm = false" class="action-btn cancel-btn">
-          Cancel
-        </button>
-        <button type="submit" class="action-btn confirm-btn">
-          Confirm Permanent Deletion
-        </button>
+        <button type="button" id="btn-cancel" class="btn btn-secondary">Cancel</button>
+        <button type="submit" id="btn-confirm" class="btn btn-danger">Permanently Delete</button>
       </div>
     </form>
   </div>
-
-  <!-- Step 3: Success State -->
-  <div v-if="formSubmitted" class="success-view">
+  <!-- Step 3: Success Screen (Hidden initially) -->
+  <div id="step-3" class="step-panel">
     <div class="success-icon">✓</div>
-    <h3>Account Successfully Deleted</h3>
-    <p>{{ message }}</p>
+    <h3>Account Deleted</h3>
+    <p class="description" style="text-align: center;">
+      Your account and all associated data have been successfully deleted from our records.
+    </p>
   </div>
-
-  <!-- In-flight or Error Feedback Messages -->
-  <div v-if="message && !formSubmitted" :class="['feedback-message', messageType]">
-    <span class="msg-text">{{ message }}</span>
-  </div>
+  <!-- Alert Messages -->
+  <div id="status-message" class="status-message"></div>
 </div>
 
-<script setup>
-import { ref } from 'vue'
+<script>
+if (typeof window !== 'undefined') {
+  const initDeletionPage = () => {
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const btnInitiate = document.getElementById('btn-initiate');
+    const btnCancel = document.getElementById('btn-cancel');
+    const btnConfirm = document.getElementById('btn-confirm');
+    const deleteForm = document.getElementById('delete-form');
+    const statusMsg = document.getElementById('status-message');
 
-const showForm = ref(false)
-const email = ref('')
-const password = ref('')
-const message = ref('')
-const messageType = ref('')
-const formSubmitted = ref(false)
-
-const handleDelete = async () => {
-  if (!email.value || !password.value) {
-    message.value = 'Please enter both email/username and password.'
-    messageType.value = 'error'
-    return
-  }
-
-  message.value = 'Processing deletion...'
-  messageType.value = 'info'
-
-  try {
-    const response = await fetch('/api/delete-account', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({ email: email.value, password: password.value })
-    })
-
-    const data = await response.json()
-
-    if (response.ok && data.success) {
-      message.value = 'Your account and all associated data have been permanently deleted.'
-      messageType.value = 'success'
-      formSubmitted.value = true
-      email.value = ''
-      password.value = ''
-      showForm.value = false
-    } else {
-      message.value = data.error || 'Failed to delete account. Please check your credentials.'
-      messageType.value = 'error'
+    if (btnInitiate) {
+      btnInitiate.addEventListener('click', () => {
+        if (step1 && step2) {
+          step1.classList.remove('active');
+          step2.classList.add('active');
+        }
+      });
     }
-  } catch (err) {
-    message.value = 'An error occurred. Please try again later.'
-    messageType.value = 'error'
+
+    if (btnCancel) {
+      btnCancel.addEventListener('click', () => {
+        if (step2 && step1) {
+          step2.classList.remove('active');
+          step1.classList.add('active');
+          if (statusMsg) statusMsg.style.display = 'none';
+        }
+      });
+    }
+
+    if (deleteForm) {
+      deleteForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailVal = document.getElementById('email').value;
+        const passwordVal = document.getElementById('password').value;
+
+        if (!statusMsg || !btnConfirm) return;
+
+        statusMsg.innerText = 'Processing deletion...';
+        statusMsg.className = 'status-message info';
+        statusMsg.style.display = 'block';
+        btnConfirm.disabled = true;
+
+        try {
+          const response = await fetch('/api/delete-account', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({ email: emailVal, password: passwordVal })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            step2.classList.remove('active');
+            step3.classList.add('active');
+            statusMsg.style.display = 'none';
+          } else {
+            statusMsg.innerText = data.error || 'Invalid credentials or failed to delete account.';
+            statusMsg.className = 'status-message error';
+            btnConfirm.disabled = false;
+          }
+        } catch (err) {
+          statusMsg.innerText = 'An error occurred. Please try again later.';
+          statusMsg.className = 'status-message error';
+          btnConfirm.disabled = false;
+        }
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDeletionPage);
+  } else {
+    initDeletionPage();
   }
 }
 </script>
 
 <style scoped>
-.delete-container {
-  max-width: 550px;
-  margin: 32px 0;
-  padding: 28px;
-  background-color: var(--vp-c-bg-soft, #f6f6f7);
-  border-radius: 16px;
-  border: 1px solid var(--vp-c-border, #e2e2e3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  font-family: var(--vp-font-family-base);
-  transition: all 0.3s ease;
+.delete-card {
+  max-width: 480px !important;
+  margin: 30px 0 !important;
+  background-color: var(--vp-c-bg-soft, #f6f6f7) !important;
+  border: 1px solid var(--vp-c-border, #e2e2e3) !important;
+  border-radius: 12px !important;
+  padding: 30px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  font-family: var(--vp-font-family-base) !important;
+  box-sizing: border-box !important;
 }
 
-/* Warnings and Typography */
-.warning-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+.step-panel {
+  display: none !important;
 }
-.warning-header h3 {
-  margin: 0;
-  color: var(--vp-c-danger-1, #ea4335);
-  font-size: 18px;
-  font-weight: 700;
+.step-panel.active {
+  display: block !important;
+  animation: fadeIn 0.3s ease-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.warning-banner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background-color: rgba(234, 67, 53, 0.08) !important;
+  border: 1px solid rgba(234, 67, 53, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  margin-bottom: 20px !important;
 }
 .warning-icon {
-  font-size: 24px;
+  font-size: 20px !important;
 }
-.warning-details {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--vp-c-text-2, #6c6c76);
-  margin-bottom: 20px;
-}
-.data-list {
-  padding-left: 20px;
-  margin-bottom: 28px;
-}
-.data-list li {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--vp-c-text-1, #3c3c43);
-  margin-bottom: 8px;
+.warning-text {
+  color: var(--vp-c-danger-1, #ea4335) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
 }
 
-/* Form Styles */
-.form-header h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 18px;
-  font-weight: 700;
+.description {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--vp-c-text-2, #6c6c76) !important;
+  margin-bottom: 24px !important;
+  margin-top: 0 !important;
 }
-.form-header p {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 14px;
-  color: var(--vp-c-text-2, #6c6c76);
-}
+
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px !important;
 }
 .form-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: var(--vp-c-text-1, #3c3c43);
+  display: block !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  font-size: 13px !important;
+  color: var(--vp-c-text-1, #3c3c43) !important;
 }
 .form-group input {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--vp-c-border, #e2e2e3);
-  background-color: var(--vp-c-bg, #ffffff);
-  color: var(--vp-c-text-1, #3c3c43);
-  font-size: 15px;
-  box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100% !important;
+  padding: 10px 14px !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--vp-c-border, #e2e2e3) !important;
+  background-color: var(--vp-c-bg, #ffffff) !important;
+  color: var(--vp-c-text-1, #3c3c43) !important;
+  font-size: 14px !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s ease !important;
 }
 .form-group input:focus {
-  outline: none;
-  border-color: var(--vp-c-brand-1, #3eaf7c);
-  box-shadow: 0 0 0 3px rgba(62, 175, 124, 0.15);
+  outline: none !important;
+  border-color: var(--vp-c-brand-1, #3eaf7c) !important;
 }
 
-/* Button & Actions Group */
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
-  box-sizing: border-box;
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
 }
-.initiate-btn {
-  background-color: var(--vp-c-danger-1, #ea4335);
+.btn-danger {
+  background-color: var(--vp-c-danger-1, #ea4335) !important;
   color: #ffffff !important;
-  width: 100%;
 }
-.initiate-btn:hover {
-  background-color: var(--vp-c-danger-2, #c53023);
-  transform: translateY(-1px);
+.btn-danger:hover {
+  background-color: var(--vp-c-danger-2, #c53023) !important;
 }
+.btn-danger:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
 .btn-group {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
+  display: flex !important;
+  gap: 10px !important;
+  margin-top: 24px !important;
 }
-.cancel-btn {
-  background-color: transparent;
-  border: 1px solid var(--vp-c-border, #e2e2e3);
+.btn-secondary {
+  background-color: transparent !important;
+  border: 1px solid var(--vp-c-border, #e2e2e3) !important;
   color: var(--vp-c-text-1, #3c3c43) !important;
-  flex: 1;
 }
-.cancel-btn:hover {
-  background-color: var(--vp-c-bg-mute, #f1f1f2);
-}
-.confirm-btn {
-  background-color: var(--vp-c-danger-1, #ea4335);
-  color: #ffffff !important;
-  flex: 2;
-}
-.confirm-btn:hover {
-  background-color: var(--vp-c-danger-2, #c53023);
-  transform: translateY(-1px);
+.btn-secondary:hover {
+  background-color: var(--vp-c-bg-mute, #f1f1f2) !important;
 }
 
-/* Feedback & Success states */
-.feedback-message {
-  margin-top: 20px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.feedback-message.error {
-  background-color: rgba(234, 67, 53, 0.1);
-  color: var(--vp-c-danger-1, #ea4335);
-  border: 1px solid rgba(234, 67, 53, 0.2);
-}
-.feedback-message.info {
-  background-color: rgba(62, 175, 124, 0.1);
-  color: var(--vp-c-brand-1, #3eaf7c);
-  border: 1px solid rgba(62, 175, 124, 0.2);
-}
-.success-view {
-  text-align: center;
-  padding: 20px 0;
-}
 .success-icon {
-  font-size: 48px;
-  color: #2e7d32;
-  margin-bottom: 16px;
+  font-size: 44px !important;
+  color: #2e7d32 !important;
+  margin-bottom: 12px !important;
+  text-align: center !important;
 }
-.success-view h3 {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 20px;
-  color: var(--vp-c-text-1, #3c3c43);
+.step-panel h3 {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  color: var(--vp-c-text-1, #3c3c43) !important;
 }
-.success-view p {
-  color: var(--vp-c-text-2, #6c6c76);
-  font-size: 15px;
-  line-height: 1.5;
+
+.status-message {
+  display: none !important;
+  margin-top: 15px !important;
+  padding: 10px 14px !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+.status-message.error {
+  background-color: rgba(234, 67, 53, 0.08) !important;
+  color: var(--vp-c-danger-1, #ea4335) !important;
+  border: 1px solid rgba(234, 67, 53, 0.15) !important;
+}
+.status-message.info {
+  background-color: rgba(62, 175, 124, 0.08) !important;
+  color: var(--vp-c-brand-1, #3eaf7c) !important;
+  border: 1px solid rgba(62, 175, 124, 0.15) !important;
 }
 </style>
