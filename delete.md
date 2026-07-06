@@ -97,7 +97,7 @@ if (typeof window !== 'undefined') {
         btnConfirm.disabled = true;
 
         try {
-          const response = await fetch('/api/delete-account', {
+          const response = await fetch('https://ddis-news.ifi.uzh.ch/api/delete-account', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
