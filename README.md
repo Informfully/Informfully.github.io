@@ -1,6 +1,6 @@
 # Informfully.github.io
 
-![Informfully](https://raw.githubusercontent.com/Informfully/Informfully.github.io/refs/heads/main/docs/img/logo_banner.png)
+![Informfully](https://github.com/Informfully/Informfully.github.io/blob/main/docs/img/index_assets/logo_banner.png)
 
 Welcome to Informfully ([GitHub](https://github.com/orgs/Informfully) & [Website](https://informfully.ch/))!
 Informfully is an open-source reproducibility platform for content distribution and user experiments.
