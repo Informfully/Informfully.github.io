@@ -29,3 +29,24 @@ Specifically, the following fields have to be overwritten:
 - `participatesIn`: this is the experiment to which the Mobile App will be connected (if an admin user owns a couple of experiments, only one of them can be shown in the user's Mobile App). Currently, there is an 'admins-experiment', to which this field can be overwritten
 - `userGroup`: you can assign any group name to the admin user, e.g., DE, if you want to separate researchers according to the country of their university
 - `experiments` (optional): this field does not have to be overwritten. You can use it to control which experiments an admin user owns, i.e., can see and manipulate, over the Admin Website. An experiment can be owned by multiple admin users. Be careful when allowing research access to other experiments
+
+### Creating Administrator Users from the Admin Website
+
+The manual process above is no longer the only option. The Administration Website now has an
+**Admins** page (visible in the footer navigation only to users holding the **Maintainer**
+role) that creates Administrator/Maintainer accounts directly, without touching MongoDB by
+hand:
+
+1. Open **Admins** and enter the new researcher's email address.
+2. Choose their role: **Administrator** or **Maintainer**. A Maintainer has the same study
+   access as an Administrator and can additionally manage other researcher accounts and use the
+   maintainer-only parts of the [Researcher Data API](./researcher-api.md) (e.g. bulk article
+   upload).
+3. Set their participant-account quota (`maxUserAccount`) — the maximum number of participant
+   accounts this researcher will be able to create across their experiments.
+4. Submit. A random initial password is generated and stored (alongside the quota) on the new
+   account's `profile`; it's shown in the **initial password** column of the Admins table so it
+   can be passed on to the new researcher, who should change it on first login.
+
+See [Database Collections](./database.md#users) for the exact `profile` fields
+(`maxUserAccount`, `createdAccount`, `plainTextInitialPassword`) this sets.

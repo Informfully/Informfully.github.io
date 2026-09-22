@@ -13,7 +13,7 @@ Customization of recommendation list entries is done using three steps:
 
 ## Retrieving User IDs
 
-![img/database_screenshots/collection_users.png](img/database_screenshots/collection_users.png)
+![img/compass_assets/collection_users.png](img/compass_assets/collection_users.png)
 
 `users` collection:
 The first step in creating a recommendation requires extracting User IDs.
@@ -24,7 +24,7 @@ We recommend you either create a custom mapping between the back end IDs and you
 
 ## Retrieving Item IDs
 
-![img/database_screenshots/collection_items.png](img/database_screenshots/collection_items.png)
+![img/compass_assets/collection_items.png](img/compass_assets/collection_items.png)
 
 `items` collection:
 Retrieving item IDs is identical to retrieving user IDs.
@@ -41,7 +41,7 @@ The collection, however, can accommodate any item and be configured to match you
 
 ## Creating Recommendation Lists
 
-![img/database_screenshots/collection_recommendations.png](img/database_screenshots/collection_recommendations.png)
+![img/compass_assets/collection_recommendations.png](img/compass_assets/collection_recommendations.png)
 
 `recommendationLists` collection:
 The final step in creating custom recommendations is to combine user IDs and item IDs.

@@ -235,6 +235,13 @@ See [Explainable Recommendations](https://github.com/Informfully/Explanations) f
 | `primaryCategory` | String | The category of an item. |
 | `subCategories` | Array of Strings | The sub-categories of an article. This information is not always provided. |
 | `language` | String | Language code of the article (e.g., en-US, de-CH, etc.) |
+| `experimentIds` | Array of Strings | IDs of every experiment this article is visible in. An article is no longer global by default: it must be explicitly attached to one or more experiments, which lets concurrent studies on the same deployment use overlapping or disjoint article pools without interfering with each other. |
+| `visibility` | String | Currently only `experiment_scoped` is used in practice. Reserved for future visibility levels. |
+| `createdBy` | String | ID of the researcher (admin/maintainer user) who created/uploaded the article. Duplicate-URL detection on upload is scoped to this field (and the caller's own experiments) rather than being global, so two researchers can independently use the same source URL without blocking each other. |
+
+::: info
+When a researcher uploads a URL that already exists **in their own scope**, an override flow lets them replace the stored article content and additionally attach it to a further experiment (appended to `experimentIds`) rather than creating a duplicate document. See [Experiment-Scoped Articles](./article-scoping.md) for the admin UI and full picture.
+:::
 
 ::: info
 
@@ -431,6 +438,39 @@ This password is then sent to the administrators, who are strongly advised to ch
 | `_id` | String | ID of data record. |
 | `experimentId` | String | Experiment `_id` that this user group belongs to. |
 | `name` | String | Name of this user group. |
+| `mode` | String | Live feed mode shown to every participant in this group: `"Normal"` (the list-based feed) or `"TikTok"` (the swipe-based feed). Defaults to `"Normal"`. This field is reactive: changing it (by hand or via a [schedule](./scheduling.md)) propagates to every running app in the group within seconds over the existing publication. |
+
+## recurringSchedules
+
+**Description** A recurring rule that switches a user group's feed `mode` on a repeating daily pattern (e.g. "Normal from 00:00, TikTok from 07:00, every day"). See [Experiment Scheduling](./scheduling.md) for the full picture. Creating one of these pre-generates all of its individual `scheduledEvents` documents up front.
+
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userGroupId` | String | ID of the user group this schedule applies to. |
+| `experimentId` | String | ID of the owning experiment. |
+| `startDate` / `endDate` | Date | Inclusive date range the recurring pattern is active for. |
+| `dailySegments` | Array of Objects | Ordered list of `{ startMinute, mode }`, where `startMinute` is minutes from midnight **UTC** (0–1439) and `mode` is `"Normal"` or `"TikTok"`. |
+| `status` | String | `"active"` or `"cancelled"`. Cancelling a recurring schedule cancels its still-`pending` child events but preserves already-`executed` ones for the record. |
+| `createdAt` | Date | Time at which the data record was created. |
+| `createdBy` | String | ID of the researcher who created the schedule. |
+
+## scheduledEvents
+
+**Description** A single, due-dated action executed by the scheduler — currently only feed-mode switches, either created directly (one-off) or pre-generated from a `recurringSchedules` document. See [Experiment Scheduling](./scheduling.md).
+
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userGroupId` | String | ID of the user group this event applies to. |
+| `experimentId` | String | ID of the owning experiment. |
+| `eventType` | String | Currently only `"mode_switch"` is implemented. |
+| `scheduledAt` | Date | The due time at which the event should execute. |
+| `payload` | Object | Event-specific data, e.g. `{ mode: "TikTok" }`. |
+| `status` | String | `"pending"` → `"executed"` or `"cancelled"`. A failed execution attempt is left `"pending"` so it is retried on the next scheduler tick. |
+| `executedAt` | Date | Set once the event has run. |
+| `recurringScheduleId` | String | `null` for one-off events; otherwise the ID of the parent `recurringSchedules` document. |
+| `createdAt` | Date | Time at which the data record was created. |
 
 ## videoAnalytics*
 
@@ -444,3 +484,19 @@ This password is then sent to the administrators, who are strongly advised to ch
 | `action` | String | The action performed at this step. Currently available: play/stop, backwards, fastforward, sliderSearchComplete, single-/doubleTapLeft, single-/doubleTapRight, heartbeat every 10 seconds, fullscreenExit/-activate. |
 | `videoTimestamp` | Integer | Position in ms in the video at which this action was performed. |
 | `createdAt` | Date | Time at which the data record was created. |
+
+## wrappedReports*
+
+**Description** Stores [Informfully Wrapped](./wrapped.md) recap reports: a personal, Spotify-Wrapped-style summary of a participant's reading behavior, computed from seven other tracking collections (`articleViews`, `pageViews`, `signins`, `readingList`, `archive`, `articleLikes`, `multimediaEngagement`). Each generation inserts a **new** document rather than overwriting the previous one, so a participant's statistics over time are preserved.
+
+| Attributes | Type | Description |
+| --- | --- | --- |
+| `_id` | String | ID of data record. |
+| `userId` | String | ID of the participant this report is about. |
+| `experimentId` | String | ID of the owning experiment. |
+| `generatedAt` | Date | Time at which this report was computed. |
+| `isVisible` | Boolean | Whether this is the participant's currently visible report. Generating a new report and making it visible hides any older one; the participant-facing publication only ever delivers a user's own report, and only once `isVisible` is true. |
+| `shownAt` | Date | Set once, idempotently, the first time the participant actually opens the recap. |
+| `rawData` | Object | Raw counts: `uniqueArticlesRead`, `totalReadingDurationMs`, `totalSessions`, `readingListCount`, `archiveCount`, `likesGiven`, `dislikesGiven`, `totalMultimediaEngagementDurationMs`, `avgScrollDepth`. |
+| `features` | Object | Derived features: `avgReadingTimePerArticleSecs`, `deepReaderScore` (fraction of viewed articles scrolled past 80%), `topCategories` (top 3 by count), `mostActiveHour`, `mostActiveDayOfWeek`, `engagementRate`, `readingDays` (distinct days read), `diversityScore` (distinct categories read). |
+| `releases` | Array of Objects | History of release events, appended whenever a researcher turns visibility on: `{ releasedAt, releasedBy, presentationIndex, featuresSnapshot }`, where `featuresSnapshot` is a copy of `features` at release time. |

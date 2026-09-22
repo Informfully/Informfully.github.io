@@ -30,7 +30,7 @@ Select or deselect an experiment by clicking on the large button on the left.
 Once an experiment has been selected, the tabs in the top menu bar are revealed (the menu may be hidden behind a menu icon on smaller screens).
 The tabs in the top menu bar are described in the subsections below.
 
-![img/tutorial_screenshots/tutorial_1.jpg](img/tutorial_screenshots/tutorial_1.jpg)
+![img/experiment_assets/tutorial_1.jpg](img/experiment_assets/tutorial_1.jpg)
 
 ## Create Users
 
@@ -45,7 +45,7 @@ New users are created with randomly generated usernames and passwords.
 The passwords can be accessed by exporting a CSV file by pressing the `CSV EXPORT`-button.
 A download prompt will pop up.
 
-![img/tutorial_screenshots/tutorial_2.jpg](img/tutorial_screenshots/tutorial_2.jpg)
+![img/experiment_assets/tutorial_2.jpg](img/experiment_assets/tutorial_2.jpg)
 
 Each individual user can be deleted by clicking the trash can on the right of the row.
 We recommend exporting the user accounts as a CSV file and creating a backup copy.
@@ -65,7 +65,7 @@ In addition to prompting in-app surveys, researchers can add a custom rating bel
 The screenshot below shows an overview of how to add these rating questions.
 Each question can be answered with a thumbs-up or a thumbs-down.
 
-![img/tutorial_screenshots/tutorial_3.jpg](img/tutorial_screenshots/tutorial_3.jpg)
+![img/experiment_assets/tutorial_3.jpg](img/experiment_assets/tutorial_3.jpg)
 
 Additionally, rating surveys/feedback can be defined as well (displayed above).
 `Feedback Surveys`provides you with the option to formulate statements about a news article, which every participant will see in the mobile application, positioned immediately after the news article.
@@ -81,7 +81,7 @@ To populate this collection, we have provided a separate [Item Scraper](./scrape
 Please read the documentation on deploying it.
 The source code is available for download in the [Scrapers Repository](https://github.com/Informfully/Scrapers).
 
-![img/tutorial_screenshots/tutorial_4.jpg](img/tutorial_screenshots/tutorial_4.jpg)
+![img/experiment_assets/tutorial_4.jpg](img/experiment_assets/tutorial_4.jpg)
 
 We recommend running the scrapers on the same server as the other parts of the back end.
 There is no communication happening between the scraping modules and any other component of Informfully.
@@ -138,4 +138,4 @@ Please refer to the [Experiment Overview](./overview.md) to see how these compon
 Visit the [Informfully Datasets Repository](https://github.com/Informfully/Datasets) for getting access to the data, and please see the [relevant database documentation](./database.md) for the technical documentation of all collections.
 Below, you will find a quick overview of the dataset, including: A) daily active users, B) daily interactions, C) topic overview, and D) word-length distribution of news articles (referenced via URLs only).
 
-![img/database_screenshots/statistics_plot.png](img/database_screenshots/statistics_plot.png)
+![img/experiment_assets/statistics_plot.png](img/experiment_assets/statistics_plot.png)

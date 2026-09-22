@@ -1,130 +1,62 @@
 # Back End Deployment (Website)
 
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-This tutorial assumes basic knowledge of the React Native app development workflow.
-It is not intended as a tutorial.
-If you need more information about React Native, the latest version of this guide is available [in the online tutorial](https://github.com/expo/create-react-native-app/blob/master/README.md).
+The back end deploys as the same Docker Compose stack described in [Docker Setup](./docker.md), running behind a Caddy reverse proxy for HTTPS. Deployment itself is automated by a two-stage GitLab CI/CD pipeline (`.gitlab-ci.yml`) across two virtual machines: a staging VM and a production VM.
+
+## Pipeline Overview
+
+The pipeline has two stages, `build` and `deploy`, each run separately for `staging` and `production`:
+
+| Branch | Environment | Build | Deploy |
+| --- | --- | --- | --- |
+| `staging` | Staging VM | Automatic on push | Automatic on push |
+| `main` | Production VM | Automatic on merge | **Manual** — must be triggered in GitLab |
+
+* Pushing to the `staging` branch automatically `git pull`s on the staging VM, rebuilds the Docker images (`docker compose --profile proxy build`), and brings the stack up (`docker compose --profile proxy up -d`). This gives the team an always-up-to-date environment to validate changes against real infrastructure.
+* Merging to `main` automatically builds on the production VM, but the deploy step is `when: manual` — someone has to explicitly trigger it from the GitLab pipeline UI. This means a broken or unreviewed build can never silently reach production.
+
+Both jobs connect over SSH using CI/CD variables that must be configured per environment (`DEV_SSH_HOST`/`PROD_SSH_HOST`, `..._SSH_USER`, `..._SSH_PORT`, `..._SSH_PRIVATE_KEY`, `..._DEPLOY_PATH`). Configuring these requires **Maintainer**-level GitLab access (Developer access is not sufficient — the CI/CD settings menu where secrets/variables live is Maintainer-only).
+
+## Manual Deployment (if not using the pipeline)
+
+If you need to deploy or update a VM by hand, SSH into it and run the same commands the pipeline runs:
+
+```console
+ssh <user>@<host>
+cd <deploy-path>
+git pull origin <branch>
+docker compose -f docker-compose.yml --profile proxy build
+docker compose -f docker-compose.yml --profile proxy up -d
+docker compose -f docker-compose.yml --profile proxy ps
+```
+
+Note the `--profile proxy` flag: the Caddy reverse proxy is defined behind a Compose [profile](https://docs.docker.com/compose/profiles/) and is only started when this flag is passed, so local development (`docker compose up -d`, no profile) does not spin up a Caddy instance unnecessarily.
+
+## Reverse Proxy (Caddy)
+
+The back end listens on its own internal port (`3000`) rather than the standard web ports, so a reverse proxy handles public HTTPS traffic. We use [Caddy](https://caddyserver.com/) (see `Caddyfile`), which automatically provisions and renews HTTPS certificates and keeps the app's live connections open through the proxy.
+
+The proxy's hostname is configured via the `CADDY_HOSTNAME` environment variable (see [Installation Instructions](./install.md)).
 
 ::: info
-
-A valid SSL certificate is required for all communications between the front end and back end.
-Apps on the Google Play Store and Apple Store will no longer work if any URL is not using HTTPS.
-
+If traffic isn't reaching the proxy at all (not even a TLS/connection error), check the VM's firewall before debugging Caddy's configuration — ports 80/443 need to be open to the internet, and a closed firewall fails silently from the proxy's point of view.
 :::
 
-## Automatic Deployment
+## Known Issues
 
-After setting up and testing your Informfully instance, you are ready to deploy your solution.
-For your convenience, we have created a script that automatically deploys the back end to any local or cloud server.
-Navigate to the main directory of your codebase and execute the following script:
+### Backend crashes with out-of-memory errors
 
-```console
+Both VMs — production and staging (staging is a copy of production, used to observe how the app behaves before changes reach production) — are prone to the back end crashing under load.
 
-    # Deploy back end on the server
-    bash build.sh
-
-```
-
-There are two scripts in the project's root directory: `.snippets.sh` and `build.sh`.
-You find the shell script [build.sh in the back end folder located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh).
-Before the script can be used, the variables in the file [.snippets.sh have to be set in the configuration file located here](https://github.com/Informfully/Platform/blob/main/backend/build.sh).
-
-**.snippets.sh** This is the configuration file.
-In this file, we store all variables used for deployment, such as the app user,
-the temporary directory, the app directory, etc.
-
-**build.sh** This script builds the application and copies the bundle to the server. It also performs the tasks of extracting and
-moving the bundle to the correct directories (as specified in `.snippets.sh`).
-The script will also install npm dependencies and restart the app.
-
-In short, the script will automate the following steps:
-
-1. Use the command `meteor build` to create the Node app bundle.
-2. Upload the bundle to the server using `scp` (the password of the back end server will be required).
-3. SSH to the remote machine (a password is required again).
-4. Unpack the tar.gz bundle created by using the `build.sh` script.
-5. Run `npm install` inside `bundle/programs/server` to install dependencies.
-6. Move the bundle folder to the `/var/newsapp/` location.
-7. Restart the Phusion Passenger process to serve the Node app.
-
-Following these steps will deploy the new Administration Website.
-Please follow the instructions in the [Genesis Script](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js) to initialize the first users.
-You can then log in and access the website using the credentials stored in the script.
-
-This setup was successfully tested on a server with the following software packages:
-
-* Operating System: **Debian GNU/Linux 10 x86_64**
-* Node Version: **14.18.1**
-* NPM Version: **6.14.15**
-* Phusion Passenger Version: **6.0.12**
-* MongoDB Version: **4.4.3**
-
-## Manual Deployment
-
-Please perform the following steps to deploy *an update* of the application.
-
-### 1. Build & Upload
-
-The following command will create a file called `backend.tar.gz` in the `.build` directory in the root of the project.
+The cause is memory exhaustion: the back end process runs out of memory and is killed, taking the container down with it. This can be confirmed via the Docker Compose logs — right before a crash, there's a burst of log output from the back end, and then the logs simply stop, since the process is no longer running to produce them:
 
 ```console
-    
-    meteor build --server-only --architecture os.linux.x86_64 ./.build/
-
+docker compose -f docker-compose.yml --profile proxy logs -f meteor
 ```
 
-Next, you upload the `backend.tar.gz` file to the server:
+::: info
+No corresponding error or stack trace signals the crash itself — the abrupt absence of further logs after a period of heavy output is the tell.
+:::
 
-```console
+## Deploy the App
 
-    # Make sure that you have access to the server's network
-    scp ./.build/backend.tar.gz [USERNA]@[SERVER]:/home/[USER]/uploads/
-
-```
-
-### 2. Move & Unpack
-
-Connect to the server via SSH and move the newly copied `backend.tar.gz` file to a temporary directory and extract its contents:
-
-```console
-
-    ssh [USERNAME]@[SERVER]
-    cd /var/www/[USERNAME]/tmp
-    mv /home/[USERNAME]/uploads/backend.tar.gz .
-    tar xzf backend.tar.gz
-
-```
-
-### 3. Update & Restart
-
-Install all dependencies:
-
-```console
-
-    # Still inside /var/www/[PROJECTNAME]/tmp/
-    cd ./bundle/programs/server
-    npm install --only=prod
-
-```
-
-Update the bundle and restart the app:
-
-```console
-
-    cd /var/www/[PROJECTNAME]/
-    rm -rf bundle
-    mv /var/www/[PROJECTNAME]/tmp/bundle /var/www/[PROJECTNAME]/bundle
-    mv /var/www/[PROJECTNAME]/tmp/backend.tar.gz /var/www/[PROJECTNAME]/builds/
-
-    # restart the app
-    passenger-config restart-app /var/www/[PROJECTNAME]/
-
-```
-
-The Administration Website can also be deployed using a generated Docker image.
-To do that, simply follow the steps in the [Docker Setup](./docker.md) to load the image onto the server.
-
-## Deploy App
-
-Please see the other instruction page for [App Deployment](./native.md)
-If you already have the apps up and running, go ahead and start your first [Use Experiment](./experiment.md).
+Please see the other instruction page for [App Deployment](./native.md). If you already have the back end and apps up and running, go ahead and start your first [Use Experiment](./experiment.md).

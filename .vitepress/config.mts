@@ -49,7 +49,9 @@ export default defineConfig({
           { text: 'User Creation', link: '/docs/users' },
           { text: 'Survey Tool', link: '/docs/surveys' },
           { text: 'Scraper Pipeline', link: '/docs/scrapers' },
-          { text: 'Mobile App', link: '/docs/app' }
+          { text: 'Mobile App', link: '/docs/app' },
+          { text: 'Informfully Wrapped', link: '/docs/wrapped' },
+          { text: 'Experiment Scheduling', link: '/docs/scheduling' }
         ]
       },
       {
@@ -78,6 +80,9 @@ export default defineConfig({
           { text: 'Meteor Methods', link: '/docs/methods' },
           { text: 'Meteor Publications', link: '/docs/publications' },
           { text: 'Database Collections', link: '/docs/database' },
+          { text: 'Experiment-Scoped Articles', link: '/docs/article-scoping' },
+          { text: 'Researcher Data API', link: '/docs/researcher-api' },
+          { text: 'Knowledge Graph', link: '/docs/knowledge-graph' },
           { text: 'Source Code Overview', link: '/docs/source' },
           { text: 'Docker Setup', link: '/docs/docker' },
           { text: 'Google Play Store', link: '/docs/google' },

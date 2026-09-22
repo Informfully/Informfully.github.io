@@ -18,19 +18,19 @@ This allows experimenters to edit the question pool while preserving the origina
 When the option is enabled, users will be prompted to complete the survey immediately.
 They need to complete it in order to continue using the app.
 
-![img/survey_screenshots/survey_1.jpg](img/survey_screenshots/survey_1.jpg)
+![img/surveys_assets/survey_1.jpg](img/surveys_assets/survey_1.jpg)
 
 **Screenshot Editor**: Adding questions and answers is done via the user interface.
 There is no limit to the number of questions that can be added to a survey.
 Similarly, there is no limit to the number of predefined answers that can be added to a question.
 
-![img/survey_screenshots/survey_2.jpg](img/survey_screenshots/survey_2.jpg)
+![img/surveys_assets/survey_2.jpg](img/surveys_assets/survey_2.jpg)
 
 **Screenshot Questions**: Customizing questions, providing default answers/values for scripts to process, etc.
 There is a range of different questions to choose from.
 Free text, replies to previous questions, and so on, can all be selected.
 
-![img/survey_screenshots/survey_3.jpg](img/survey_screenshots/survey_3.jpg)
+![img/surveys_assets/survey_3.jpg](img/surveys_assets/survey_3.jpg)
 
 The surveys generated on this page are, by default, experiment-specific.
 This means that all users within a given experiment will receive the same survey at the same point in time.
