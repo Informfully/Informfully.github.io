@@ -1,33 +1,33 @@
 # Apple App Store Deployment
 
-Before deploying the mobile app to the Apple App Store, the back end of the mobile app has to be deployed to a server.
-For that, simply follow the same instructions as in [Back End Deployment](./deployment.md).
-Afterwards, make sure to change the [SERVER` constant in `App.js` (located `here](https://github.com/Informfully/Platform/blob/main/frontend/App.js)) to your server's address (e.g., `wss://your.domain/websocket`).
+Before deploying the mobile app to the Apple App Store, the back end has to be deployed to a server — see [Back End Deployment](./deployment.md). Configure the frontend to point at that server via `frontend/.env` (see [Installation Instructions](./install.md#pointing-the-app-at-your-backend)).
+
+::: warning
+`expo eject` (Expo's old managed → bare workflow migration command) is deprecated. The project no longer commits a generated `ios/` directory; native project files are generated on demand (e.g. via `npx expo prebuild` or implicitly by `npx expo run:ios`).
+:::
 
 ## Requirements
 
 * Apple Developer Account and an Apple device with Xcode
-* iPhone distribution certificate
+* A provisioning profile for bundle identifier `ch.uzh.ifi.ddis-news` (see `app.json`)
 
-## Building the App
-
-Navigate to the frontend folder on the command line.
-Run the following command on a clean working branch to create the temporary iOS project.
-We will discard all changes after uploading the iOS app and testing it.
+## Building and Uploading the App
 
 ```console
+cd frontend
+npm install --legacy-peer-deps
 
-    # Install node modules
-    npm install
-    
-    # Switch from Expo's managed workflow to the bare workflow
-    expo eject
-
+# Generates the native ios/ project from app.json + config plugins
+npx expo prebuild --platform ios
 ```
 
-We used the following to successfully deploy to the App Store. In case you have errors, try using the same versions:
+Builds currently cannot be uploaded to App Store Connect directly from Xcode. Instead:
 
-* Operating System: **macOS Big Sur Version 11.6**
-* Xcode: **13.0**
-* Yarn: **1.22.11**
-* Watchman: **2021.09.13**
+1. Open the generated `ios/` project in Xcode.
+2. Disable automatic signing and manually select the provisioning profile for `ch.uzh.ifi.ddis-news`.
+3. Archive the build and export it as an `.ipa`.
+4. Upload the `.ipa` to App Store Connect using Apple's [Transporter](https://apps.apple.com/us/app/transporter/id1450874784) application.
+
+## Known App Store Review Requirement: Account Deletion
+
+Apple's App Store Review Guidelines require that any app allowing account creation also provide an **in-app** way to delete the account — not just a link to an external page. This has caused rejections in past submission cycles. See [Mobile App → Settings Menu](./app.md#settings-menu) for the current (request-only) status of account deletion in this app, and confirm it has been fully wired up before resubmitting.

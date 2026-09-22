@@ -5,7 +5,7 @@ It can be used in combination with the Informfully Research Platform or in a sta
 Informfully Recommenders is an extension of [Cornac](https://github.com/PreferredAI/cornac).
 And you can look at the [Tutorial Notebook](https://github.com/Informfully/Experiments/tree/main/experiments/recsys_2025) for hands-on examples of everything outlined here.
 
-![uml/framework_extension_v4.2.png](uml/framework_extension_v4.2.png)
+![img/recommenders_assets/framework_extension_v4.2.png](img/recommenders_assets/framework_extension_v4.2.png)
 
 The diagram above shows the extended framework Informfully Recommenders provides.
 It includes four dedicated stages: pre-processing, in-processing, post-processing, and evaluation.

@@ -1,78 +1,77 @@
 # Code Overview
 
-The Informfully Platform combined both the app front end and website back end in one project.
-To gain a better understanding of how to write and extend this platform, we provide a brief project overview below.
-The two parts we look at in more detail are the `frontend`  and `backend` directories.
+The Informfully Platform repository contains the app front end and website back end, plus two smaller Python services: `fastapi_app/` (the [Researcher Data API](./researcher-api.md)) and `llmChatService/` (backs the experimental article chatbot). All of these run together via Docker Compose — see [Docker Setup](./docker.md). To gain a better understanding of how to write and extend this platform, we provide a brief project overview below, focused on the two largest parts: the `frontend` and `backend` directories.
 
 ## ``frontend`` Directory
 
-The mobile app is based on [React Native](https://reactnative.dev/), a JavaScript framework for developing native applications for iOS and Android, and [Expo](https://expo.dev/), a set of tools built on top of React Native.
-If you have no experience with React Native, it is recommended that you check out [Getting Started](https://reactnative.dev/docs/getting-started/) and [Environment Setup](https://reactnative.dev/docs/environment-setup).
-To get a feel for the difference between React Native and Expo, take a look at the following [Stackoverflow post](https://stackoverflow.com/questions/39170622/what-is-the-difference-between-expo-and-react-native).
+::: warning
+This section describes the current TypeScript / `expo-router` frontend. It replaces an older description (plain JavaScript, `App.js` entry point, `react-navigation`, Yarn) that no longer matches the codebase.
+:::
 
-React Native does not impose any strict folder structure.
-Nevertheless, the structure of the frontend repo is heavily influenced by the default folder structure, which is generated when starting a new React Native project (using Expo CLI).
+The mobile app is based on [React Native](https://reactnative.dev/), a JavaScript/TypeScript framework for developing native applications for iOS and Android, and [Expo](https://expo.dev/), a set of tools built on top of React Native.
+If you have no experience with React Native, it is recommended that you check out [Getting Started](https://reactnative.dev/docs/getting-started/) and [Environment Setup](https://reactnative.dev/docs/environment-setup).
+
+Most of the codebase has been migrated to TypeScript (roughly 80% of source files are `.ts`/`.tsx`); new code should be written in TypeScript. Routing uses [`expo-router`](https://docs.expo.dev/router/introduction/), Expo's file-based router, rather than `react-navigation`: every file under `app/` is a route, and grouping folders like `app/(app)/` or `app/(public)/` define route groups (e.g. authenticated vs. public screens) without adding a path segment. Dependencies are managed with npm (`npm install --legacy-peer-deps`, see [Installation Instructions](./install.md)).
+
 Here is a summary of the frontend repo folder structure:
 
 ```console
 
-    .expo/
-    android/
-    assets/
+    app/            # expo-router routes (file-based)
+      (app)/         # authenticated route group: Home, Settings, ReadingList, ...
+      (public)/      # public route group: SignIn, SignUp, ForgotPassword
+      (survey)/      # survey route group
+      Article.tsx
+      Tutorial.tsx
+    api/
+      meteorCalls.ts # the meteorCall() helper
+      contracts/     # one Zod-validated MethodContract per Meteor method
     components/
-    screens/
-    ...
-    config/
-    index.js
+      articles/       # feed rendering, incl. modes/ (Normal vs TikTok)
+      wrapped/         # Informfully Wrapped overlay + slide mapping
+      survey/
+      navigation/, navigator/, providers/, screens/, elements/, icons/, utils/
+    hooks/           # e.g. useBookmark, useFavourite, useColorMode, useChat
+    services/        # e.g. videoService
     lib/
-    i18n/
-    meteorOffline/
-    parameters/
-    utils/
-    node_modules/
     styles/
-    .eslintrc.json
-    App.js
-    app.json
-    index.js
+    types/
+    config/
+    assets/
     package.json
-    package-lock.json
-    ...
+    tsconfig.json
+    metro.config.js
+    babel.config.js
 
 ```
 
-The `assets` folder contains all static assets required by the application, including fonts, icons, and images.
+### Typed Meteor Calls
 
-The `components` folder contains all custom-built UI components.
-The subfolder `screens` holds all the main screens that the user can navigate to, such as the `Home` screen, `SignIn` screen, or `Settings` screen.
-The components used by these screens are located in the respective subfolder.
-For instance, the `Survey` screen (`components/screens/Survey.js`) makes use of a button component to display the possible answers to a question.
-This button component can be found in the `components/survey/` folder.
+Meteor method calls from the frontend go through a single `meteorCall` helper (`api/meteorCalls.ts`) rather than calling `Meteor.call` directly with a hard-coded method name and untyped arguments:
 
-The `config` folder contains a configuration file, `index.js`, which stores the URLs of the General Terms & Conditions and the Data Protection Regulations.
-This file can be used to define additional configuration options in the future.
+```typescript
+export const meteorCall = <TSchema extends z.ZodTypeAny | undefined>(
+  contract: MethodContract<TSchema>,
+  params?: MethodParams<TSchema>,
+): Promise<any> => { /* ... */ }
+```
 
-The `lib` folder houses code for the internationalization (`i18n/`) and offline functionality (`meteorOffline/`) of the app, as well as some utility functions (`utils/`) and additional parameters (`parameters/`).
-The internationalization is implemented using the third-party library [react-native-i18n](https://www.npmjs.com/package/react-native-i18n)).
-It can be configured in the `i18n.js` file, and additional languages can be added in the `locales` subfolder.
-The app is currently fully translated into English, German, and French.
+Each `MethodContract` (`api/contracts/*.ts`) pairs a method name with an optional [Zod](https://zod.dev/) schema for its arguments, giving compile-time and runtime validation that a call's arguments match what the corresponding Meteor method expects. `meteorCall` also centralizes auth: it checks `Meteor.userId()` (the live DDP session) before calling, and skips the call rather than letting it silently fail if the user isn't authenticated yet.
 
-All the third-party packages are managed in the `package.json` file.
-The Yarn Package Manager is used to manage dependencies.
+### Feed Rendering Architecture
 
-The `styles` folder is where all the colors and fonts for the application are defined.
-Storing all styles in a single location ensures style consistency across the app (e.g., all screens using the same font family) and allows for easy customization.
-For example, the colours used in the app can simply be changed in the `styles/variables/colors.js` file.
+To support both feed modes (Normal and TikTok, see [Mobile App](./app.md#tiktok-mode)) without duplicating logic, mode-specific rendering sits behind a small strategy pattern:
 
-The [.eslintrc.json file manages the ESLint](https://eslint.org/) configuration.
-ESLint is a linting utility that ensures consistent code style and better code quality.
+* `types/user-group-mode.ts` declares the enum: `UserGroupMode.LEGACY = "Normal"`, `UserGroupMode.TIKTOK = "TikTok"`.
+* `components/articles/RenderArticlesWithMode.tsx` dispatches on this enum to a mode-specific implementation — `ArticleLegacy.tsx` or `ArticleTiktok.tsx` under `components/articles/modes/` — while data fetching and article-list state upstream of it stay mode-agnostic.
 
-The `index.js` denotes the entry point to the application; it is the file that is run when the application is launched.
-In it, the App component, which is defined in the `App.js` file, is loaded.
+Adding a third feed mode means adding an enum value, a new component under `components/articles/modes/`, and one case in `RenderArticlesWithMode` — no changes elsewhere.
 
-Finally, `app.json` is a configuration file used by Expo.
-It is the go-to place for configuring parts of the mobile app that do not belong in the code, such as the app name, icon, or version number.
-A full list of all available properties can be found in the [Expo documentation](https://docs.expo.dev/versions/latest/config/app/).
+### Patched Dependencies
+
+The project uses [`patch-package`](https://www.npmjs.com/package/patch-package) (run automatically via the `postinstall` npm script) to patch `expo-av` (kept intentionally rather than migrated to the newer `expo-video`, since a full migration was out of scope) against breaking changes in `expo-modules-core`. Don't "clean up" by removing the patch step or upgrading `expo-modules-core` without re-checking this.
+
+Finally, `app.json` is a configuration file used by Expo. It is the go-to place for configuring parts of the mobile app that do not belong in the code, such as the app name, icon, or version number. A full list of all available properties can be found in the [Expo documentation](https://docs.expo.dev/versions/latest/config/app/).
 
 ## ``backend`` Directory
 
@@ -138,12 +137,11 @@ Here is a summary of the backend repository structure:
 
 ```
 
-The [.build/` directory is generated when running the `build.sh` script for the deployment of the `Administration Website](./deployment.md).
-It contains the [tarball` (more information `here](https://docs.meteor.com/commandline.html#meteorbuild)), after having run the `meteor build` command in the terminal.
-The unpacked tarball is actually the [bundle/` folder, which is needed for building the backend repository `Docker Image](./docker.md).
+::: warning
+The paragraph below (`.build/`/`bundle/` via `build.sh` + `meteor build`) described an older manual deployment flow. The current Docker image (`backend/Dockerfile`) instead runs `meteor run` directly from source inside the container — see [Docker Setup](./docker.md) and [Back End Deployment](./deployment.md).
+:::
 
-The `.meteor/` directory is also automatically generated when running Meteor locally and should not be manually modified.
-It contains a local copy of a MongoDB instance.
+The `.meteor/` directory is automatically generated when running Meteor locally (or inside the container) and should not be manually modified. It contains Meteor's local build cache and package version pins (`.meteor/release`, `.meteor/versions`).
 
 The directories `client/` and `server/` in the root of the backend repository include all the code that needs to be available in only one of the environments.
 In both directories, there is a file called `main.js`, which imports files from the `imports/` directory and loads everything needed in the environment.
@@ -180,3 +178,10 @@ All the third-party packages are managed in the `package.json` file.
 From it, the `package-lock.json` file will be generated when running `meteor npm install`, which fetches all the required packages and stores them in the `node_modules` folder.
 
 For better code quality and consistency, the software project again includes an [ESLint](https://eslint.org/) configuration (`.eslintrc.json`).
+
+### A Note on Meteor 3's Async API
+
+The backend runs on Meteor 3, whose data-layer APIs (e.g. `findOneAsync`, `updateAsync`, `countAsync`) are asynchronous, unlike the synchronous, Fibers-based APIs of Meteor 2. Two conventions in this codebase exist specifically to avoid bugs from that migration and should be kept when writing new publications:
+
+* A cursor observer's `added`/`removed` callbacks should be wrapped in an initialization guard, so the initial data set isn't sent to the client twice.
+* A publication's role/permission checks should resolve the publication's own user explicitly (rather than relying on ambient context), since relying on ambient context has produced sporadic false "permission denied" errors under the async API.

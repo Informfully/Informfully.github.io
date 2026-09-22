@@ -1,33 +1,33 @@
 # Google Play Store Deployment
 
-Before deploying the mobile app to the Google Play Store, the back end of the mobile app has to be deployed to a server.
-For that, simply follow the same instructions as in [Back End Deployment](./deployment.md).
-Afterwards, make sure to change the [SERVER` constant in `App.js` (located `here](https://github.com/Informfully/Platform/blob/main/frontend/App.js)) to your server's address (e.g., `wss://your.domain/websocket`).
+Before deploying the mobile app to the Google Play Store, the back end has to be deployed to a server — see [Back End Deployment](./deployment.md). Configure the frontend to point at that server via `frontend/.env` (see [Installation Instructions](./install.md#pointing-the-app-at-your-backend)).
+
+::: warning
+`expo eject` (Expo's old managed → bare workflow migration command) is deprecated. The project no longer commits a generated `android/` directory; native project files are generated on demand (e.g. via `npx expo prebuild` or implicitly by `npx expo run:android`).
+:::
 
 ## Requirements
 
 * Google Developer Account
-* Android Keystore
+* An Android upload keystore (`.jks` file)
+
+## Signing
+
+Release builds (package `ch.uzh.ifi.news`, see `app.json`) must be signed with an upload key before they can be submitted to the Play Store. Generate a Java KeyStore file and reference it via the `signingConfig` block in `android/app/build.gradle`, so every release build is signed consistently with the same key.
 
 ## Building the App
 
-We use Expo's bare workflow to generate native Android project code.
-This allows the application to be further developed using the native tools, such as Android Studio.
-Follow these steps to build an APK:
+```console
+cd frontend
+npm install --legacy-peer-deps
 
-    #. Ensure that all changes are committed (e.g., that your working tree is clean).
-    #. Navigate to the frontend folder on the command line.
-    #. Type `npm install` in the command line.
-    #. Type `expo eject` in the command line.
-    #. Open the Android project with Android Studio.
-    #. Configure the project.
-    #. Open the AndroidManifest.xml file using the file browser in Android Studio and add/remove permissions (see below for more details).
-    #. Build -> Generate Signed Bundle/APK -> APK -> Give the key store path and enter credentials -> Release with both V1 (JAR Signature) and V2 (Full APK Signature) -> Finish.
-    #. The APK will be generated in `/android/app/release/app-release.apk`.
+# Generates the native android/ project from app.json + config plugins
+npx expo prebuild --platform android
 
-We used the following to successfully deploy to the Play Store. In case you have errors, try using the same versions:
+# Build a signed release
+cd android
+./gradlew bundleRelease   # AAB, for Play Store submission
+# or: ./gradlew assembleRelease   # APK
+```
 
-* Operating System: **Windows 10**
-* Android Studio: **4.2.2**
-* Android Gradle Plugin Version: **3.5.3**
-* Gradle Version: **6.3**
+The build output is an `.aab` (App Bundle, preferred for Play Store) or `.apk` under `android/app/build/outputs/`.

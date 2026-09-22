@@ -14,7 +14,7 @@ Please see the [Experiment Setup](./experiment.md) for a tutorial on completing 
 
 :::
 
-![img/tutorial_screenshots/experiment_cycle.png](img/tutorial_screenshots/experiment_cycle.png)
+![img/overview_assets/experiment_cycle.png](img/overview_assets/experiment_cycle.png)
 
 ## Phase 1 - Enrollment Phase
 

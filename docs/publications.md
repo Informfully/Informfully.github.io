@@ -34,7 +34,11 @@ Please see [Server Overview](./server.md) for more information on the back end.
 
 ## newsArticles
 
-* Publishes all news articles in the database, sorted by datePublished
+* Publishes news articles scoped to a given experiment (matching `experimentIds`), sorted by datePublished. Articles are no longer global by default — see the `experimentIds`/`visibility` fields on [newsArticles](./database.md#newsarticles).
+
+## allArticlesAdmin
+
+* Publishes, for the article-management admin interface, every article the current researcher can manage: articles attached to an experiment they own, plus their own not-yet-attached (`experimentIds: []`) uploads
 
 ## notification
 
@@ -84,3 +88,33 @@ Please see [Server Overview](./server.md) for more information on the back end.
 ## users.all
 
 * Publishes all users that the current user 'owns' (all users that participate in experiments that the current (admin) user owns)
+
+## userGroups
+
+* Publishes, to a researcher, every user group belonging to an experiment they own (admin view)
+
+## activeUserGroup
+
+* Publishes the single user-group document a participant currently belongs to (matched via their `participatesIn`/`userGroup` fields), including its live `mode`. Implemented with a manual cursor `observe()` (rather than a plain reactive query) so a mode change made on the server — by hand or by the [scheduler](./scheduling.md) — propagates to the participant's running app within seconds.
+
+## wrappedReport
+
+* Publishes the current participant's own, currently visible [Wrapped](./wrapped.md) report (`isVisible: true`, most recent, `releases` field excluded). Never delivers an unreleased report.
+
+## wrappedReports.forExperiment
+
+* Publishes, to the owning researcher, every participant's Wrapped report for an experiment — used by the Wrapped researcher dashboard
+
+## scheduledEvents
+
+* Publishes the one-off and recurring-generated scheduled events for an experiment (admin-only), used by the scheduling admin UI to show upcoming/past events and their status
+* Arguments:
+
+  * experimentId
+
+## recurringSchedules
+
+* Publishes the recurring schedules defined for an experiment (admin-only)
+* Arguments:
+
+  * experimentId

@@ -28,7 +28,7 @@ The scraper consists of two main parts.
 The first part contains the scraper implementations that enable the collection and scraping of online resources.
 The second part is the processing pipeline for text normalization, cleaning, and subsequent steps before storing them in the database.
 
-![img/scraper_assets/content_scraper.png](img/scraper_assets/content_scraper.png)
+![img/scrapers_assets/content_scraper.png](img/scrapers_assets/content_scraper.png)
 
 Despite the goal of the scrapers being the same for all outlets, the different formats, types of sources of information, and paywalls on news outlets rendered the task of having only one scraper very challenging
 Hence, the decision was made to have split scrapers, where one part consists of shared core functionalities for parsing HTML, and the second part consists of adjusting to particular news outlets.
@@ -110,6 +110,16 @@ We provide sample scrapers to help you create item entries that can be adapted f
 One example is the  [BBC Scraper](https://github.com/Informfully/Scrapers/blob/main/scraperpackage/scrapers/bbcscraper.py) (see line 130).
 
 :::
+
+## Available Scrapers
+
+The pipeline currently scrapes articles from the **BBC**, the **Guardian**, the **Independent**, the **Standard**, the **i Paper**, and the Swiss outlet **SRF**. Podcasts are collected from **BBC** and **SRF** (other outlets either restrict audio access or don't offer it). No source currently provides video content. You can run a regional subset (UK-only or Switzerland-only) or scrape all outlets at once.
+
+Scrapers for further outlets used in earlier studies (e.g. Blick, NZZ, CH Media, Tages-Anzeiger, WOZ, Weltwoche) are also included and can be enabled when needed.
+
+## Related Article Detection
+
+After near-duplicate articles (the same wire story republished by several outlets) are removed, the pipeline links each remaining article to the most topically similar recent articles. These are what the app can show as related articles underneath an opened article.
 
 ## Logging Module
 

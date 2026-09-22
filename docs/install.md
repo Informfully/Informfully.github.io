@@ -1,86 +1,73 @@
 # Installation Instructions
 
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-This tutorial assumes basic knowledge of the React Native app development workflow.
-It is not intended as a tutorial.
-In case you need more information about React Native, the most recent version of this guide is available [in the online documentation](https://github.com/expo/create-react-native-app/blob/master/README.md).
+The back end (the app server, database, Researcher API, and in-app chat service) runs as a set of Docker containers. The mobile app front end is a separate project that talks to the back end over the network; you run it locally and point it at your back end.
 
-## Download Codebase
+## Prerequisites
 
-Informfully is a React Native app that uses a Meteor server as the back end. Download the code and Meteor as follows:
+* **Docker** and **Docker Compose** ([install Docker](https://www.docker.com/products/docker-desktop)) — runs the entire back end.
+* **Node.js** and **npm** — needed to install and run the frontend; use a recent Node LTS release.
+* **Expo Go** or a development build — to run the app on a device or simulator. Because the app uses native modules, a plain Expo Go client from the store is not guaranteed to work; use a development build instead (see `expo run:android` / `expo run:ios` below).
 
-```console
-
-    # Download the source code
-    git clone https://github.com/Informfully/Platform.git
-
-    # Install all packages
-    cd backend
-    meteor npm install
-
-```
-
-Here is an overview of the dependencies you need to install:
-
-**Meteor** You do not have to install a specific version of Meteor.
-When you run the application, Meteor will compare the version of the application with the version(s) you have installed locally.
-If you are missing the application version, Meteor will automatically download and install the correct version.
-Meteor and its command-line tools are available [in the online documentation](https://www.meteor.com/install).
-
-**Node** Meteor ships with Node.
-You do not have to install it yourself.
-If you want to deploy this application to production, however, a separate Node installation will be required on the deployment server.
-
-**NPM** Meteor includes NPM, so no manual installation is required.
-Additionally, Meteor uses a bundled version of NPM, accessible via `meteor npm`.
-In general, whenever you install, remove, or update packages for this project, you should use `meteor npm` instead of `npm` (e.g., `meteor npm install` to install dependencies).
-
-**MongoDB**. Meteor ships with MongoDB; therefore, you do not need to install it separately.
-If you still want to [install MongoDB yourself](https://docs.mongodb.com/manual/installation), please check whether the version you want to install is compatible with the Meteor version this project uses in [.meteor/release](https://github.com/Informfully/Platform/blob/main/backend/.meteor/release) to find the Meteor version of this project.
-
-**Expo** You can use [Expo Go](https://expo.dev/go) as an emulator to test your apps.
-We recommend downloading and using SDK47 to ensure full compatibility across all components.
-
-## Configuring Packager
-
-After downloading the code, you need to verify the React Native Packager Hostname. We have a brief guide for Mac, Linux, and Windows users.
-When starting your project, you will see something similar to the following for your project URL:
+## Download the Codebase
 
 ```console
-    
-    exp://192.168.0.2:19000
-
+git clone https://github.com/Informfully/Platform.git
+cd Platform
 ```
 
-The `manifest` at that URL tells the Expo app how to retrieve and load your app's JavaScript bundle, so even if you load it in the app via a URL like `exp://localhost:19000`, the Expo client app will still try to retrieve your app at the IP address that the start script provides.
-In some cases, this is less than ideal.
+## Configure Environment Variables
 
-This might be the case if you need to run your project inside a virtual machine and need to access the packager via a different IP address than the one printed by default.
-In order to override the IP address or hostname that is detected by Create React Native App, you can specify your own hostname via the `REACT_NATIVE_PACKAGER_HOSTNAME` environment variable.
-
-Mac and Linux:
+Copy the example environment file and fill in the required secrets:
 
 ```console
-
-    REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname' npm start
-
+cp .env.example .env
 ```
 
-Windows:
+`.env` currently defines:
+
+| Variable | Purpose |
+| --- | --- |
+| `API_JWT_SECRET` | Secret used to secure the connection between the platform's services. Set this to a random string, even in development. |
+| `ROOT_URL` | The public URL of the platform (e.g. `http://localhost:3000`). |
+| `CADDY_HOSTNAME` | Domain name used for the HTTPS certificate in a production deployment. Can be left empty for local development. |
+| `GROQ_API_KEY` | API key for the in-app chat service's language model. |
+
+## Start the Backend
 
 ```console
+# Start all backend services in detached mode
+docker compose up -d
 
-    set REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname'
-    npm start
-
+# Or, to rebuild images after a dependency change
+docker compose up --build -d
 ```
 
-The above example would cause the development server to listen on `exp://my-custom-ip-address-or-hostname:19000`.
+This starts the platform's back end services: the app server, its database, the Researcher API, and the in-app chat service. See [Docker Setup](./docker.md) for details on each service, and [Local Development](./development.md) for day-to-day workflows.
 
-Informfully currently provides native Android and iOS apps.
-The Android APK can also be distributed outside Google Play.
-It can be installed on Windows 11 and macOS (e.g., with third-party software like [BlueStacks](https://www.bluestacks.com/)).
+Make sure ports **3000** (back end) and **8081** (used by the frontend) are reachable on your system; when testing purely on a simulator on the same machine you can ignore this.
+
+## Install and Run the Frontend
+
+```console
+cd frontend
+npm install --legacy-peer-deps
+npx expo start --clear
+```
+
+If you need to reset a broken install, remove the lockfile and `node_modules` first:
+
+```console
+rm -rf package-lock.json node_modules frontend/node_modules
+npm install --legacy-peer-deps
+```
+
+### Pointing the App at Your Backend
+
+The frontend needs to reach the Meteor backend over the network. Configure this in `frontend/.env` (copy from `frontend/.env.example`):
+
+* **Same local network** (e.g. phone and laptop on the same Wi-Fi): set `EXPO_PUBLIC_SERVER_IP` to your backend machine's IP address.
+* **Tunnel** (e.g. when the local-network option doesn't work): set up a tunnel (e.g. [ngrok](https://ngrok.com/)) to port 3000, then set `EXPO_PACKAGER_PROXY_URL` to the tunnel URL.
 
 ## Next Step: Run the Code
 
-Please see the next instruction page for [Running the Code](./development.md)
+Please see the next instruction page for [Local Development](./development.md).
