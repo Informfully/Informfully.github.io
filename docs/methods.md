@@ -72,6 +72,38 @@ Please see [Server Overview](./server.md) for more information on the back end.
 
 ## articles
 
+See [Experiment-Scoped Articles](./article-scoping.md) for the admin UI these methods back.
+
+**articles.create**
+
+* Creates a new article, scoped to the calling researcher (recorded as `createdBy`) and attached to `experimentId`
+* Input:
+
+  * title, lead, primaryCategory, datePublished, url, outlet, author, image, body, experimentId
+
+**articles.fetchMetadata**
+
+* Fetches and parses metadata (e.g. title, lead, image) for a given URL, to help pre-fill the article-creation form
+* Input:
+
+  * url: URL to fetch metadata for
+
+**articles.setExperimentScope**
+
+* Adds or removes an experiment from an article's `experimentIds`, so one stored article can serve several of a researcher's experiments without duplication
+* Input:
+
+  * articleId: ID of the article
+  * experimentId: ID of the experiment to attach/detach
+  * include: Boolean, whether the experiment should be added (`true`) or removed (`false`)
+
+**articles.overrideContent**
+
+* Used when a researcher uploads a URL that already exists in their own scope and chooses to replace the stored version; also attaches the article to a further experiment
+* Input:
+
+  * articleId, experimentId, title, lead, primaryCategory, datePublished, url, outlet, author, image, body
+
 **newsArticles.bookmark.update**
 
 * Toggles the *bookmark* state of an article for a user
@@ -167,6 +199,119 @@ Please see [Server Overview](./server.md) for more information on the back end.
   * experimentId: ID of the experiment
   * amount: Number of new users
   * userGroup: Subgroup the users will be assigned
+
+## userGroups
+
+**userGroups.create**
+
+* Creates a new user group within an experiment, with a live feed `mode`
+* Input:
+
+  * userGroup: name of the new group
+  * experimentId: ID of the experiment
+  * algorithm: recommender algorithm identifier (optional)
+  * mode: `"Normal"` or `"TikTok"` (defaults to `"Normal"`)
+
+**userGroups.update**
+
+* Generic key/value update on a user group document — used, among other things, to change `mode` live while the app is running (see [Experiment Scheduling](./scheduling.md))
+* Input:
+
+  * userGroupId: ID of the user group
+  * experimentId: ID of the experiment
+  * keyValueObject: `{ key, value }` pair to set
+
+**userGroups.remove**
+
+* Removes a user group from an experiment
+* Input:
+
+  * userGroupName, experimentId
+
+**userGroups.get**
+
+* Returns the user groups belonging to an experiment
+* Input:
+
+  * experimentId
+
+## schedules
+
+See [Experiment Scheduling](./scheduling.md) for the full design (recurring-schedule pre-materialization, the once-a-minute executor, UTC/minutes-from-midnight convention).
+
+**schedules.createEvent**
+
+* Creates a one-off `scheduledEvents` document that switches a user group's mode at a given time
+* Input:
+
+  * userGroupId, experimentId, scheduledAt, mode
+
+**schedules.createRecurring**
+
+* Creates a `recurringSchedules` document and pre-generates all of its corresponding `scheduledEvents` documents up front
+* Input:
+
+  * userGroupId, experimentId, startDate, endDate, dailySegments (array of `{ startMinute, mode }`, minutes from midnight UTC)
+
+**schedules.cancelEvent**
+
+* Cancels a single pending scheduled event
+* Input:
+
+  * eventId
+
+**schedules.cancelRecurring**
+
+* Cancels a recurring schedule and cascades cancellation to its still-pending child events (executed events are preserved)
+* Input:
+
+  * scheduleId
+
+**schedules.listEvents**
+
+* Lists scheduled events for an experiment (admin-only)
+* Input:
+
+  * experimentId
+
+## wrapped
+
+See [Informfully Wrapped](./wrapped.md) for the full feature description (computed metrics, release lifecycle).
+
+**wrapped.generate**
+
+* Computes and stores a new report document for one participant
+* Input:
+
+  * userId, experimentId
+
+**wrapped.generateForExperiment**
+
+* Computes and stores a new report for every participant in an experiment
+* Input:
+
+  * experimentId
+
+**wrapped.setVisible**
+
+* Toggles visibility of a participant's latest report; turning visibility on appends a release entry (who/when/a snapshot of the features)
+* Input:
+
+  * userId, experimentId, isVisible
+
+**wrapped.setVisibleForExperiment**
+
+* Bulk visibility toggle for every participant's latest report in an experiment
+* Input:
+
+  * experimentId, isVisible
+
+**wrapped.markShown**
+
+* Idempotently records the participant's first-view timestamp
+* Input:
+
+  * reportId
 
 ## explanationViews
 
@@ -291,3 +436,11 @@ Please see [Server Overview](./server.md) for more information on the back end.
   * articleId: ID of the article
   * action: type of action performed by the user
   * videoTimestamp: time in the video player at which the action was performed
+
+## apiAuth
+
+**apiAuth.issueToken**
+
+* Issues a short-lived signed JWT (HS256, 10-minute default lifetime, configurable via the `API_JWT_TTL_SECONDS` env var) for the current user, provided they hold the `admin` or `maintainer` role. This is the authentication bridge used by the [Researcher Data API](./researcher-api.md) — the two services never share a session, only this signed token.
+* No input; uses the currently logged-in user (`this.userId`)
+* Returns: `{ token, expiresIn }`

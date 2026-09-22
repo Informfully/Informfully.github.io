@@ -24,6 +24,29 @@ Please click the button below to email our support team. Please send the email u
 
 *Note: Once processed, this action is permanent and cannot be undone. Deletion requests are typically fulfilled within 7 business days.*
 
+---
+
+## For researchers: the self-service deletion endpoint
+
+Alongside the email-request process above, the Meteor backend also exposes an instant,
+self-service deletion endpoint: `POST /api/delete-account`, authenticated by the participant's
+own **username and password** (not email) and restricted by CORS to the landing page's origin.
+
+Unlike the manual, support-fulfilled request above, this endpoint takes effect immediately:
+
+- It's a **soft delete** — the account and all of that participant's data across every
+  behavioural collection are stamped with a `removedAt` timestamp. Nothing is physically
+  removed from the database.
+- The participant's active app session is force-logged-out, and any future sign-in attempt is
+  blocked with a distinct `410` error (`"This account has been deleted."`), separate from the
+  generic blocked-account error.
+
+**Implication for researchers:** a participant who deletes their account this way still appears
+in your experiment's data — via the Researcher API, the Data Explorer, or a full export — with
+`removedAt` set on their records. Treat `removedAt` as "deactivated," not "absent": exports do
+not filter these participants out automatically, so account for this field in your own analysis
+if you need to exclude them.
+
 <style scoped>
 .vp-delete-btn {
   display: inline-block;

@@ -1,6 +1,6 @@
 # Informfully
 
-![img/logo_banner.png](img/logo_banner.png)
+![img/index_assets/logo_banner.png](img/index_assets/logo_banner.png)
 
 Welcome to [Informfully](https://informfully.ch/)!
 Informfully is an open-source reproducibility platform for content distribution and conducting user experiments.
@@ -23,7 +23,7 @@ If you want to use the Informfully Platform as a cloud service, hosted at the Un
 
 ## Overview
 
-![img/app_screens.png](img/app_screens.png)
+![img/index_assets/app_screens.png](img/index_assets/app_screens.png)
 
 The Informfully platform allows you to push algorithmically curated text, image, audio, and video content to users and automatically generates a detailed log of their consumption history.
 It is a domain-agnostic, platform-independent solution that fits your specific needs.
@@ -36,7 +36,7 @@ It features three core components:
 
 ## Architecture
 
-![uml/application_architecture_v4.2.png](uml/application_architecture_v4.2.png)
+![img/index_assets/application_architecture_v4.2.png](img/index_assets/application_architecture_v4.2.png)
 
 Informfully features a fully modular design.
 The app/web interfaces, content scrapers, recommender systems, and any other components listed in this documentation can be used together or in a standalone fashion.

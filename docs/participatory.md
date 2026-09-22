@@ -25,7 +25,7 @@ In order to assess these scores and apply PLD, the following three questions mus
 
 The Figure below shows how PLD combined normative target distributions across two 1D lists into a 2D grid for recommendations.
 
-![img/algorithm_assets/pld.jpg](img/algorithm_assets/pld.jpg)
+![img/participatory_assets/pld.jpg](img/participatory_assets/pld.jpg)
 
 Articles are classified by the frequency of political party mentions, with each article assigned to a single party according to predefined settings.
 The model can calculate recommendations at the group level, reducing overall runtime as it generates candidate lists.

@@ -1,180 +1,59 @@
 # Local Development
 
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-This tutorial assumes basic knowledge of the React Native app development workflow.
-It is not intended as a tutorial.
-If you need more information about React Native, the latest version of this guide is available [in the online tutorial](https://github.com/expo/create-react-native-app/blob/master/README.md).
+## Running the Backend
 
-## Run a Local Server
-
-After setting up and testing your Informfully instance, you are ready to deploy your solution.
-For your convenience, we have created a script that automatically deploys the back end to any local or cloud server.
-Navigate to the main directory of your codebase and execute the following script:
+Start the full back end (app server, database, Researcher API, in-app chat service) with Docker Compose from the repository root (see [Installation Instructions](./install.md) for prerequisites and `.env` setup):
 
 ```console
+# Start all services in detached mode
+docker compose up -d
 
-    # To run the server on port 3008 with
-    # Settings configured for the development environment...
-    ./meteor-start.sh
-
-    # ...and...
-    bash meteor-start.sh
-
-    # ...or by specifying --port directly to run the server with
-    meteor --port 3008 --settings settings-dev.json
-
+# Rebuild images first (e.g. after changing a Dockerfile or dependencies)
+docker compose up --build -d
 ```
 
-Make sure that you are specifying the same port that you are using in the [React Native App](https://github.com/Informfully/Platform/blob/main/frontend/App.js).
-If you want to access the server from within your network, replace `--port 3008` with `--port <YOUR_LOCAL_IP_ADDRESS>:3008`.
-The back end is now running, and the administration website is accessible via `localhost:3008`.
+In local/dev mode, the admin website is reachable at `http://localhost:3000`.
 
-::: info
-
-In terms of database setup, you can connect to the database through `mongodb://localhost:3009/` if your Meteor server is running on port 3008.
-If the user collection in the database is empty when starting up, a new user with Maintainer role is automatically created by the [genesis.js` script `Genesis script located here](https://github.com/Informfully/Platform/blob/main/backend/server/genesis.js).
-In this documentation, we adhere to MongoDB's naming convention. Tables are collections, and tuples are documents.
-There is no need for you to create a document collection, as MongoDB will automatically create one when you insert the first document into a collection that does not yet exist.
-
-:::
-
-You will need to install the following libraries and packages on your machine:
-
-* [Meteor](https://docs.meteor.com/install.html). The globally installed Meteor version does not matter, as the project will use the project-specific one defined in [Meteor Release Version](https://github.com/Informfully/Platform/blob/main/backend/.meteor/release), currently v2.14`_).
-* Xcode (macOS only) for iOS development and Android Studio for Android development.
-* [Node.js](https://nodejs.org/) Version **16**.
-* [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) Version **1.22 or higher**.
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) Version **8.1 or higher**.
-
-To check whether you already have them installed, simply check the version in a terminal:
+To follow logs or check container status:
 
 ```console
-    
-    # Check whether Meteor is installed and in PATH
-    meteor --version
-
-    # Check whether Node is installed and in PATH
-    node -v
-
-    # Check whether npm is installed and in PATH
-    npm -v
-
-    # Check whether yarn is installed and in PATH
-    yarn --version
-
+docker compose logs -f meteor
+docker compose ps
 ```
 
-Also, do not forget that it is best if your development and production environments have the same package versions (meaning that the libraries on the deployment server for the [website and back end](./deployment.md) and [Docker container setup](./docker.md) should also be updated).
+### Inspecting the Database
 
-## Connecting to Local Server
-
-Inside the [App.js Configuration](https://github.com/Informfully/Platform/blob/main/frontend/App.js)), change the `SERVER` constant so it will connect to your local server.
-E.g., if the client runs on the same computer:
-
-```javascript
-
-    const SERVER = 'localhost'
+The database is exposed on the host at port `27017`. Connect [MongoDB Compass](https://www.mongodb.com/products/compass) using:
 
 ```
+mongodb://localhost:27017/meteor
+```
 
-If you want to use your client on a different computer in the same network, replace `localhost:3008` with `<YOUR_LOCAL_IP_ADDRESS>:3008`.
+In this documentation, we adhere to MongoDB's naming convention: tables are collections, and tuples are documents. There is no need to create a document collection yourself — the database creates one automatically when the first document is inserted.
 
-After you have set the `SERVER` constant, you can do the following to start the client:
+### First Maintainer Account
+
+If no accounts exist yet on startup, the platform automatically creates a first account with the `admin` and `maintainer` roles (currently seeded as username `adam`, email `adam@uzh.ch`, password `password`). Change this immediately in any shared or long-lived environment, and remove the seed once a real maintainer account exists.
+
+## Running the Frontend
 
 ```console
-
-    # Go to the frontend directory
-    cd frontend
-
-    # Install all packages
-    yarn install 
-
-    # Start expo
-    npx expo start
-
+cd frontend
+npm install --legacy-peer-deps
+npx expo start --clear
 ```
 
-::: info
+Point the app at your running backend via `frontend/.env` (see [Installation Instructions](./install.md#pointing-the-app-at-your-backend) for the local-network vs. tunnel options).
 
-**Important** `npx` comes with `npm` and hence with `Node.js`. `npm` will automatically fetch `Expo`. If prompted, install `npx` and/or `expo` as required.
+After starting Metro, scan the printed QR code to test on a physical device (recommended), or connect a simulator/emulator. Because the app relies on native modules, use a development build rather than the generic Expo Go client from the store:
 
-:::
-
-Afterwards, you can scan the QR code that appears, if you want to test the app on a physical device (recommended).
-Or you can connect to a device emulator (e.g., Android Studio or Xcode).
-
-![img/meteor_assets/meteor_bundle.png](img/meteor_assets/meteor_bundle.png)
-
-The app will run in the [Expo Go App](https://expo.dev/client) and any changes to the source code will be automatically reflected in Expo Go.
-
-## Helper Scripts for Maintainers
-
-Meteor encrypts all passwords for users created using the [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm, which ensures that each password is encrypted a second time with an unknown "salt" value.
-This protects against embarrassing password leaks if the server's database is compromised.
-
-When a user logs in, the Meteor Account System checks the encrypted password generated with its "salt".
-Trying to decrypt the salt is just as difficult as decrypting the password, given the nature of the bcrypt algorithm.
-This special [encryption mechanism](https://docs.meteor.com/api/passwords) employed by Meteor makes it impossible to insert a new user into the database without using Meteor.
-
-Therefore, to create the very first `Maintainer`, we provide the `main.js` and `genesis.js` scripts that were run when the server was initialized.
-We connect (with `main.js`) and check (with `genesis.js`) if the database is empty.
-If so, we insert a new user with the information below (see again `genesis.ja`).
-
-### main.js
-
-```javascript
-
-    //backend/server/main.js
-    import { Meteor } from 'meteor/meteor';
-    import '../imports/startup/server';
-    import '../imports/api/server/publications';
-    import './genesis'
-
-    Meteor.startup(() => {
-
-        if (process.env.MAIL_URL === undefined || process.env.MAIL_URL.length === 0) {
-            process.env.MAIL_URL = 'smtp://localhost:25';
-        }
-
-    });
-
+```console
+npx expo run:android
+npx expo run:ios
 ```
 
-### genesis.js
-
-```javascript
-
-    import { Accounts } from 'meteor/accounts-base'
-    import { Meteor } from 'meteor/meteor';
-    import '../imports/startup/server';
-
-    
-    if (Meteor.users.find().count() === 0) {
-
-        const new_user = {
-            "username": "[USERNAME]",
-            "email": "[USERNAME]@[DOMAINN]",
-            "password": "[PASSWORD]",
-            "roles": [
-                "user", "admin", "maintainer"
-            ]   
-        };
-
-        Accounts.createUser(new_user);
-
-        console.log("First user created");
-
-    }
-
-```
-
-::: info
-
-It is recommended to delete this user after another `Maintainer` has been created to ensure the system's security.
-This applies to both local and online back end deployments.
-
-:::
+Changes to the source code are reflected live via Fast Refresh while `expo start` is running.
 
 ## Next Step: Platform Deployment
 
-Please see the next instruction pages for [App Deployment](./native.md) and [Website Deployment](./deployment.md).
+Please see the next instruction pages for [App Deployment](./native.md) and [Back End Deployment](./deployment.md).

@@ -6,8 +6,8 @@ hero:
   text: "@ RecSys '23"
   tagline: Your All-in-One Solution for User Studies
   image:
-    light: /iphone-app.png
-    dark: /iphone-app-dark.png
+    light: /informfully_dark.png
+    dark: /informfully_light.png
     alt: Informfully Logo
   actions:
     - theme: brand

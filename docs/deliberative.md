@@ -24,7 +24,7 @@ To that end, EPD assigns users to one of three conditions at the beginning of an
 3. exposed to other political news.
 The Figure below shows an overview of how EPD builds the recommendation list one slide at a time.
 
-![img/algorithm_assets/epd.jpg](img/algorithm_assets/epd.jpg)
+![img/deliberative_assets/epd.jpg](img/deliberative_assets/epd.jpg)
 
 The continuous exposure lengths of majority party articles, minority party articles, political articles, and non-political articles are controlled by parameters to increase the diversity of recommendation results.
 In each news recommendation list, articles with both majority and minority views are displayed in the order the user sets.

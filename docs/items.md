@@ -40,7 +40,7 @@ If we used non-existing fields to signify the absence of an attribute, we would 
 This use of the `$exists` operator, however, cannot use any index and results in lower overall performance.
 Items will be rendered as follows inside the app:
 
-![img/app_screenshots/app_2.png](img/app_screenshots/app_2.png)
+![img/items_assets/app_2.png](img/items_assets/app_2.png)
 
 For a text item, the top of the interface displays a thumbnail preview specified in the `image` attribute.
 For a multimedia item (podcast or video), a multimedia player will load the specified image as a thumbnail.
